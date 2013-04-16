@@ -14,7 +14,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [RKObjectManager setSharedManager:self.objectManager];
-    
     return YES;
 }
 							

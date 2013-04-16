@@ -10,6 +10,14 @@
 
 @implementation PRRound
 
++ (NSString *)keyPath {
+    return @"rounds";
+}
+
++ (NSString *)remotePath {
+    return @"/rounds";
+}
+
 + (RKObjectMapping *)objectMapping {
     RKObjectMapping* mapping = [super objectMapping];
 

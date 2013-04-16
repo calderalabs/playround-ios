@@ -14,16 +14,8 @@
 - (RKObjectManager *)objectManager {
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:PR_API_BASE_URL]];
     
-    NSDictionary *routes = @{
-        @"/rounds": [PRRound objectMapping]
-    };
-    
-    for(NSString *path in routes) {
-        [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:routes[path]
-                                                                                     pathPattern:nil
-                                                                                         keyPath:path
-                                                                                     statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
-    }
+    for(Class class in @[[PRRound class], [PRUser class]])
+        [class setObjectManager:objectManager];
     
     return objectManager;
 }

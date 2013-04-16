@@ -10,6 +10,14 @@
 
 @implementation PRUser
 
++ (NSString *)keyPath {
+    return @"users";
+}
+
++ (PRModelOperationType)supportedOperationTypes {
+    return PRModelOperationNone;
+}
+
 + (RKObjectMapping *)objectMapping {
     RKObjectMapping* mapping = [super objectMapping];
     
