@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		4765467B171C242500D2A264 /* PRFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4765467A171C242500D2A264 /* PRFeedTableViewController.m */; };
 		4765467C171C242500D2A264 /* PRFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4765467A171C242500D2A264 /* PRFeedTableViewController.m */; };
+		479391BD171EAC7A0007C2C2 /* PRFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391BC171EAC7A0007C2C2 /* PRFeedTableViewCell.m */; };
+		479391BE171EAC7A0007C2C2 /* PRFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391BC171EAC7A0007C2C2 /* PRFeedTableViewCell.m */; };
+		479391C1171ECBF10007C2C2 /* PRArena.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391C0171ECBF10007C2C2 /* PRArena.m */; };
+		479391C2171ECBF10007C2C2 /* PRArena.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391C0171ECBF10007C2C2 /* PRArena.m */; };
+		479391C5171ECF980007C2C2 /* PRGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391C4171ECF980007C2C2 /* PRGame.m */; };
+		479391C6171ECF980007C2C2 /* PRGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391C4171ECF980007C2C2 /* PRGame.m */; };
 		479640A01716AEED00060E8A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4796409F1716AEED00060E8A /* Default-568h@2x.png */; };
 		47C8AE6D171D4AE20020C4FF /* PRRound.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C8AE6C171D4AE20020C4FF /* PRRound.m */; };
 		47C8AE6E171D4AE20020C4FF /* PRRound.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C8AE6C171D4AE20020C4FF /* PRRound.m */; };
@@ -46,6 +52,12 @@
 /* Begin PBXFileReference section */
 		47654679171C242500D2A264 /* PRFeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRFeedTableViewController.h; sourceTree = "<group>"; };
 		4765467A171C242500D2A264 /* PRFeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRFeedTableViewController.m; sourceTree = "<group>"; };
+		479391BB171EAC7A0007C2C2 /* PRFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRFeedTableViewCell.h; sourceTree = "<group>"; };
+		479391BC171EAC7A0007C2C2 /* PRFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRFeedTableViewCell.m; sourceTree = "<group>"; };
+		479391BF171ECBF10007C2C2 /* PRArena.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRArena.h; sourceTree = "<group>"; };
+		479391C0171ECBF10007C2C2 /* PRArena.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRArena.m; sourceTree = "<group>"; };
+		479391C3171ECF980007C2C2 /* PRGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRGame.h; sourceTree = "<group>"; };
+		479391C4171ECF980007C2C2 /* PRGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRGame.m; sourceTree = "<group>"; };
 		4796409F1716AEED00060E8A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		47C8AE6B171D4AE20020C4FF /* PRRound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRRound.h; sourceTree = "<group>"; };
 		47C8AE6C171D4AE20020C4FF /* PRRound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRRound.m; sourceTree = "<group>"; };
@@ -111,6 +123,15 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		479391BA171EAC190007C2C2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				479391BB171EAC7A0007C2C2 /* PRFeedTableViewCell.h */,
+				479391BC171EAC7A0007C2C2 /* PRFeedTableViewCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		47C8AE6A171D4A470020C4FF /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +141,10 @@
 				47C8AE71171D77F70020C4FF /* PRUser.m */,
 				47C8AE74171D78150020C4FF /* PRModel.h */,
 				47C8AE75171D78150020C4FF /* PRModel.m */,
+				479391BF171ECBF10007C2C2 /* PRArena.h */,
+				479391C0171ECBF10007C2C2 /* PRArena.m */,
+				479391C3171ECF980007C2C2 /* PRGame.h */,
+				479391C4171ECF980007C2C2 /* PRGame.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -159,6 +184,7 @@
 		47E6521416FCBF18005D6E4C /* Playround */ = {
 			isa = PBXGroup;
 			children = (
+				479391BA171EAC190007C2C2 /* Views */,
 				47C8AE6A171D4A470020C4FF /* Models */,
 				4765467D171C243300D2A264 /* Controllers */,
 				47E6521D16FCBF18005D6E4C /* PRAppDelegate.h */,
@@ -349,6 +375,9 @@
 				47C8AE72171D77F70020C4FF /* PRUser.m in Sources */,
 				47C8AE76171D78150020C4FF /* PRModel.m in Sources */,
 				47C8AE7E171D809A0020C4FF /* PRAppDelegate+ObjectManager.m in Sources */,
+				479391BD171EAC7A0007C2C2 /* PRFeedTableViewCell.m in Sources */,
+				479391C1171ECBF10007C2C2 /* PRArena.m in Sources */,
+				479391C5171ECF980007C2C2 /* PRGame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +391,9 @@
 				47C8AE73171D77F70020C4FF /* PRUser.m in Sources */,
 				47C8AE77171D78150020C4FF /* PRModel.m in Sources */,
 				47C8AE7F171D809A0020C4FF /* PRAppDelegate+ObjectManager.m in Sources */,
+				479391BE171EAC7A0007C2C2 /* PRFeedTableViewCell.m in Sources */,
+				479391C2171ECBF10007C2C2 /* PRArena.m in Sources */,
+				479391C6171ECF980007C2C2 /* PRGame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

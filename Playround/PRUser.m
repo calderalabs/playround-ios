@@ -24,7 +24,7 @@
     [mapping addAttributeMappingsFromDictionary:@{
         @"id": @"objectID",
         @"name": @"name",
-        @"picture": @"picture"
+        @"picture_url": @"pictureURL"
     }];
     
     return mapping;

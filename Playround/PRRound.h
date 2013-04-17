@@ -8,10 +8,14 @@
 
 #import "PRModel.h"
 #import "PRUser.h"
+#import "PRArena.h"
+#import "PRGame.h"
 
 @interface PRRound : PRModel
 
 @property (nonatomic, strong) PRUser *user;
+@property (nonatomic, strong) PRArena *arena;
+@property (nonatomic, strong) PRGame *game;
 @property (nonatomic, copy) NSString *objectID;
 @property (nonatomic, copy) NSDate *createdAt;
 @property (nonatomic, copy) NSString *status;

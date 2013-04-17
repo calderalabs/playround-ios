@@ -1,16 +1,15 @@
 //
-//  PRUser.h
+//  PRArena.h
 //  Playround
 //
-//  Created by Eugenio Depalo on 4/16/13.
+//  Created by Eugenio Depalo on 4/17/13.
 //  Copyright (c) 2013 Eugenio Depalo. All rights reserved.
 //
 
 #import "PRModel.h"
 
-@interface PRUser : PRModel
+@interface PRArena : PRModel
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSURL *pictureURL;
 
 @end

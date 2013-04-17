@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.89684527853260865" green="0.89684527853260865" blue="0.89684527853260865" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Feed" rowHeight="101" id="bYm-uJ-9HX">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Feed" rowHeight="101" id="bYm-uJ-9HX" customClass="PRFeedTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="101"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -59,7 +59,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Venue" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dj4-ym-szt">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Arena" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dj4-ym-szt">
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="108" id="SCQ-oG-jRZ"/>
                                                 <constraint firstAttribute="height" constant="21" id="amU-z1-LB9"/>
@@ -105,6 +105,14 @@
                                     <constraint firstItem="Uem-iX-GCf" firstAttribute="baseline" secondItem="Vwx-g8-G19" secondAttribute="baseline" type="default" id="eie-cT-s6d"/>
                                     <constraint firstItem="4hO-KW-Vp5" firstAttribute="bottom" secondItem="vco-8w-NLZ" secondAttribute="bottom" type="default" id="o8Q-Nx-ra0"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="arenaLabel" destination="Dj4-ym-szt" id="fvb-li-NdL"/>
+                                    <outlet property="dateLabel" destination="Uem-iX-GCf" id="Vg4-5f-xlp"/>
+                                    <outlet property="gameImageView" destination="4hO-KW-Vp5" id="qID-Ms-7EB"/>
+                                    <outlet property="statusLabel" destination="Vwx-g8-G19" id="O8U-lu-d7p"/>
+                                    <outlet property="userPictureImageView" destination="vco-8w-NLZ" id="dqa-lu-gsz"/>
+                                    <outlet property="usernameLabel" destination="tMG-GW-BwN" id="sG3-s1-Mcu"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
@@ -221,6 +229,17 @@
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PRFeedTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PRFeedTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="arenaLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="gameImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userPictureImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="usernameLabel" candidateClass="UILabel"/>
+            </relationships>
         </class>
         <class className="PRFeedTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRFeedTableViewController.h"/>
