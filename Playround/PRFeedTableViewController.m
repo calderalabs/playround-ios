@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSArray *rounds;
 
 - (IBAction)refreshControlDidChangeValue:(UIRefreshControl *)control;
+- (void)loadData;
 
 @end
 
@@ -39,33 +40,44 @@
                   forControlEvents:UIControlEventValueChanged];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if(!self.rounds) {
+        [self loadData];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
+- (void)loadData {
+    [self.refreshControl beginRefreshing];
+    
+    [PRRound allWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error) {
+        if(!error) {
+            self.rounds = mappingResult.array;
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error while fetching collection"
+                                                                message:error.localizedDescription
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+            
+            [alertView show];
+        }
+        
+        [self.refreshControl endRefreshing];
+        [self.tableView reloadData];
+    }];
+}
+
 #pragma mark - Actions
 
 - (IBAction)refreshControlDidChangeValue:(UIRefreshControl *)control {
-    PRRound *round = [[PRRound alloc] init];
-    PRUser *user = [[PRUser alloc] init];
-    PRArena *arena = [[PRArena alloc] init];
-    PRGame *game = [[PRGame alloc] init];
-    
-    user.name = @"Eugenio Depalo";
-    user.pictureURL = [NSURL URLWithString:@"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/c32.9.117.117/s100x100/526570_371377206303965_1223495359_a.jpg"];
-    arena.name = @"DotA Bar";
-    game.pictureURL = [NSURL URLWithString:@"http://www.dota2wiki.com/images/thumb/7/76/Dota_2_logo.png/41px-Dota_2_logo.png"];
-    round.status = @"ongoing";
-    round.createdAt = [NSDate date];
-    round.user = user;
-    round.arena = arena;
-    round.game = game;
-    
-    self.rounds = @[round];
-    
-    [self.tableView reloadData];
-    [control endRefreshing];
+    [self loadData];
 }
 
 #pragma mark - UITableViewDataSource

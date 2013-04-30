@@ -14,7 +14,7 @@
 - (RKObjectManager *)objectManager {
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:PR_API_BASE_URL]];
     
-    for(Class class in @[[PRRound class], [PRUser class]])
+    for(Class class in @[[PRRound class], [PRUser class], [PRGame class], [PRArena class]])
         [class setObjectManager:objectManager];
     
     return objectManager;

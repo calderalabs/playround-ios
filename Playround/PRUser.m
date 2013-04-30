@@ -14,8 +14,12 @@
     return @"users";
 }
 
++ (NSString *)remotePath {
+    return @"/users";
+}
+
 + (PRModelOperationType)supportedOperationTypes {
-    return PRModelOperationNone;
+    return PRModelOperationRead;
 }
 
 + (RKObjectMapping *)objectMapping {
@@ -28,6 +32,12 @@
     }];
     
     return mapping;
+}
+
++ (void)currentWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
+    PRUser *current = [[self alloc] init];
+    current.objectID = @"me";
+    [current getWithCompletion:completion];
 }
 
 @end

@@ -12,7 +12,7 @@
 #ifdef RELEASE
 #define PR_API_BASE_URL @"http://goplayround.com/api"
 #elif DEBUG
-#define PR_API_BASE_URL @"http://localhost:3000"
+#define PR_API_BASE_URL @"http://localhost:8080"
 #endif
 
 #endif

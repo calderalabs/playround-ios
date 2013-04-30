@@ -17,10 +17,17 @@ typedef enum {
 
 @interface PRModel : NSObject
 
+@property (nonatomic, copy) NSString *objectID;
+
 + (PRModelOperationType)supportedOperationTypes;
 + (RKObjectMapping *)objectMapping;
 + (NSString *)keyPath;
 + (NSString *)remotePath;
 + (void)setObjectManager:(RKObjectManager *)objectManager;
++ (void)allWithCompletion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error))completion;
++ (void)allWhere:(NSDictionary *)parameters
+      completion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error))completion;
+
+- (void)getWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion;
 
 @end
