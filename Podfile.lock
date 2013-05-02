@@ -15,13 +15,16 @@ PODS:
   - RestKit/ObjectMapping (0.20.0)
   - RestKit/Support (0.20.0)
   - SOCKit (1.1)
+  - SSKeychain (1.0.3)
 
 DEPENDENCIES:
   - RestKit
+  - SSKeychain
 
 SPEC CHECKSUMS:
   AFNetworking: 761a418233d280c1e0580bcb76ff9cb4c3073d17
   RestKit: 580771664a14eaaa40bf53cf83584f12fc141930
   SOCKit: ed67aeeca4a697b63a933229e53f4670d5b9300f
+  SSKeychain: 0e7add9e329975653cb66c9d527493a5539755f6
 
 COCOAPODS: 0.18.1

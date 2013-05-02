@@ -8,6 +8,8 @@
 
 #import "PRUser.h"
 
+static PRUser *sCurrentUser = nil;
+
 @implementation PRUser
 
 + (NSString *)keyPath {
@@ -34,10 +36,26 @@
     return mapping;
 }
 
+
++ (PRUser *)current {
+    return sCurrentUser;
+}
+
++ (void)setCurrent:(PRUser *)session {
+    sCurrentUser = session;
+}
+
 + (void)currentWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
     PRUser *current = [[self alloc] init];
     current.objectID = @"me";
-    [current getWithCompletion:completion];
+    
+    [current getWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *result, NSError *error) {
+        if(!error)
+            self.current = result.firstObject;
+        
+        if(completion)
+            completion(operation, result, error);
+    }];
 }
 
 @end

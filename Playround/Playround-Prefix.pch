@@ -14,5 +14,6 @@
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <MobileCoreServices/MobileCoreServices.h>
     #import <RestKit.h>
+    #import <SSKeychain.h>
     #import "Environment.h"
 #endif

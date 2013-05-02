@@ -13,7 +13,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [RKObjectManager setSharedManager:self.objectManager];
+    RKObjectManager.sharedManager = self.objectManager;
     
     [self.window makeKeyAndVisible];
     [self.window.rootViewController performSegueWithIdentifier:@"Login" sender:self];

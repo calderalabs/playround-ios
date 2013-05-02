@@ -8,13 +8,17 @@
 
 #import "PRAppDelegate+ObjectManager.h"
 #import "PRRound.h"
+#import "PRUser.h"
+#import "PRGame.h"
+#import "PRArena.h"
+#import "PRAPIKey.h"
 
 @implementation PRAppDelegate (ObjectManager)
 
 - (RKObjectManager *)objectManager {
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:PR_API_BASE_URL]];
     
-    for(Class class in @[[PRRound class], [PRUser class], [PRGame class], [PRArena class]])
+    for(Class class in @[[PRRound class], [PRUser class], [PRGame class], [PRArena class], [PRAPIKey class]])
         [class setObjectManager:objectManager];
     
     return objectManager;
