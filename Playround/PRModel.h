@@ -22,12 +22,13 @@ typedef enum {
 + (PRModelOperationType)supportedOperationTypes;
 + (RKObjectMapping *)objectMapping;
 + (NSString *)keyPath;
++ (NSString *)pluralKeyPath;
 + (NSString *)remotePath;
 + (void)setObjectManager:(RKObjectManager *)objectManager;
 + (void)allWithCompletion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error))completion;
 + (void)allWhere:(NSDictionary *)parameters
       completion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error))completion;
 
-- (void)getWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion;
+- (void)readWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion;
 
 @end

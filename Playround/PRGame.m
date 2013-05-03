@@ -11,7 +11,7 @@
 @implementation PRGame
 
 + (NSString *)keyPath {
-    return @"games";
+    return @"game";
 }
 
 + (PRModelOperationType)supportedOperationTypes {

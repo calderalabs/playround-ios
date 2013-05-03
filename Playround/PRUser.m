@@ -13,7 +13,7 @@ static PRUser *sCurrentUser = nil;
 @implementation PRUser
 
 + (NSString *)keyPath {
-    return @"users";
+    return @"user";
 }
 
 + (NSString *)remotePath {
@@ -28,7 +28,6 @@ static PRUser *sCurrentUser = nil;
     RKObjectMapping* mapping = [super objectMapping];
     
     [mapping addAttributeMappingsFromDictionary:@{
-        @"id": @"objectID",
         @"name": @"name",
         @"picture_url": @"pictureURL"
     }];
@@ -45,11 +44,11 @@ static PRUser *sCurrentUser = nil;
     sCurrentUser = session;
 }
 
-+ (void)currentWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
++ (void)readCurrentWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
     PRUser *current = [[self alloc] init];
     current.objectID = @"me";
     
-    [current getWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *result, NSError *error) {
+    [current readWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *result, NSError *error) {
         if(!error)
             self.current = result.firstObject;
         

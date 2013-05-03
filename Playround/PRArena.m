@@ -11,7 +11,7 @@
 @implementation PRArena
 
 + (NSString *)keyPath {
-    return @"arenas";
+    return @"arena";
 }
 
 + (PRModelOperationType)supportedOperationTypes {

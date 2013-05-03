@@ -33,12 +33,12 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [PRUser currentWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error) {
+    [PRUser readCurrentWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error) {
         if(!error) {
             [self dismissViewControllerAnimated:YES completion:nil];
         }
         else {
-            
+            NSLog(@"%@", error.localizedDescription);
         }
     }];
 }

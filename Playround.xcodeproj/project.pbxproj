@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4758CE631733FFA60049B8CA /* PRObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4758CE621733FFA60049B8CA /* PRObjectManager.m */; };
+		4758CE641733FFA60049B8CA /* PRObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4758CE621733FFA60049B8CA /* PRObjectManager.m */; };
+		4758CE6B173430940049B8CA /* PRHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4758CE6A173430940049B8CA /* PRHTTPRequestOperation.m */; };
+		4758CE6C173430940049B8CA /* PRHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4758CE6A173430940049B8CA /* PRHTTPRequestOperation.m */; };
 		4765467B171C242500D2A264 /* PRFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4765467A171C242500D2A264 /* PRFeedTableViewController.m */; };
 		4765467C171C242500D2A264 /* PRFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4765467A171C242500D2A264 /* PRFeedTableViewController.m */; };
 		477590D9172EACD0006D13D1 /* PRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477590D8172EACD0006D13D1 /* PRLoginViewController.m */; };
@@ -24,10 +28,8 @@
 		47C8AE73171D77F70020C4FF /* PRUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C8AE71171D77F70020C4FF /* PRUser.m */; };
 		47C8AE76171D78150020C4FF /* PRModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C8AE75171D78150020C4FF /* PRModel.m */; };
 		47C8AE77171D78150020C4FF /* PRModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C8AE75171D78150020C4FF /* PRModel.m */; };
-		47C8AE7E171D809A0020C4FF /* PRAppDelegate+ObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C8AE7D171D809A0020C4FF /* PRAppDelegate+ObjectManager.m */; };
-		47C8AE7F171D809A0020C4FF /* PRAppDelegate+ObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C8AE7D171D809A0020C4FF /* PRAppDelegate+ObjectManager.m */; };
-		47CFF0DE17327DA8006CEA78 /* PRAPIKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 47CFF0DD17327DA8006CEA78 /* PRAPIKey.m */; };
-		47CFF0DF17327DA8006CEA78 /* PRAPIKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 47CFF0DD17327DA8006CEA78 /* PRAPIKey.m */; };
+		47CFF0DE17327DA8006CEA78 /* PRToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 47CFF0DD17327DA8006CEA78 /* PRToken.m */; };
+		47CFF0DF17327DA8006CEA78 /* PRToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 47CFF0DD17327DA8006CEA78 /* PRToken.m */; };
 		47E6520F16FCBF18005D6E4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E6520E16FCBF18005D6E4C /* UIKit.framework */; };
 		47E6521116FCBF18005D6E4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E6521016FCBF18005D6E4C /* Foundation.framework */; };
 		47E6521316FCBF18005D6E4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E6521216FCBF18005D6E4C /* CoreGraphics.framework */; };
@@ -54,6 +56,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4758CE611733FFA60049B8CA /* PRObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRObjectManager.h; sourceTree = "<group>"; };
+		4758CE621733FFA60049B8CA /* PRObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRObjectManager.m; sourceTree = "<group>"; };
+		4758CE69173430930049B8CA /* PRHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRHTTPRequestOperation.h; sourceTree = "<group>"; };
+		4758CE6A173430940049B8CA /* PRHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRHTTPRequestOperation.m; sourceTree = "<group>"; };
 		47654679171C242500D2A264 /* PRFeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRFeedTableViewController.h; sourceTree = "<group>"; };
 		4765467A171C242500D2A264 /* PRFeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRFeedTableViewController.m; sourceTree = "<group>"; };
 		477590D7172EACD0006D13D1 /* PRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRLoginViewController.h; sourceTree = "<group>"; };
@@ -72,10 +78,8 @@
 		47C8AE71171D77F70020C4FF /* PRUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRUser.m; sourceTree = "<group>"; };
 		47C8AE74171D78150020C4FF /* PRModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRModel.h; sourceTree = "<group>"; };
 		47C8AE75171D78150020C4FF /* PRModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRModel.m; sourceTree = "<group>"; };
-		47C8AE7C171D809A0020C4FF /* PRAppDelegate+ObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PRAppDelegate+ObjectManager.h"; sourceTree = "<group>"; };
-		47C8AE7D171D809A0020C4FF /* PRAppDelegate+ObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PRAppDelegate+ObjectManager.m"; sourceTree = "<group>"; };
-		47CFF0DC17327DA8006CEA78 /* PRAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRAPIKey.h; sourceTree = "<group>"; };
-		47CFF0DD17327DA8006CEA78 /* PRAPIKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRAPIKey.m; sourceTree = "<group>"; };
+		47CFF0DC17327DA8006CEA78 /* PRToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRToken.h; sourceTree = "<group>"; };
+		47CFF0DD17327DA8006CEA78 /* PRToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRToken.m; sourceTree = "<group>"; };
 		47E6520B16FCBF18005D6E4C /* Playround.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Playround.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47E6520E16FCBF18005D6E4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		47E6521016FCBF18005D6E4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -155,8 +159,8 @@
 				479391C0171ECBF10007C2C2 /* PRArena.m */,
 				479391C3171ECF980007C2C2 /* PRGame.h */,
 				479391C4171ECF980007C2C2 /* PRGame.m */,
-				47CFF0DC17327DA8006CEA78 /* PRAPIKey.h */,
-				47CFF0DD17327DA8006CEA78 /* PRAPIKey.m */,
+				47CFF0DC17327DA8006CEA78 /* PRToken.h */,
+				47CFF0DD17327DA8006CEA78 /* PRToken.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -201,10 +205,12 @@
 				4765467D171C243300D2A264 /* Controllers */,
 				47E6521D16FCBF18005D6E4C /* PRAppDelegate.h */,
 				47E6521E16FCBF18005D6E4C /* PRAppDelegate.m */,
-				47C8AE7C171D809A0020C4FF /* PRAppDelegate+ObjectManager.h */,
-				47C8AE7D171D809A0020C4FF /* PRAppDelegate+ObjectManager.m */,
 				47E6522616FCBF18005D6E4C /* MainStoryboard.storyboard */,
 				47E6521516FCBF18005D6E4C /* Supporting Files */,
+				4758CE611733FFA60049B8CA /* PRObjectManager.h */,
+				4758CE621733FFA60049B8CA /* PRObjectManager.m */,
+				4758CE69173430930049B8CA /* PRHTTPRequestOperation.h */,
+				4758CE6A173430940049B8CA /* PRHTTPRequestOperation.m */,
 			);
 			path = Playround;
 			sourceTree = "<group>";
@@ -386,12 +392,13 @@
 				47C8AE6D171D4AE20020C4FF /* PRRound.m in Sources */,
 				47C8AE72171D77F70020C4FF /* PRUser.m in Sources */,
 				47C8AE76171D78150020C4FF /* PRModel.m in Sources */,
-				47C8AE7E171D809A0020C4FF /* PRAppDelegate+ObjectManager.m in Sources */,
 				479391BD171EAC7A0007C2C2 /* PRFeedTableViewCell.m in Sources */,
 				479391C1171ECBF10007C2C2 /* PRArena.m in Sources */,
 				479391C5171ECF980007C2C2 /* PRGame.m in Sources */,
 				477590D9172EACD0006D13D1 /* PRLoginViewController.m in Sources */,
-				47CFF0DE17327DA8006CEA78 /* PRAPIKey.m in Sources */,
+				47CFF0DE17327DA8006CEA78 /* PRToken.m in Sources */,
+				4758CE631733FFA60049B8CA /* PRObjectManager.m in Sources */,
+				4758CE6B173430940049B8CA /* PRHTTPRequestOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,12 +411,13 @@
 				47C8AE6E171D4AE20020C4FF /* PRRound.m in Sources */,
 				47C8AE73171D77F70020C4FF /* PRUser.m in Sources */,
 				47C8AE77171D78150020C4FF /* PRModel.m in Sources */,
-				47C8AE7F171D809A0020C4FF /* PRAppDelegate+ObjectManager.m in Sources */,
 				479391BE171EAC7A0007C2C2 /* PRFeedTableViewCell.m in Sources */,
 				479391C2171ECBF10007C2C2 /* PRArena.m in Sources */,
 				479391C6171ECF980007C2C2 /* PRGame.m in Sources */,
 				477590DA172EACD0006D13D1 /* PRLoginViewController.m in Sources */,
-				47CFF0DF17327DA8006CEA78 /* PRAPIKey.m in Sources */,
+				47CFF0DF17327DA8006CEA78 /* PRToken.m in Sources */,
+				4758CE641733FFA60049B8CA /* PRObjectManager.m in Sources */,
+				4758CE6C173430940049B8CA /* PRHTTPRequestOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

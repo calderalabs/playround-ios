@@ -7,6 +7,7 @@
 //
 
 #import "PRModel.h"
+#import "PRObjectManager.h"
 
 @implementation PRModel
 
@@ -19,6 +20,10 @@
     return nil;
 }
 
++ (NSString *)pluralKeyPath {
+    return [NSString stringWithFormat:@"%@s", self.keyPath];
+}
+
 + (NSString *)remotePath {
     NSAssert(NO, @"You must override +remotePath in PRModel subclasses.");
     return nil;
@@ -28,10 +33,11 @@
     return PRModelOperationAll;
 }
 
-+ (void)setObjectManager:(RKObjectManager *)objectManager {
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping
++ (void)setObjectManager:(PRObjectManager *)objectManager {
+    for(NSString *keyPath in @[self.keyPath, self.pluralKeyPath])
+        [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping
                                                                                  pathPattern:nil
-                                                                                     keyPath:self.keyPath
+                                                                                     keyPath:keyPath
                                                                                  statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     
     PRModelOperationType operationTypes = [self supportedOperationTypes];
@@ -63,7 +69,7 @@
 
 + (void)allWhere:(NSDictionary *)parameters
          completion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
-    [[RKObjectManager sharedManager] getObjectsAtPath:self.remotePath
+    [[PRObjectManager sharedManager] getObjectsAtPath:self.remotePath
                                            parameters:parameters
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                   if(completion)
@@ -74,8 +80,8 @@
                                               }];
 }
 
-- (void)getWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
-    [[RKObjectManager sharedManager] getObject:self path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+- (void)readWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
+    [[PRObjectManager sharedManager] getObject:self path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         if(completion)
             completion(operation, mappingResult, nil);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {

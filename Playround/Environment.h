@@ -10,9 +10,11 @@
 #define Playround_Environment_h
 
 #ifdef RELEASE
-#define PR_API_BASE_URL @"http://goplayround.com/api"
+#define PR_API_BASE_URL @"http://goplayround.com/api/v1"
+#define PR_API_ACCESS_TOKEN nil
 #elif DEBUG
-#define PR_API_BASE_URL @"http://localhost:8080"
+#define PR_API_BASE_URL @"http://localhost:8080/v1"
+#define PR_API_ACCESS_TOKEN @"00000000000000000000000000000000"
 #endif
 
 #endif

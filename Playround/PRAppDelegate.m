@@ -7,14 +7,14 @@
 //
 
 #import "PRAppDelegate.h"
-#import "PRAppDelegate+ObjectManager.h"
+#import "PRObjectManager.h"
 
 @implementation PRAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    RKObjectManager.sharedManager = self.objectManager;
-    
+    PRObjectManager.sharedManager = [[PRObjectManager alloc] init];
+ 
     [self.window makeKeyAndVisible];
     [self.window.rootViewController performSegueWithIdentifier:@"Login" sender:self];
     

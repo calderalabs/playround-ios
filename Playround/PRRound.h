@@ -17,6 +17,6 @@
 @property (nonatomic, strong) PRArena *arena;
 @property (nonatomic, strong) PRGame *game;
 @property (nonatomic, copy) NSDate *createdAt;
-@property (nonatomic, copy) NSString *status;
+@property (nonatomic, copy) NSString *state;
 
 @end

@@ -11,7 +11,7 @@
 @implementation PRRound
 
 + (NSString *)keyPath {
-    return @"rounds";
+    return @"round";
 }
 
 + (NSString *)remotePath {
@@ -24,7 +24,7 @@
     [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[PRUser objectMapping]];
     [mapping addAttributeMappingsFromDictionary:@{
         @"id": @"objectID",
-        @"status": @"status",
+        @"state": @"state",
         @"created_at": @"createdAt"
     }];
 

@@ -99,12 +99,16 @@
     PRFeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     PRRound *round = self.rounds[indexPath.row];
     
-    cell.statusLabel.text = round.status.uppercaseString;
+    cell.statusLabel.text = round.state.uppercaseString;
     cell.usernameLabel.text = round.user.name;
     cell.dateLabel.text = round.createdAt.description;
     cell.arenaLabel.text = round.arena.name;
-    [cell.userPictureImageView setImageWithURL:round.user.pictureURL];
-    [cell.gameImageView setImageWithURL:round.game.pictureURL];
+    
+    if(round.user.pictureURL)
+        [cell.userPictureImageView setImageWithURL:round.user.pictureURL];
+    
+    if(round.game.pictureURL)
+        [cell.gameImageView setImageWithURL:round.game.pictureURL];
     
     return cell;
 }
