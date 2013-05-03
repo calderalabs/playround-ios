@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		4758CE631733FFA60049B8CA /* PRObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4758CE621733FFA60049B8CA /* PRObjectManager.m */; };
 		4758CE641733FFA60049B8CA /* PRObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4758CE621733FFA60049B8CA /* PRObjectManager.m */; };
-		4758CE6B173430940049B8CA /* PRHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4758CE6A173430940049B8CA /* PRHTTPRequestOperation.m */; };
-		4758CE6C173430940049B8CA /* PRHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4758CE6A173430940049B8CA /* PRHTTPRequestOperation.m */; };
 		4765467B171C242500D2A264 /* PRFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4765467A171C242500D2A264 /* PRFeedTableViewController.m */; };
 		4765467C171C242500D2A264 /* PRFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4765467A171C242500D2A264 /* PRFeedTableViewController.m */; };
 		477590D9172EACD0006D13D1 /* PRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477590D8172EACD0006D13D1 /* PRLoginViewController.m */; };
@@ -58,8 +56,6 @@
 /* Begin PBXFileReference section */
 		4758CE611733FFA60049B8CA /* PRObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRObjectManager.h; sourceTree = "<group>"; };
 		4758CE621733FFA60049B8CA /* PRObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRObjectManager.m; sourceTree = "<group>"; };
-		4758CE69173430930049B8CA /* PRHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRHTTPRequestOperation.h; sourceTree = "<group>"; };
-		4758CE6A173430940049B8CA /* PRHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRHTTPRequestOperation.m; sourceTree = "<group>"; };
 		47654679171C242500D2A264 /* PRFeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRFeedTableViewController.h; sourceTree = "<group>"; };
 		4765467A171C242500D2A264 /* PRFeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRFeedTableViewController.m; sourceTree = "<group>"; };
 		477590D7172EACD0006D13D1 /* PRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRLoginViewController.h; sourceTree = "<group>"; };
@@ -209,8 +205,6 @@
 				47E6521516FCBF18005D6E4C /* Supporting Files */,
 				4758CE611733FFA60049B8CA /* PRObjectManager.h */,
 				4758CE621733FFA60049B8CA /* PRObjectManager.m */,
-				4758CE69173430930049B8CA /* PRHTTPRequestOperation.h */,
-				4758CE6A173430940049B8CA /* PRHTTPRequestOperation.m */,
 			);
 			path = Playround;
 			sourceTree = "<group>";
@@ -398,7 +392,6 @@
 				477590D9172EACD0006D13D1 /* PRLoginViewController.m in Sources */,
 				47CFF0DE17327DA8006CEA78 /* PRToken.m in Sources */,
 				4758CE631733FFA60049B8CA /* PRObjectManager.m in Sources */,
-				4758CE6B173430940049B8CA /* PRHTTPRequestOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,7 +410,6 @@
 				477590DA172EACD0006D13D1 /* PRLoginViewController.m in Sources */,
 				47CFF0DF17327DA8006CEA78 /* PRToken.m in Sources */,
 				4758CE641733FFA60049B8CA /* PRObjectManager.m in Sources */,
-				4758CE6C173430940049B8CA /* PRHTTPRequestOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

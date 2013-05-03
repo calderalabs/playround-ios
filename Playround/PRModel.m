@@ -29,6 +29,10 @@
     return nil;
 }
 
++ (NSString *)versionedRemotePath {
+    return [NSString stringWithFormat:@"/v1%@", self.remotePath];
+}
+
 + (PRModelOperationType)supportedOperationTypes {
     return PRModelOperationAll;
 }
@@ -44,22 +48,22 @@
     
     if(operationTypes & PRModelOperationCreate)
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self
-                                                            pathPattern:self.remotePath
+                                                            pathPattern:self.versionedRemotePath
                                                                  method:RKRequestMethodPOST]];
     
     if(operationTypes & PRModelOperationRead)
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self
-                                                            pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.remotePath]
+                                                            pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
                                                                  method:RKRequestMethodGET]];
     
     if(operationTypes & PRModelOperationUpdate)
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self
-                                                            pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.remotePath]
+                                                            pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
                                                                  method:RKRequestMethodPUT]];
     
     if(operationTypes & PRModelOperationDelete)
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self
-                                                            pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.remotePath]
+                                                            pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
                                                                  method:RKRequestMethodDELETE]];
 }
 
@@ -69,7 +73,7 @@
 
 + (void)allWhere:(NSDictionary *)parameters
          completion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
-    [[PRObjectManager sharedManager] getObjectsAtPath:self.remotePath
+    [[PRObjectManager sharedManager] getObjectsAtPath:self.versionedRemotePath
                                            parameters:parameters
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                   if(completion)

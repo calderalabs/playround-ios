@@ -7,7 +7,6 @@
 //
 
 #import "PRObjectManager.h"
-#import "PRHTTPRequestOperation.h"
 #import "PRRound.h"
 #import "PRUser.h"
 #import "PRGame.h"
@@ -24,7 +23,6 @@ static NSString *kAccountName = @"playround.account";
     
     if(self) {
         [self.HTTPClient registerHTTPOperationClass:[AFJSONRequestOperation class]];
-        [self registerRequestOperationClass:[PRHTTPRequestOperation class]];
         [self setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
         self.requestSerializationMIMEType = RKMIMETypeFormURLEncoded;
         
