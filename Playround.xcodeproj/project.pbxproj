@@ -13,6 +13,8 @@
 		4765467C171C242500D2A264 /* PRFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4765467A171C242500D2A264 /* PRFeedTableViewController.m */; };
 		477590D9172EACD0006D13D1 /* PRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477590D8172EACD0006D13D1 /* PRLoginViewController.m */; };
 		477590DA172EACD0006D13D1 /* PRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477590D8172EACD0006D13D1 /* PRLoginViewController.m */; };
+		4784311A174B8AEA00154CF1 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47843119174B8AEA00154CF1 /* Accounts.framework */; };
+		4784311B174B8AF500154CF1 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47843119174B8AEA00154CF1 /* Accounts.framework */; };
 		479391BD171EAC7A0007C2C2 /* PRFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391BC171EAC7A0007C2C2 /* PRFeedTableViewCell.m */; };
 		479391BE171EAC7A0007C2C2 /* PRFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391BC171EAC7A0007C2C2 /* PRFeedTableViewCell.m */; };
 		479391C1171ECBF10007C2C2 /* PRArena.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391C0171ECBF10007C2C2 /* PRArena.m */; };
@@ -20,6 +22,8 @@
 		479391C5171ECF980007C2C2 /* PRGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391C4171ECF980007C2C2 /* PRGame.m */; };
 		479391C6171ECF980007C2C2 /* PRGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391C4171ECF980007C2C2 /* PRGame.m */; };
 		479640A01716AEED00060E8A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4796409F1716AEED00060E8A /* Default-568h@2x.png */; };
+		47AB032C173BBF3D001017ED /* PRSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AB032B173BBF3D001017ED /* PRSession.m */; };
+		47AB032D173BBF3D001017ED /* PRSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AB032B173BBF3D001017ED /* PRSession.m */; };
 		47C8AE6D171D4AE20020C4FF /* PRRound.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C8AE6C171D4AE20020C4FF /* PRRound.m */; };
 		47C8AE6E171D4AE20020C4FF /* PRRound.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C8AE6C171D4AE20020C4FF /* PRRound.m */; };
 		47C8AE72171D77F70020C4FF /* PRUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C8AE71171D77F70020C4FF /* PRUser.m */; };
@@ -60,6 +64,7 @@
 		4765467A171C242500D2A264 /* PRFeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRFeedTableViewController.m; sourceTree = "<group>"; };
 		477590D7172EACD0006D13D1 /* PRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRLoginViewController.h; sourceTree = "<group>"; };
 		477590D8172EACD0006D13D1 /* PRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRLoginViewController.m; sourceTree = "<group>"; };
+		47843119174B8AEA00154CF1 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		479391BB171EAC7A0007C2C2 /* PRFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRFeedTableViewCell.h; sourceTree = "<group>"; };
 		479391BC171EAC7A0007C2C2 /* PRFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRFeedTableViewCell.m; sourceTree = "<group>"; };
 		479391BF171ECBF10007C2C2 /* PRArena.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRArena.h; sourceTree = "<group>"; };
@@ -67,6 +72,8 @@
 		479391C3171ECF980007C2C2 /* PRGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRGame.h; sourceTree = "<group>"; };
 		479391C4171ECF980007C2C2 /* PRGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRGame.m; sourceTree = "<group>"; };
 		4796409F1716AEED00060E8A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		47AB032A173BBF3D001017ED /* PRSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRSession.h; sourceTree = "<group>"; };
+		47AB032B173BBF3D001017ED /* PRSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRSession.m; sourceTree = "<group>"; };
 		47C8AE6B171D4AE20020C4FF /* PRRound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRRound.h; sourceTree = "<group>"; };
 		47C8AE6C171D4AE20020C4FF /* PRRound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRRound.m; sourceTree = "<group>"; };
 		47C8AE6F171D68950020C4FF /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
@@ -102,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4784311A174B8AEA00154CF1 /* Accounts.framework in Frameworks */,
 				47E6520F16FCBF18005D6E4C /* UIKit.framework in Frameworks */,
 				47E6521116FCBF18005D6E4C /* Foundation.framework in Frameworks */,
 				47E6521316FCBF18005D6E4C /* CoreGraphics.framework in Frameworks */,
@@ -113,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4784311B174B8AF500154CF1 /* Accounts.framework in Frameworks */,
 				47E6523E16FCBF18005D6E4C /* SenTestingKit.framework in Frameworks */,
 				47E6523F16FCBF18005D6E4C /* UIKit.framework in Frameworks */,
 				47E6524016FCBF18005D6E4C /* Foundation.framework in Frameworks */,
@@ -184,6 +193,7 @@
 		47E6520D16FCBF18005D6E4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				47843119174B8AEA00154CF1 /* Accounts.framework */,
 				47E6520E16FCBF18005D6E4C /* UIKit.framework */,
 				47E6521016FCBF18005D6E4C /* Foundation.framework */,
 				47E6521216FCBF18005D6E4C /* CoreGraphics.framework */,
@@ -205,6 +215,8 @@
 				47E6521516FCBF18005D6E4C /* Supporting Files */,
 				4758CE611733FFA60049B8CA /* PRObjectManager.h */,
 				4758CE621733FFA60049B8CA /* PRObjectManager.m */,
+				47AB032A173BBF3D001017ED /* PRSession.h */,
+				47AB032B173BBF3D001017ED /* PRSession.m */,
 			);
 			path = Playround;
 			sourceTree = "<group>";
@@ -392,6 +404,7 @@
 				477590D9172EACD0006D13D1 /* PRLoginViewController.m in Sources */,
 				47CFF0DE17327DA8006CEA78 /* PRToken.m in Sources */,
 				4758CE631733FFA60049B8CA /* PRObjectManager.m in Sources */,
+				47AB032C173BBF3D001017ED /* PRSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +423,7 @@
 				477590DA172EACD0006D13D1 /* PRLoginViewController.m in Sources */,
 				47CFF0DF17327DA8006CEA78 /* PRToken.m in Sources */,
 				4758CE641733FFA60049B8CA /* PRObjectManager.m in Sources */,
+				47AB032D173BBF3D001017ED /* PRSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

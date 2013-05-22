@@ -7,7 +7,7 @@
 //
 
 #import "PRLoginViewController.h"
-#import "PRUser.h"
+#import "PRSession.h"
 
 @interface PRLoginViewController ()
 
@@ -37,15 +37,28 @@
         if(!error) {
             [self dismissViewControllerAnimated:YES completion:nil];
         }
-        else {
-            NSLog(@"%@", error.localizedDescription);
-        }
     }];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (IBAction)didTouchFacebookConnectButton:(id)sender {
+    [PRSession.current facebookConnectWithCompletion:^(PRUser *user, NSError *error) {
+        if(!error)
+            [self dismissViewControllerAnimated:YES completion:nil];
+        else {
+            UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error while connecting to Facebook"
+                                                                     message:error.localizedDescription
+                                                                    delegate:nil
+                                                           cancelButtonTitle:@"OK"
+                                                           otherButtonTitles:nil, nil];
+            
+            [errorAlertView show];
+        }
+    }];
 }
 
 @end

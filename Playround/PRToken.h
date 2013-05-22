@@ -7,9 +7,12 @@
 //
 
 #import "PRModel.h"
+#import "PRUser.h"
 
 @interface PRToken : PRModel
 
+@property (nonatomic, copy) NSString *value;
+@property (nonatomic, strong) PRUser *user;
 @property (nonatomic, copy) NSString *facebookAccessToken;
 
 @end

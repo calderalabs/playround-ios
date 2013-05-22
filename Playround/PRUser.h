@@ -8,13 +8,13 @@
 
 #import "PRModel.h"
 
+extern NSString *PRUserDidReadCurrentNotification;
+
 @interface PRUser : PRModel
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSURL *pictureURL;
 
 + (void)readCurrentWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion;
-+ (PRUser *)current;
-+ (void)setCurrent:(PRUser *)user;
 
 @end

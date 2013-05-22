@@ -8,7 +8,7 @@
 
 #import "PRUser.h"
 
-static PRUser *sCurrentUser = nil;
+NSString *PRUserDidReadCurrentNotification = @"PRUserDidReadCurrentNotification";
 
 @implementation PRUser
 
@@ -35,22 +35,15 @@ static PRUser *sCurrentUser = nil;
     return mapping;
 }
 
-
-+ (PRUser *)current {
-    return sCurrentUser;
-}
-
-+ (void)setCurrent:(PRUser *)session {
-    sCurrentUser = session;
-}
-
 + (void)readCurrentWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
     PRUser *current = [[self alloc] init];
     current.objectID = @"me";
     
     [current readWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *result, NSError *error) {
         if(!error)
-            self.current = result.firstObject;
+            [NSNotificationCenter.defaultCenter postNotificationName:PRUserDidReadCurrentNotification
+                                                              object:self
+                                                            userInfo:@{ @"user": result.firstObject }];
         
         if(completion)
             completion(operation, result, error);

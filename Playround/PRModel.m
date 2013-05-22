@@ -9,6 +9,12 @@
 #import "PRModel.h"
 #import "PRObjectManager.h"
 
+@interface PRModel ()
+
+- (void)performRequestWithMethod:(RKRequestMethod)method completion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion;
+
+@end
+
 @implementation PRModel
 
 + (RKObjectMapping *)objectMapping {
@@ -44,24 +50,25 @@
                                                                                      keyPath:keyPath
                                                                                  statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     
-    PRModelOperationType operationTypes = [self supportedOperationTypes];
+    [objectManager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:self.objectMapping.inverseMapping
+                                                                              objectClass:self rootKeyPath:self.keyPath]];
     
-    if(operationTypes & PRModelOperationCreate)
+    if(self.supportedOperationTypes & PRModelOperationCreate)
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self
                                                             pathPattern:self.versionedRemotePath
                                                                  method:RKRequestMethodPOST]];
     
-    if(operationTypes & PRModelOperationRead)
+    if(self.supportedOperationTypes & PRModelOperationRead)
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self
                                                             pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
                                                                  method:RKRequestMethodGET]];
     
-    if(operationTypes & PRModelOperationUpdate)
+    if(self.supportedOperationTypes & PRModelOperationUpdate)
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self
                                                             pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
                                                                  method:RKRequestMethodPUT]];
     
-    if(operationTypes & PRModelOperationDelete)
+    if(self.supportedOperationTypes & PRModelOperationDelete)
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self
                                                             pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
                                                                  method:RKRequestMethodDELETE]];
@@ -84,14 +91,27 @@
                                               }];
 }
 
-- (void)readWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
-    [[PRObjectManager sharedManager] getObject:self path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+- (void)performRequestWithMethod:(RKRequestMethod)method completion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingOperation, NSError *error))completion {
+    RKObjectRequestOperation *operation = [PRObjectManager.sharedManager appropriateObjectRequestOperationWithObject:self method:method path:nil parameters:nil];
+    
+    [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                NSLog(@"%@", operation.HTTPRequestOperation.responseString);
         if(completion)
             completion(operation, mappingResult, nil);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         if(completion)
             completion(operation, nil, error);
     }];
+    
+    [PRObjectManager.sharedManager enqueueObjectRequestOperation:operation];
+}
+
+- (void)readWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
+    [self performRequestWithMethod:RKRequestMethodGET completion:completion];
+}
+
+- (void)createWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
+    [self performRequestWithMethod:RKRequestMethodPOST completion:completion];
 }
 
 @end

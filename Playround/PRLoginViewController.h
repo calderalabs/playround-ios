@@ -7,5 +7,6 @@
 //
 
 @interface PRLoginViewController : UIViewController
+- (IBAction)didTouchFacebookConnectButton:(id)sender;
 
 @end
