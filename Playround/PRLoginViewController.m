@@ -36,6 +36,15 @@
     [PRUser readCurrentWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error) {
         if(!error) {
             [self dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            NSHTTPURLResponse *response = error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
+            
+            if(response.statusCode != 401)
+                [[[UIAlertView alloc] initWithTitle:@"Connection Error"
+                                            message:error.localizedDescription
+                                           delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil, nil] show];
         }
     }];
 }
@@ -50,13 +59,11 @@
         if(!error)
             [self dismissViewControllerAnimated:YES completion:nil];
         else {
-            UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error while connecting to Facebook"
+            [[[UIAlertView alloc] initWithTitle:@"Error While Connecting to Facebook"
                                                                      message:error.localizedDescription
                                                                     delegate:nil
                                                            cancelButtonTitle:@"OK"
-                                                           otherButtonTitles:nil, nil];
-            
-            [errorAlertView show];
+                                                           otherButtonTitles:nil, nil] show];
         }
     }];
 }
