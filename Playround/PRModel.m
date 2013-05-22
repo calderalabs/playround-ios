@@ -95,7 +95,6 @@
     RKObjectRequestOperation *operation = [PRObjectManager.sharedManager appropriateObjectRequestOperationWithObject:self method:method path:nil parameters:nil];
     
     [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                NSLog(@"%@", operation.HTTPRequestOperation.responseString);
         if(completion)
             completion(operation, mappingResult, nil);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
