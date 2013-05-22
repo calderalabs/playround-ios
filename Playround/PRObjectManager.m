@@ -12,9 +12,16 @@
 #import "PRGame.h"
 #import "PRArena.h"
 #import "PRToken.h"
+#import "PRSession.h"
 
 static NSString *kServiceName = @"playround.api";
 static NSString *kAccountName = @"playround.account";
+
+@interface PRObjectManager ()
+
+- (void)sessionDidLogin:(NSNotification *)notification;
+
+@end
 
 @implementation PRObjectManager
 
@@ -29,9 +36,20 @@ static NSString *kAccountName = @"playround.account";
     
         for(Class class in @[[PRRound class], [PRUser class], [PRGame class], [PRArena class], [PRToken class]])
             [class setObjectManager:self];
+        
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(sessionDidLogin:) name:PRSessionDidLoginNotification object:PRSession.current];
     }
     
     return self;
+}
+
+- (void)dealloc {
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
+- (void)sessionDidLogin:(NSNotification *)notification {
+    PRToken *token = notification.userInfo[@"token"];
+    self.accessToken = token.value;
 }
 
 + (NSString *)defaultAccessToken {

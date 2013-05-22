@@ -7,6 +7,9 @@
 //
 
 #import "PRUser.h"
+#import "PRToken.h"
+
+extern NSString *PRSessionDidLoginNotification;
 
 @interface PRSession : NSObject
 
@@ -15,6 +18,6 @@
 + (void)setCurrent:(PRSession *)session;
 + (PRSession *)current;
 
-- (void)facebookConnectWithCompletion:(void (^)(PRUser *user, NSError *error))completion;
+- (void)facebookConnectWithCompletion:(void (^)(PRToken *token, NSError *error))completion;
 
 @end

@@ -46,7 +46,7 @@
 }
 
 - (IBAction)didTouchFacebookConnectButton:(id)sender {
-    [PRSession.current facebookConnectWithCompletion:^(PRUser *user, NSError *error) {
+    [PRSession.current facebookConnectWithCompletion:^(PRToken *token, NSError *error) {
         if(!error)
             [self dismissViewControllerAnimated:YES completion:nil];
         else {

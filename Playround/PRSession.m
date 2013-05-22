@@ -7,8 +7,8 @@
 //
 
 #import "PRSession.h"
-#import "PRUser.h"
-#import "PRToken.h"
+
+NSString *PRSessionDidLoginNotification = @"PRSessionDidLoginNotification";
 
 static PRSession *sCurrentSession;
 
@@ -52,7 +52,7 @@ static PRSession *sCurrentSession;
     self.user = notification.userInfo[@"user"];
 }
 
-- (void)facebookConnectWithCompletion:(void (^)(PRUser *user, NSError *error))completion {
+- (void)facebookConnectWithCompletion:(void (^)(PRToken *user, NSError *error))completion {
     ACAccountType *facebookAccountType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
 
     [self.accountStore requestAccessToAccountsWithType:facebookAccountType
@@ -69,11 +69,10 @@ static PRSession *sCurrentSession;
                                                         token.facebookAccessToken = account.credential.oauthToken;
                                                         
                                                         [token createWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *result, NSError *error) {
-                                                            if(!completion)
-                                                                return;
-                                                            
-                                                            if(!error)
-                                                                completion(token.user, nil);
+                                                            if(!error) {
+                                                                [NSNotificationCenter.defaultCenter postNotificationName:PRSessionDidLoginNotification object:self userInfo:@{ @"token": token }];
+                                                                completion(token, nil);
+                                                            }
                                                             else
                                                                 completion(nil, error);
                                                         }];
