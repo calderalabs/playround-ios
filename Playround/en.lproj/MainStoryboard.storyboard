@@ -168,8 +168,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="EyE-Lp-eBR" firstAttribute="top" secondItem="h0b-B8-O8j" secondAttribute="top" constant="252" type="user" id="P8G-Rq-u2c"/>
-                            <constraint firstItem="EyE-Lp-eBR" firstAttribute="centerX" secondItem="h0b-B8-O8j" secondAttribute="centerX" type="default" id="yW8-io-ce4"/>
+                            <constraint firstAttribute="centerX" secondItem="EyE-Lp-eBR" secondAttribute="centerX" type="user" id="3hO-9R-hpQ"/>
+                            <constraint firstAttribute="centerY" secondItem="EyE-Lp-eBR" secondAttribute="centerY" type="user" id="E9F-Qg-T77"/>
                         </constraints>
                     </view>
                 </viewController>
