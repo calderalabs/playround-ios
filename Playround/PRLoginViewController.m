@@ -11,6 +11,8 @@
 
 @interface PRLoginViewController ()
 
+- (IBAction)didTouchFacebookConnectButton:(id)sender;
+
 @end
 
 @implementation PRLoginViewController
