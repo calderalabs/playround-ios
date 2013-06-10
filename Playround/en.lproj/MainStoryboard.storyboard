@@ -140,7 +140,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BKn-3p-Z5G" kind="relationship" relationship="rootViewController" id="Aen-vP-n5x"/>
+                        <segue destination="ziD-hc-d9d" kind="relationship" relationship="rootViewController" id="f6H-sN-a70"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMJ-Aq-m3o" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -148,25 +148,121 @@
             <point key="canvasLocation" x="-8" y="-1925"/>
         </scene>
         <!--Play View Controller - Play-->
-        <scene sceneID="2w5-2q-2px">
+        <scene sceneID="D8n-NV-cwf">
             <objects>
-                <viewController title="Play" id="BKn-3p-Z5G" customClass="PRPlayViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vk1-wt-yhl">
+                <tableViewController id="ziD-hc-d9d" customClass="PRPlayViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="zbV-jF-aHL">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Play" id="bS4-cW-J55">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="NQ2-DJ-KA9">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection headerTitle="Game" id="x7Y-S7-Wwg">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Game" rowHeight="216" id="naH-OP-9mY">
+                                        <rect key="frame" x="0.0" y="46" width="320" height="217"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="215"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKs-Ch-O2I">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="216" id="h80-ET-iZ1"/>
+                                                        <constraint firstAttribute="width" constant="300" id="ihG-qN-KGB"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="ziD-hc-d9d" id="UCT-Je-hTz"/>
+                                                        <outlet property="delegate" destination="ziD-hc-d9d" id="SaY-x1-VDV"/>
+                                                    </connections>
+                                                </pickerView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="QKs-Ch-O2I" firstAttribute="top" secondItem="naH-OP-9mY" secondAttribute="top" constant="1" id="82h-Jh-zho"/>
+                                            <constraint firstItem="QKs-Ch-O2I" firstAttribute="centerX" secondItem="naH-OP-9mY" secondAttribute="centerX" type="default" id="uDh-z4-He4"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Players" id="GH4-oA-ZA0">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Players" rowHeight="30" id="G3I-EZ-0oY">
+                                        <rect key="frame" x="0.0" y="309" width="320" height="31"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="29"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G8y-zH-kTT">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="300" id="2aX-IT-knu"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="G8y-zH-kTT" firstAttribute="centerX" secondItem="G3I-EZ-0oY" secondAttribute="centerX" type="default" id="Ffa-vS-WA5"/>
+                                            <constraint firstItem="G8y-zH-kTT" firstAttribute="top" secondItem="G3I-EZ-0oY" secondAttribute="top" constant="1" id="k70-Di-5Xf"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Your Team" id="8xJ-Xb-ayn">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Team" rowHeight="44" id="Zh5-qH-GiZ">
+                                        <rect key="frame" x="0.0" y="386" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hrz-nl-nJK">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="300" id="6pF-0l-mz2"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="Team A"/>
+                                                        <segment title="Team B"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="hrz-nl-nJK" firstAttribute="centerX" secondItem="Zh5-qH-GiZ" secondAttribute="centerX" type="default" id="q4z-Rr-q1o"/>
+                                            <constraint firstItem="hrz-nl-nJK" firstAttribute="top" secondItem="Zh5-qH-GiZ" secondAttribute="top" type="default" id="qym-Q8-lto"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="ziD-hc-d9d" id="4FH-71-xDF"/>
+                            <outlet property="delegate" destination="ziD-hc-d9d" id="Ofg-54-a6y"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Play" id="6qG-up-IJ8">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="SWi-Eh-dKY">
                             <connections>
-                                <action selector="didTouchCancelBarButtonItem:" destination="BKn-3p-Z5G" id="hPI-AS-JZD"/>
+                                <action selector="didTouchCancelBarButtonItem:" destination="ziD-hc-d9d" id="XOi-gy-J2U"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="M4m-g7-VTR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    <connections>
+                        <outlet property="gamePickerView" destination="QKs-Ch-O2I" id="Y47-mX-552"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eoX-9f-zum" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="395" y="-1925"/>
+            <point key="canvasLocation" x="396" y="-1925"/>
         </scene>
         <!--Navigation Controller - Feed-->
         <scene sceneID="sag-7l-kP4">
@@ -327,10 +423,11 @@
                 <relationship kind="action" name="didTouchFacebookConnectButton:"/>
             </relationships>
         </class>
-        <class className="PRPlayViewController" superclassName="UIViewController">
+        <class className="PRPlayViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRPlayViewController.h"/>
             <relationships>
                 <relationship kind="action" name="didTouchCancelBarButtonItem:"/>
+                <relationship kind="outlet" name="gamePickerView" candidateClass="UIPickerView"/>
             </relationships>
         </class>
         <class className="UICollectionReusableView" superclassName="UIView">

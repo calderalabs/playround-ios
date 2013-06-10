@@ -27,9 +27,9 @@
     
     [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[PRUser objectMapping]];
     [mapping addAttributeMappingsFromDictionary:@{
-     @"value": @"value",
-     @"facebook_access_token": @"facebookAccessToken"
-     }];
+        @"value": @"value",
+        @"facebook_access_token": @"facebookAccessToken"
+    }];
     
     return mapping;
 }

@@ -14,8 +14,25 @@
     return @"game";
 }
 
++ (NSString *)remotePath {
+    return @"/games";
+}
+
 + (PRModelOperationType)supportedOperationTypes {
     return PRModelOperationNone;
+}
+
++ (RKObjectMapping *)objectMapping {
+    RKObjectMapping* mapping = [super objectMapping];
+    
+    [mapping addAttributeMappingsFromDictionary:@{
+         @"name": @"name",
+         @"display_name": @"displayName",
+         @"picture_url": @"pictureURL",
+         @"number_of_teams": @"numberOfTeams"
+     }];
+    
+    return mapping;
 }
 
 @end

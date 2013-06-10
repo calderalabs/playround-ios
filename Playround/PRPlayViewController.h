@@ -6,6 +6,6 @@
 //  Copyright (c) 2013 Eugenio Depalo. All rights reserved.
 //
 
-@interface PRPlayViewController : UIViewController
+@interface PRPlayViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @end

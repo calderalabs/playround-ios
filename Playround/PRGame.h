@@ -10,6 +10,9 @@
 
 @interface PRGame : PRModel
 
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *displayName;
 @property (nonatomic, copy) NSURL *pictureURL;
+@property (nonatomic, assign) NSUInteger numberOfTeams;
 
 @end
