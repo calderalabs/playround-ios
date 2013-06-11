@@ -19,6 +19,8 @@
 		476823D917534D9A0028461D /* PRPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 476823D717534D9A0028461D /* PRPlayViewController.m */; };
 		477590D9172EACD0006D13D1 /* PRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477590D8172EACD0006D13D1 /* PRLoginViewController.m */; };
 		477590DA172EACD0006D13D1 /* PRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477590D8172EACD0006D13D1 /* PRLoginViewController.m */; };
+		477E206F1767512300F7327A /* PRBuddiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477E206E1767512300F7327A /* PRBuddiesViewController.m */; };
+		477E20701767512300F7327A /* PRBuddiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477E206E1767512300F7327A /* PRBuddiesViewController.m */; };
 		4784311A174B8AEA00154CF1 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47843119174B8AEA00154CF1 /* Accounts.framework */; };
 		4784311B174B8AF500154CF1 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47843119174B8AEA00154CF1 /* Accounts.framework */; };
 		479391BD171EAC7A0007C2C2 /* PRFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391BC171EAC7A0007C2C2 /* PRFeedTableViewCell.m */; };
@@ -76,6 +78,8 @@
 		476823D717534D9A0028461D /* PRPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRPlayViewController.m; sourceTree = "<group>"; };
 		477590D7172EACD0006D13D1 /* PRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRLoginViewController.h; sourceTree = "<group>"; };
 		477590D8172EACD0006D13D1 /* PRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRLoginViewController.m; sourceTree = "<group>"; };
+		477E206D1767512300F7327A /* PRBuddiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRBuddiesViewController.h; sourceTree = "<group>"; };
+		477E206E1767512300F7327A /* PRBuddiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRBuddiesViewController.m; sourceTree = "<group>"; };
 		47843119174B8AEA00154CF1 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		479391BB171EAC7A0007C2C2 /* PRFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRFeedTableViewCell.h; sourceTree = "<group>"; };
 		479391BC171EAC7A0007C2C2 /* PRFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRFeedTableViewCell.m; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 				477590D8172EACD0006D13D1 /* PRLoginViewController.m */,
 				476823D617534D9A0028461D /* PRPlayViewController.h */,
 				476823D717534D9A0028461D /* PRPlayViewController.m */,
+				477E206D1767512300F7327A /* PRBuddiesViewController.h */,
+				477E206E1767512300F7327A /* PRBuddiesViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -426,6 +432,7 @@
 				476823D817534D9A0028461D /* PRPlayViewController.m in Sources */,
 				475704EE1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */,
 				475704F2176721DC00A8B774 /* PRSegmentedTableViewCell.m in Sources */,
+				477E206F1767512300F7327A /* PRBuddiesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +455,7 @@
 				476823D917534D9A0028461D /* PRPlayViewController.m in Sources */,
 				475704EF1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */,
 				475704F3176721DC00A8B774 /* PRSegmentedTableViewCell.m in Sources */,
+				477E20701767512300F7327A /* PRBuddiesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

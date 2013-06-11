@@ -265,10 +265,10 @@
             </objects>
             <point key="canvasLocation" x="396" y="-1925"/>
         </scene>
-        <!--Table View Controller - Buddies-->
+        <!--Buddies View Controller - Buddies-->
         <scene sceneID="DUl-tW-ZcP">
             <objects>
-                <tableViewController title="Buddies" id="Rpc-cw-zMI" sceneMemberID="viewController">
+                <tableViewController title="Buddies" id="Rpc-cw-zMI" customClass="PRBuddiesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="F2B-7H-Pnu">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -426,6 +426,9 @@
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PRBuddiesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PRBuddiesViewController.h"/>
         </class>
         <class className="PRFeedTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRFeedTableViewCell.h"/>
