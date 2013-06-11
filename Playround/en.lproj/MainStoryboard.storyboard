@@ -218,7 +218,7 @@
                                     <constraint firstItem="PTN-UQ-zW4" firstAttribute="centerX" secondItem="707-Ch-hc3" secondAttribute="centerX" type="default" id="DZV-yT-SDe"/>
                                 </constraints>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Team" rowHeight="44" id="Svp-f6-bUK">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Team" rowHeight="44" id="Svp-f6-bUK" customClass="PRSegmentedTableViewCell">
                                 <rect key="frame" x="0.0" y="307" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -242,6 +242,9 @@
                                     <constraint firstItem="6xB-dE-EKb" firstAttribute="top" secondItem="Svp-f6-bUK" secondAttribute="top" type="default" id="C9u-n6-Ube"/>
                                     <constraint firstItem="6xB-dE-EKb" firstAttribute="centerX" secondItem="Svp-f6-bUK" secondAttribute="centerX" type="default" id="XBe-r0-pcb"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="segmentedControl" destination="6xB-dE-EKb" id="QaZ-nl-uTB"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -457,6 +460,12 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRPlayViewController.h"/>
             <relationships>
                 <relationship kind="action" name="didTouchCancelBarButtonItem:"/>
+            </relationships>
+        </class>
+        <class className="PRSegmentedTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PRSegmentedTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
             </relationships>
         </class>
         <class className="UICollectionReusableView" superclassName="UIView">
