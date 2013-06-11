@@ -1,14 +1,14 @@
 //
-//  PRFeedTableViewCell.m
+//  PRSegmentedTableViewCell.m
 //  Playround
 //
-//  Created by Eugenio Depalo on 4/17/13.
+//  Created by Eugenio Depalo on 6/11/13.
 //  Copyright (c) 2013 Eugenio Depalo. All rights reserved.
 //
 
-#import "PRFeedTableViewCell.h"
+#import "PRSegmentedTableViewCell.h"
 
-@implementation PRFeedTableViewCell
+@implementation PRSegmentedTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

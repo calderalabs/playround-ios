@@ -25,7 +25,7 @@
 {
     self = [super initWithStyle:style];
     
-    if (self) {
+    if(self) {
     }
     
     return self;
@@ -74,13 +74,9 @@
     }];
 }
 
-#pragma mark - Actions
-
 - (IBAction)refreshControlDidChangeValue:(UIRefreshControl *)control {
     [self loadData];
 }
-
-#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

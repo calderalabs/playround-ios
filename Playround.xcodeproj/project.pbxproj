@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		475704EE1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */; };
+		475704EF1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */; };
+		475704F2176721DC00A8B774 /* PRSegmentedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704F1176721DC00A8B774 /* PRSegmentedTableViewCell.m */; };
+		475704F3176721DC00A8B774 /* PRSegmentedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704F1176721DC00A8B774 /* PRSegmentedTableViewCell.m */; };
 		4758CE631733FFA60049B8CA /* PRObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4758CE621733FFA60049B8CA /* PRObjectManager.m */; };
 		4758CE641733FFA60049B8CA /* PRObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4758CE621733FFA60049B8CA /* PRObjectManager.m */; };
 		4765467B171C242500D2A264 /* PRFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4765467A171C242500D2A264 /* PRFeedTableViewController.m */; };
@@ -60,6 +64,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		475704EC1767110E00A8B774 /* PRPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRPickerTableViewCell.h; sourceTree = "<group>"; };
+		475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRPickerTableViewCell.m; sourceTree = "<group>"; };
+		475704F0176721DC00A8B774 /* PRSegmentedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRSegmentedTableViewCell.h; sourceTree = "<group>"; };
+		475704F1176721DC00A8B774 /* PRSegmentedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRSegmentedTableViewCell.m; sourceTree = "<group>"; };
 		4758CE611733FFA60049B8CA /* PRObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRObjectManager.h; sourceTree = "<group>"; };
 		4758CE621733FFA60049B8CA /* PRObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRObjectManager.m; sourceTree = "<group>"; };
 		47654679171C242500D2A264 /* PRFeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRFeedTableViewController.h; sourceTree = "<group>"; };
@@ -153,6 +161,10 @@
 			children = (
 				479391BB171EAC7A0007C2C2 /* PRFeedTableViewCell.h */,
 				479391BC171EAC7A0007C2C2 /* PRFeedTableViewCell.m */,
+				475704EC1767110E00A8B774 /* PRPickerTableViewCell.h */,
+				475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */,
+				475704F0176721DC00A8B774 /* PRSegmentedTableViewCell.h */,
+				475704F1176721DC00A8B774 /* PRSegmentedTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -412,6 +424,8 @@
 				4758CE631733FFA60049B8CA /* PRObjectManager.m in Sources */,
 				47AB032C173BBF3D001017ED /* PRSession.m in Sources */,
 				476823D817534D9A0028461D /* PRPlayViewController.m in Sources */,
+				475704EE1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */,
+				475704F2176721DC00A8B774 /* PRSegmentedTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +446,8 @@
 				4758CE641733FFA60049B8CA /* PRObjectManager.m in Sources */,
 				47AB032D173BBF3D001017ED /* PRSession.m in Sources */,
 				476823D917534D9A0028461D /* PRPlayViewController.m in Sources */,
+				475704EF1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */,
+				475704F3176721DC00A8B774 /* PRSegmentedTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

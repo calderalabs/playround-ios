@@ -8,11 +8,19 @@
 
 #import "PRPlayViewController.h"
 #import "PRGame.h"
+#import "PRPickerTableViewCell.h"
+
+enum {
+    kGameSection = 0,
+    kPlayersSection,
+    kYourTeamSection
+};
 
 @interface PRPlayViewController ()
 
 @property (nonatomic, strong) NSArray *games;
-@property (weak, nonatomic) IBOutlet UIPickerView *gamePickerView;
+@property (nonatomic, strong) NSArray *sections;
+@property (nonatomic, weak) PRPickerTableViewCell *gamePickerCell;
 
 - (IBAction)didTouchCancelBarButtonItem:(id)sender;
 
@@ -24,7 +32,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
-    if (self) {
+    if(self) {
     }
     
     return self;
@@ -41,7 +49,9 @@
         [PRGame allWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error) {
             if(!error) {
                 self.games = mappingResult.array;
-                [self.gamePickerView reloadAllComponents];
+                
+                if([self.tableView.visibleCells containsObject:self.gamePickerCell])
+                    [self.gamePickerCell.pickerView reloadAllComponents];
             } else {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error while fetching games"
                                                                     message:error.localizedDescription
@@ -66,6 +76,70 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     PRGame *game = self.games[row];
     return game.displayName;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch(section) {
+        case kGameSection:
+            return @"Game";
+            break;
+        case kPlayersSection:
+            return @"Players";
+            break;
+        case kYourTeamSection:
+            return @"Your Team";
+            break;
+        default:
+            return nil;
+            break;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell;
+    
+    switch(indexPath.section) {
+        case kGameSection: {
+            PRPickerTableViewCell *pickerCell = [tableView dequeueReusableCellWithIdentifier:@"Game" forIndexPath:indexPath];
+            
+            pickerCell.pickerView.delegate = self;
+            pickerCell.pickerView.dataSource = self;
+            
+            cell = pickerCell;
+            self.gamePickerCell = pickerCell;
+            
+            break;
+        }
+        case kPlayersSection:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"Players" forIndexPath:indexPath];
+            break;
+        case kYourTeamSection:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"Team" forIndexPath:indexPath];
+            break;
+    }
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch(indexPath.section) {
+        case kGameSection:
+            return 216;
+            break;
+        default:
+            return 44;
+            break;
+    }
 }
 
 @end
