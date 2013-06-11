@@ -67,14 +67,22 @@ enum {
 
 - (void)updateTeamsAnimated:(BOOL)animated {
     if([self.tableView.visibleCells containsObject:self.teamCell]) {
-        [self.teamCell.segmentedControl removeAllSegments];
+        NSInteger numberOfSegments = self.teamCell.segmentedControl.numberOfSegments;
+        NSInteger segmentsToAdd = self.round.game.numberOfTeams - numberOfSegments;
         
-        for(NSUInteger i = 0; i < self.round.game.numberOfTeams; i++) {
-            char letter = (i + kUTF8LetterOffset);
-            NSString *title = [NSString stringWithFormat:@"Team %@", [NSString stringWithUTF8String:&letter]];
-            [self.teamCell.segmentedControl insertSegmentWithTitle:title atIndex:i animated:animated];
+        if(segmentsToAdd > 0) {
+            for(NSInteger i = numberOfSegments; i < self.round.game.numberOfTeams; i++) {
+                char letter = (i + kUTF8LetterOffset);
+                NSString *title = [NSString stringWithFormat:@"Team %@", [NSString stringWithUTF8String:&letter]];
+                [self.teamCell.segmentedControl insertSegmentWithTitle:title atIndex:i animated:animated];
+            }
         }
-        
+        else {
+            for(NSInteger i = numberOfSegments - 1; i > numberOfSegments - 1 + segmentsToAdd; i--) {
+                [self.teamCell.segmentedControl removeSegmentAtIndex:i animated:animated];
+            }
+        }
+
         self.teamCell.segmentedControl.selectedSegmentIndex = 0;
     }
 }
