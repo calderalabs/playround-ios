@@ -43,6 +43,10 @@
     return PRModelOperationAll;
 }
 
++ (NSArray *)routes {
+    return @[];
+}
+
 + (void)setObjectManager:(PRObjectManager *)objectManager {
     for(NSString *keyPath in @[self.keyPath, self.pluralKeyPath])
         [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping
@@ -72,6 +76,9 @@
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self
                                                             pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
                                                                  method:RKRequestMethodDELETE]];
+    
+    for(RKRoute *route in self.routes)
+        [objectManager.router.routeSet addRoute:route];
 }
 
 + (void)allWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
@@ -89,6 +96,23 @@
                                                   if(completion)
                                                       completion(operation, nil, error);
                                               }];
+}
+
+- (void)readRelationship:(NSString *)relationship completion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingOperation, NSError *error))completion {
+    [self readRelationship:relationship where:nil completion:completion];
+}
+
+- (void)readRelationship:(NSString *)relationship
+                   where:(NSDictionary *)parameters
+              completion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingOperation, NSError *error))completion {
+    [[PRObjectManager sharedManager] getObjectsAtPathForRelationship:relationship
+                                                            ofObject:self parameters:parameters                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        if(completion)
+            completion(operation, mappingResult, nil);
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        if(completion)
+            completion(operation, nil, error);
+    }];
 }
 
 - (void)performRequestWithMethod:(RKRequestMethod)method completion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingOperation, NSError *error))completion {

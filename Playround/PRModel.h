@@ -25,11 +25,14 @@ typedef enum {
 + (NSString *)pluralKeyPath;
 + (NSString *)remotePath;
 + (NSString *)versionedRemotePath;
++ (NSArray *)routes;
 + (void)setObjectManager:(RKObjectManager *)objectManager;
 + (void)allWithCompletion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error))completion;
 + (void)allWhere:(NSDictionary *)parameters
       completion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error))completion;
 
+- (void)readRelationship:(NSString *)relationship completion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingOperation, NSError *error))completion;
+- (void)readRelationship:(NSString *)relationship where:(NSDictionary *)parameters completion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingOperation, NSError *error))completion;
 - (void)readWithCompletion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error))completion;
 - (void)createWithCompletion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error))completion;
 

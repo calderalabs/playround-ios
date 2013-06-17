@@ -35,6 +35,12 @@ NSString *PRUserDidReadCurrentNotification = @"PRUserDidReadCurrentNotification"
     return mapping;
 }
 
++ (NSArray *)routes {
+    return [[super routes] arrayByAddingObjectsFromArray:@[
+        [RKRoute routeWithRelationshipName:@"buddies" objectClass:self pathPattern:@"/buddies" method:RKRequestMethodGET]
+    ]];
+}
+
 + (void)readCurrentWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
     PRUser *current = [[self alloc] init];
     current.objectID = @"me";
