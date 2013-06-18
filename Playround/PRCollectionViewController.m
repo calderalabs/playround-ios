@@ -7,6 +7,7 @@
 //
 
 #import "PRCollectionViewController.h"
+#import "PRObjectManager.h"
 
 @interface PRCollectionViewController ()
 
@@ -17,6 +18,11 @@
 @end
 
 @implementation PRCollectionViewController
+
+- (Class)collectionClass {
+    NSAssert(NO, @"You must override -collectionClass in PRCollectionViewController subclasses if you don't pass a model.");
+    return nil;
+}
 
 - (NSString *)relationshipName {
     NSAssert(NO, @"You must override -relationshipName in PRCollectionViewController subclasses if you pass a model.");
@@ -102,7 +108,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"CollectionCell";
+    static NSString *CellIdentifier = @"Model";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     PRModel *model = self.collection[indexPath.row];

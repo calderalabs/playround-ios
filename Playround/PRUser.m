@@ -28,6 +28,7 @@ NSString *PRUserDidReadCurrentNotification = @"PRUserDidReadCurrentNotification"
     RKObjectMapping* mapping = [super objectMapping];
     
     [mapping addAttributeMappingsFromDictionary:@{
+        @"id": @"objectID",
         @"name": @"name",
         @"picture_url": @"pictureURL"
     }];
@@ -37,7 +38,7 @@ NSString *PRUserDidReadCurrentNotification = @"PRUserDidReadCurrentNotification"
 
 + (NSArray *)routes {
     return [[super routes] arrayByAddingObjectsFromArray:@[
-        [RKRoute routeWithRelationshipName:@"buddies" objectClass:self pathPattern:@"/buddies" method:RKRequestMethodGET]
+        [RKRoute routeWithRelationshipName:@"buddies" objectClass:self pathPattern:[self versionedPathFromPath:@"/users/:objectID/buddies"] method:RKRequestMethodGET]
     ]];
 }
 

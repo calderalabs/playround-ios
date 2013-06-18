@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Eugenio Depalo. All rights reserved.
 //
 
-@interface PRBuddiesViewController : UITableViewController
+#import "PRCollectionViewController.h"
+
+@interface PRBuddiesViewController : PRCollectionViewController
 
 @end

@@ -35,8 +35,12 @@
     return nil;
 }
 
++ (NSString *)versionedPathFromPath:(NSString *)path {
+    return [NSString stringWithFormat:@"/v1%@", path];
+}
+
 + (NSString *)versionedRemotePath {
-    return [NSString stringWithFormat:@"/v1%@", self.remotePath];
+    return [self versionedPathFromPath:self.remotePath];
 }
 
 + (PRModelOperationType)supportedOperationTypes {
@@ -87,12 +91,13 @@
 
 + (void)allWhere:(NSDictionary *)parameters
          completion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
-    [[PRObjectManager sharedManager] getObjectsAtPath:self.versionedRemotePath
+    [PRObjectManager.sharedManager getObjectsAtPath:self.versionedRemotePath
                                            parameters:parameters
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                   if(completion)
                                                       completion(operation, mappingResult, nil);
-                                              } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                              }
+                                              failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   if(completion)
                                                       completion(operation, nil, error);
                                               }];
@@ -105,14 +110,17 @@
 - (void)readRelationship:(NSString *)relationship
                    where:(NSDictionary *)parameters
               completion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingOperation, NSError *error))completion {
-    [[PRObjectManager sharedManager] getObjectsAtPathForRelationship:relationship
-                                                            ofObject:self parameters:parameters                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        if(completion)
-            completion(operation, mappingResult, nil);
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        if(completion)
-            completion(operation, nil, error);
-    }];
+    [PRObjectManager.sharedManager getObjectsAtPathForRelationship:relationship
+                                                          ofObject:self
+                                                        parameters:parameters
+                                                           success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                                               if(completion)
+                                                                   completion(operation, mappingResult, nil);
+                                                           }
+                                                           failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                                               if(completion)
+                                                                   completion(operation, nil, error);
+                                                           }];
 }
 
 - (void)performRequestWithMethod:(RKRequestMethod)method completion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingOperation, NSError *error))completion {

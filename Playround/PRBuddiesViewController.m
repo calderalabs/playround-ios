@@ -7,12 +7,18 @@
 //
 
 #import "PRBuddiesViewController.h"
+#import "PRSession.h"
+#import "PRUser.h"
 
 @interface PRBuddiesViewController ()
 
 @end
 
 @implementation PRBuddiesViewController
+
+- (NSString *)relationshipName {
+    return @"buddies";
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -24,9 +30,11 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (void)awakeFromNib {
+    PRUser *current = [[PRUser alloc] init];
+    current.objectID = @"me";
+    
+    self.model = current;
 }
 
 @end

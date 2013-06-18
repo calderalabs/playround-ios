@@ -52,6 +52,19 @@ static PRSession *sCurrentSession;
     self.user = notification.userInfo[@"user"];
 }
 
+- (void)loginWithToken:(PRToken *)token completion:(void (^)(PRToken *user, NSError *error))completion {
+    [token createWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *result, NSError *error) {
+        if(!error) {
+            self.user = token.user;
+            
+            [NSNotificationCenter.defaultCenter postNotificationName:PRSessionDidLoginNotification object:self userInfo:@{ @"token": token }];
+            completion(token, nil);
+        }
+        else
+            completion(nil, error);
+    }];
+}
+
 - (void)facebookConnectWithCompletion:(void (^)(PRToken *user, NSError *error))completion {
     ACAccountType *facebookAccountType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
 
@@ -68,14 +81,7 @@ static PRSession *sCurrentSession;
                                                         PRToken *token = [[PRToken alloc] init];
                                                         token.facebookAccessToken = account.credential.oauthToken;
                                                         
-                                                        [token createWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *result, NSError *error) {
-                                                            if(!error) {
-                                                                [NSNotificationCenter.defaultCenter postNotificationName:PRSessionDidLoginNotification object:self userInfo:@{ @"token": token }];
-                                                                completion(token, nil);
-                                                            }
-                                                            else
-                                                                completion(nil, error);
-                                                        }];
+                                                        [self loginWithToken:token completion:completion];
                                                     }
                                                     else {
                                                         completion(nil, error);

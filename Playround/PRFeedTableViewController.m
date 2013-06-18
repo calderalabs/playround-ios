@@ -12,14 +12,13 @@
 
 @interface PRFeedTableViewController ()
 
-@property (nonatomic, strong) NSArray *rounds;
-
-- (IBAction)refreshControlDidChangeValue:(UIRefreshControl *)control;
-- (void)loadData;
-
 @end
 
 @implementation PRFeedTableViewController
+
+- (Class)collectionClass {
+    return [PRRound class];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,70 +30,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    [self.refreshControl addTarget:self
-                            action:@selector(refreshControlDidChangeValue:)
-                  forControlEvents:UIControlEventValueChanged];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    if(!self.rounds) {
-        [self loadData];
-    }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
-- (void)loadData {
-    [self.refreshControl beginRefreshing];
-    
-    [PRRound allWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error) {
-        if(!error) {
-            self.rounds = mappingResult.array;
-        } else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error while fetching collection"
-                                                                message:error.localizedDescription
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-            
-            [alertView show];
-        }
-        
-        [self.refreshControl endRefreshing];
-        [self.tableView reloadData];
-    }];
-}
-
-- (IBAction)refreshControlDidChangeValue:(UIRefreshControl *)control {
-    [self loadData];
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.rounds.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Feed";
-    
-    PRFeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    PRRound *round = self.rounds[indexPath.row];
-    
+- (void)setupCell:(PRFeedTableViewCell *)cell model:(PRRound *)round {
     cell.statusLabel.text = round.state.uppercaseString;
     cell.usernameLabel.text = round.user.name;
     cell.dateLabel.text = round.createdAt.description;
@@ -105,8 +41,6 @@
     
     if(round.game.pictureURL)
         [cell.gameImageView setImageWithURL:round.game.pictureURL];
-    
-    return cell;
 }
 
 @end

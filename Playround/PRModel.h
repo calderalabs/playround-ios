@@ -24,6 +24,7 @@ typedef enum {
 + (NSString *)keyPath;
 + (NSString *)pluralKeyPath;
 + (NSString *)remotePath;
++ (NSString *)versionedPathFromPath:(NSString *)path;
 + (NSString *)versionedRemotePath;
 + (NSArray *)routes;
 + (void)setObjectManager:(RKObjectManager *)objectManager;

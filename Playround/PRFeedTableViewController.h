@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Eugenio Depalo. All rights reserved.
 //
 
-@interface PRFeedTableViewController : UITableViewController
+#import "PRCollectionViewController.h"
+
+@interface PRFeedTableViewController : PRCollectionViewController
 
 @end

@@ -49,7 +49,7 @@ static NSString *kAccountName = @"playround.account";
 
 - (void)sessionDidLogin:(NSNotification *)notification {
     PRToken *token = notification.userInfo[@"token"];
-    self.accessToken = token.value;
+    [self setAccessToken:token.value asDefault:YES];
 }
 
 + (NSString *)defaultAccessToken {
