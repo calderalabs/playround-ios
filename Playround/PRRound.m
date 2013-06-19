@@ -22,8 +22,10 @@
     RKObjectMapping* mapping = [super objectMapping];
 
     [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[PRUser objectMapping]];
+    [mapping addRelationshipMappingWithSourceKeyPath:@"game" mapping:[PRGame objectMapping]];
+    [mapping addRelationshipMappingWithSourceKeyPath:@"arena" mapping:[PRArena objectMapping]];
+    
     [mapping addAttributeMappingsFromDictionary:@{
-        @"id": @"objectID",
         @"state": @"state",
         @"created_at": @"createdAt"
     }];

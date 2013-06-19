@@ -18,6 +18,12 @@
 @implementation PRModel
 
 + (RKObjectMapping *)objectMapping {
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:self];
+    
+    [mapping addAttributeMappingsFromDictionary:@{
+        @"id": @"objectID"
+    }];
+    
     return [RKObjectMapping mappingForClass:self];
 }
 

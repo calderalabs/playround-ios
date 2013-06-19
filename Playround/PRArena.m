@@ -18,4 +18,14 @@
     return PRModelOperationNone;
 }
 
++ (RKObjectMapping *)objectMapping {
+    RKObjectMapping* mapping = [super objectMapping];
+    
+    [mapping addAttributeMappingsFromDictionary:@{
+        @"name": @"name",
+    }];
+    
+    return mapping;
+}
+
 @end

@@ -20,16 +20,6 @@
     return [PRRound class];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    
-    if(self) {
-    }
-    
-    return self;
-}
-
 - (void)setupCell:(PRFeedTableViewCell *)cell model:(PRRound *)round {
     cell.statusLabel.text = round.state.uppercaseString;
     cell.usernameLabel.text = round.user.name;

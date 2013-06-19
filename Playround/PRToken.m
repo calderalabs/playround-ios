@@ -26,6 +26,7 @@
     RKObjectMapping* mapping = [super objectMapping];
     
     [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[PRUser objectMapping]];
+    
     [mapping addAttributeMappingsFromDictionary:@{
         @"value": @"value",
         @"facebook_access_token": @"facebookAccessToken"

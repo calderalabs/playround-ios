@@ -30,7 +30,7 @@
          @"display_name": @"displayName",
          @"picture_url": @"pictureURL",
          @"number_of_teams": @"numberOfTeams"
-     }];
+    }];
     
     return mapping;
 }

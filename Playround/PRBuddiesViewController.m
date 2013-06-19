@@ -20,16 +20,6 @@
     return @"buddies";
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    
-    if(self) {
-    }
-    
-    return self;
-}
-
 - (void)awakeFromNib {
     PRUser *current = [[PRUser alloc] init];
     current.objectID = @"me";

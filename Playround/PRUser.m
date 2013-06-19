@@ -28,7 +28,6 @@ NSString *PRUserDidReadCurrentNotification = @"PRUserDidReadCurrentNotification"
     RKObjectMapping* mapping = [super objectMapping];
     
     [mapping addAttributeMappingsFromDictionary:@{
-        @"id": @"objectID",
         @"name": @"name",
         @"picture_url": @"pictureURL"
     }];

@@ -30,35 +30,13 @@ enum {
 
 - (IBAction)didTouchCancelBarButtonItem:(id)sender;
 - (void)updateTeamsAnimated:(BOOL)animated;
-- (void)setup;
 
 @end
 
 @implementation PRPlayViewController
 
-- (void)setup {
+- (void)awakeFromNib {
     self.round = [[PRRound alloc] init];
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    
-    if(self) {
-        [self setup];
-    }
-    
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    
-    if(self) {
-        [self setup];
-    }
-    
-    return self;
 }
 
 - (IBAction)didTouchCancelBarButtonItem:(id)sender {
@@ -140,18 +118,10 @@ enum {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch(section) {
-        case kGameSection:
-            return @"Game";
-            break;
-        case kPlayersSection:
-            return @"Players";
-            break;
-        case kTeamSection:
-            return @"Your Team";
-            break;
-        default:
-            return nil;
-            break;
+        case kGameSection: return @"Game";
+        case kPlayersSection: return @"Players";
+        case kTeamSection: return @"Your Team";
+        default: return nil;
     }
 }
 
@@ -192,12 +162,8 @@ enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch(indexPath.section) {
-        case kGameSection:
-            return 216;
-            break;
-        default:
-            return 44;
-            break;
+        case kGameSection: return 216;
+        default: return 44;
     }
 }
 
