@@ -14,6 +14,10 @@
     return @"arena";
 }
 
++ (NSString *)remotePath {
+    return @"/arenas";
+}
+
 + (PRModelOperationType)supportedOperationTypes {
     return PRModelOperationNone;
 }

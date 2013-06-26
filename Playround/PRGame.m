@@ -7,6 +7,7 @@
 //
 
 #import "PRGame.h"
+#import "PRTeam.h"
 
 @implementation PRGame
 
@@ -25,14 +26,25 @@
 + (RKObjectMapping *)objectMapping {
     RKObjectMapping* mapping = [super objectMapping];
     
+    [mapping addRelationshipMappingWithSourceKeyPath:@"teams" mapping:[PRTeam objectMapping]];
+    
     [mapping addAttributeMappingsFromDictionary:@{
          @"name": @"name",
          @"display_name": @"displayName",
          @"picture_url": @"pictureURL",
-         @"number_of_teams": @"numberOfTeams"
     }];
     
     return mapping;
+}
+
+- (id)init {
+    self = [super init];
+    
+    if(self) {
+        self.teams = [NSArray array];
+    }
+    
+    return self;
 }
 
 @end

@@ -13,6 +13,6 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *displayName;
 @property (nonatomic, copy) NSURL *pictureURL;
-@property (nonatomic, assign) NSUInteger numberOfTeams;
+@property (nonatomic, copy) NSArray *teams;
 
 @end

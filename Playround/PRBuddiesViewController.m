@@ -27,4 +27,8 @@
     self.model = current;
 }
 
+- (void)setupCell:(UITableViewCell *)cell model:(PRUser *)user {
+    cell.textLabel.text = user.name;
+}
+
 @end

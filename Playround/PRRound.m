@@ -33,4 +33,14 @@
     return mapping;
 }
 
+- (id)init {
+    self = [super init];
+    
+    if(self) {
+        self.teams = [NSArray array];
+    }
+    
+    return self;
+}
+
 @end

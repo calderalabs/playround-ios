@@ -7,6 +7,7 @@
 //
 
 #import "PRUser.h"
+#import "PRRelationshipDescriptor.h"
 
 NSString *PRUserDidReadCurrentNotification = @"PRUserDidReadCurrentNotification";
 
@@ -35,10 +36,12 @@ NSString *PRUserDidReadCurrentNotification = @"PRUserDidReadCurrentNotification"
     return mapping;
 }
 
-+ (NSArray *)routes {
-    return [[super routes] arrayByAddingObjectsFromArray:@[
-        [RKRoute routeWithRelationshipName:@"buddies" objectClass:self pathPattern:[self versionedPathFromPath:@"/users/:objectID/buddies"] method:RKRequestMethodGET]
-    ]];
++ (NSDictionary *)relationships {
+    return @{
+        @"buddies": [PRRelationshipDescriptor relationshipDescriptorWithTargetClass:self
+                                                                         remotePath:@"/users/:objectID/buddies"
+                                                                            keyPath:@"buddies"]
+    };
 }
 
 + (void)readCurrentWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {

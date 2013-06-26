@@ -8,6 +8,7 @@
 
 #import "PRModel.h"
 #import "PRObjectManager.h"
+#import "PRRelationshipDescriptor.h"
 
 @interface PRModel ()
 
@@ -24,7 +25,7 @@
         @"id": @"objectID"
     }];
     
-    return [RKObjectMapping mappingForClass:self];
+    return mapping;
 }
 
 + (NSString *)keyPath {
@@ -53,19 +54,24 @@
     return PRModelOperationAll;
 }
 
-+ (NSArray *)routes {
-    return @[];
++ (NSDictionary *)relationships {
+    return @{};
 }
 
 + (void)setObjectManager:(PRObjectManager *)objectManager {
-    for(NSString *keyPath in @[self.keyPath, self.pluralKeyPath])
-        [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping
-                                                                                 pathPattern:nil
-                                                                                     keyPath:keyPath
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping
+                                                                                 pathPattern:self.versionedRemotePath
+                                                                                     keyPath:self.pluralKeyPath
+                                                                                 statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping
+                                                                                 pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
+                                                                                     keyPath:self.keyPath
                                                                                  statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     
     [objectManager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:self.objectMapping.inverseMapping
-                                                                              objectClass:self rootKeyPath:self.keyPath]];
+                                                                              objectClass:self
+                                                                              rootKeyPath:self.keyPath]];
     
     if(self.supportedOperationTypes & PRModelOperationCreate)
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self
@@ -87,8 +93,17 @@
                                                             pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
                                                                  method:RKRequestMethodDELETE]];
     
-    for(RKRoute *route in self.routes)
-        [objectManager.router.routeSet addRoute:route];
+    [self.relationships enumerateKeysAndObjectsUsingBlock:^(NSString *name, PRRelationshipDescriptor *relationship, BOOL *stop) {
+        [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:relationship.objectMapping
+                                                                                    pathPattern:relationship.versionedRemotePath
+                                                                                        keyPath:relationship.keyPath
+                                                                                    statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+        
+        [objectManager.router.routeSet addRoute:[RKRoute routeWithRelationshipName:name
+                                                              objectClass:self
+                                                              pathPattern:relationship.versionedRemotePath
+                                                                   method:RKRequestMethodGET]];
+    }];
 }
 
 + (void)allWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion {
