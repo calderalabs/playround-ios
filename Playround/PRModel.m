@@ -59,10 +59,11 @@
 }
 
 + (void)setObjectManager:(PRObjectManager *)objectManager {
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping
-                                                                                 pathPattern:self.versionedRemotePath
-                                                                                     keyPath:self.pluralKeyPath
-                                                                                 statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    for(NSString *keyPath in @[self.keyPath, self.pluralKeyPath])
+        [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping
+                                                                                     pathPattern:self.versionedRemotePath
+                                                                                         keyPath:keyPath
+                                                                                     statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping
                                                                                  pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
