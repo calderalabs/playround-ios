@@ -1,20 +1,28 @@
 //
-//  PRBuddiesViewController.m
+//  PRTeamViewController.m
 //  Playround
 //
 //  Created by Eugenio Depalo on 6/11/13.
 //  Copyright (c) 2013 Eugenio Depalo. All rights reserved.
 //
 
-#import "PRBuddiesViewController.h"
+#import "PRTeamViewController.h"
 #import "PRSession.h"
 #import "PRUser.h"
 
-@interface PRBuddiesViewController ()
+@interface PRTeamViewController ()
 
 @end
 
-@implementation PRBuddiesViewController
+@implementation PRTeamViewController
+
+- (void)setTeam:(PRTeam *)team {
+    if(team != _team) {
+        _team = team;
+        
+        self.navigationItem.title = _team.displayName;
+    }
+}
 
 - (NSString *)relationshipName {
     return @"buddies";

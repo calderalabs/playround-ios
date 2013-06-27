@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		47372F711778700300FA6C3E /* PRTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F701778700300FA6C3E /* PRTeam.m */; };
 		47372F721778700300FA6C3E /* PRTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F701778700300FA6C3E /* PRTeam.m */; };
+		47372F7D177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F7C177C531B00FA6C3E /* PRButtonTableViewCell.m */; };
+		47372F7E177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F7C177C531B00FA6C3E /* PRButtonTableViewCell.m */; };
 		475704EE1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */; };
 		475704EF1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */; };
 		475704F2176721DC00A8B774 /* PRSegmentedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704F1176721DC00A8B774 /* PRSegmentedTableViewCell.m */; };
@@ -23,8 +25,8 @@
 		476925A6177305EE0098D823 /* PRRelationshipDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 476925A4177305ED0098D823 /* PRRelationshipDescriptor.m */; };
 		477590D9172EACD0006D13D1 /* PRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477590D8172EACD0006D13D1 /* PRLoginViewController.m */; };
 		477590DA172EACD0006D13D1 /* PRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477590D8172EACD0006D13D1 /* PRLoginViewController.m */; };
-		477E206F1767512300F7327A /* PRBuddiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477E206E1767512300F7327A /* PRBuddiesViewController.m */; };
-		477E20701767512300F7327A /* PRBuddiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477E206E1767512300F7327A /* PRBuddiesViewController.m */; };
+		477E206F1767512300F7327A /* PRTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477E206E1767512300F7327A /* PRTeamViewController.m */; };
+		477E20701767512300F7327A /* PRTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477E206E1767512300F7327A /* PRTeamViewController.m */; };
 		477E20731768760900F7327A /* PRCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477E20721768760900F7327A /* PRCollectionViewController.m */; };
 		477E20741768760900F7327A /* PRCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477E20721768760900F7327A /* PRCollectionViewController.m */; };
 		4784311A174B8AEA00154CF1 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47843119174B8AEA00154CF1 /* Accounts.framework */; };
@@ -74,6 +76,8 @@
 /* Begin PBXFileReference section */
 		47372F6F1778700300FA6C3E /* PRTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTeam.h; sourceTree = "<group>"; };
 		47372F701778700300FA6C3E /* PRTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTeam.m; sourceTree = "<group>"; };
+		47372F7B177C531B00FA6C3E /* PRButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRButtonTableViewCell.h; sourceTree = "<group>"; };
+		47372F7C177C531B00FA6C3E /* PRButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRButtonTableViewCell.m; sourceTree = "<group>"; };
 		475704EC1767110E00A8B774 /* PRPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRPickerTableViewCell.h; sourceTree = "<group>"; };
 		475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRPickerTableViewCell.m; sourceTree = "<group>"; };
 		475704F0176721DC00A8B774 /* PRSegmentedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRSegmentedTableViewCell.h; sourceTree = "<group>"; };
@@ -88,8 +92,8 @@
 		476925A4177305ED0098D823 /* PRRelationshipDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRRelationshipDescriptor.m; sourceTree = "<group>"; };
 		477590D7172EACD0006D13D1 /* PRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRLoginViewController.h; sourceTree = "<group>"; };
 		477590D8172EACD0006D13D1 /* PRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRLoginViewController.m; sourceTree = "<group>"; };
-		477E206D1767512300F7327A /* PRBuddiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRBuddiesViewController.h; sourceTree = "<group>"; };
-		477E206E1767512300F7327A /* PRBuddiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRBuddiesViewController.m; sourceTree = "<group>"; };
+		477E206D1767512300F7327A /* PRTeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTeamViewController.h; sourceTree = "<group>"; };
+		477E206E1767512300F7327A /* PRTeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTeamViewController.m; sourceTree = "<group>"; };
 		477E20711768760900F7327A /* PRCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRCollectionViewController.h; sourceTree = "<group>"; };
 		477E20721768760900F7327A /* PRCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRCollectionViewController.m; sourceTree = "<group>"; };
 		47843119174B8AEA00154CF1 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -168,8 +172,8 @@
 				477590D8172EACD0006D13D1 /* PRLoginViewController.m */,
 				476823D617534D9A0028461D /* PRPlayViewController.h */,
 				476823D717534D9A0028461D /* PRPlayViewController.m */,
-				477E206D1767512300F7327A /* PRBuddiesViewController.h */,
-				477E206E1767512300F7327A /* PRBuddiesViewController.m */,
+				477E206D1767512300F7327A /* PRTeamViewController.h */,
+				477E206E1767512300F7327A /* PRTeamViewController.m */,
 				477E20711768760900F7327A /* PRCollectionViewController.h */,
 				477E20721768760900F7327A /* PRCollectionViewController.m */,
 			);
@@ -185,6 +189,8 @@
 				475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */,
 				475704F0176721DC00A8B774 /* PRSegmentedTableViewCell.h */,
 				475704F1176721DC00A8B774 /* PRSegmentedTableViewCell.m */,
+				47372F7B177C531B00FA6C3E /* PRButtonTableViewCell.h */,
+				47372F7C177C531B00FA6C3E /* PRButtonTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -450,10 +456,11 @@
 				476823D817534D9A0028461D /* PRPlayViewController.m in Sources */,
 				475704EE1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */,
 				475704F2176721DC00A8B774 /* PRSegmentedTableViewCell.m in Sources */,
-				477E206F1767512300F7327A /* PRBuddiesViewController.m in Sources */,
+				477E206F1767512300F7327A /* PRTeamViewController.m in Sources */,
 				477E20731768760900F7327A /* PRCollectionViewController.m in Sources */,
 				476925A5177305EE0098D823 /* PRRelationshipDescriptor.m in Sources */,
 				47372F711778700300FA6C3E /* PRTeam.m in Sources */,
+				47372F7D177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,10 +483,11 @@
 				476823D917534D9A0028461D /* PRPlayViewController.m in Sources */,
 				475704EF1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */,
 				475704F3176721DC00A8B774 /* PRSegmentedTableViewCell.m in Sources */,
-				477E20701767512300F7327A /* PRBuddiesViewController.m in Sources */,
+				477E20701767512300F7327A /* PRTeamViewController.m in Sources */,
 				477E20741768760900F7327A /* PRCollectionViewController.m in Sources */,
 				476925A6177305EE0098D823 /* PRRelationshipDescriptor.m in Sources */,
 				47372F721778700300FA6C3E /* PRTeam.m in Sources */,
+				47372F7E177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

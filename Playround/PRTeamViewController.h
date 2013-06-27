@@ -1,5 +1,5 @@
 //
-//  PRBuddiesViewController.h
+//  PRTeamViewController.h
 //  Playround
 //
 //  Created by Eugenio Depalo on 6/11/13.
@@ -7,7 +7,10 @@
 //
 
 #import "PRCollectionViewController.h"
+#import "PRTeam.h"
 
-@interface PRBuddiesViewController : PRCollectionViewController
+@interface PRTeamViewController : PRCollectionViewController
+
+@property (nonatomic, strong) PRTeam *team;
 
 @end

@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Eugenio Depalo. All rights reserved.
 //
 
-@interface PRPlayViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+#import "PRButtonTableViewCell.h"
+
+@interface PRPlayViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate, PRButtonTableViewCellDelegate>
 
 @end

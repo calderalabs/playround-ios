@@ -12,6 +12,7 @@
 #import "PRTeam.h"
 #import "PRPickerTableViewCell.h"
 #import "PRSegmentedTableViewCell.h"
+#import "PRTeamViewController.h"
 
 enum {
     kGameSection = 0,
@@ -30,7 +31,7 @@ enum {
 
 - (IBAction)didTouchCancelBarButtonItem:(id)sender;
 - (void)updateTeamsAnimated:(BOOL)animated previousGame:(PRGame *)game;
-- (void)updateTeamSegments;
+- (void)updateTeamSegmentsAnimated:(BOOL)animated;
 - (void)setGame:(PRGame *)game animated:(BOOL)animated;
 
 @end
@@ -63,7 +64,7 @@ enum {
 
 - (void)updateTeamsAnimated:(BOOL)animated previousGame:(PRGame *)previousGame {
     if([self.tableView.visibleCells containsObject:self.teamCell]) {
-        [self updateTeamSegments];
+        [self updateTeamSegmentsAnimated:animated];
     }
     
     NSInteger sectionsToAdd = self.game.teams.count - previousGame.teams.count;
@@ -97,13 +98,29 @@ enum {
     [self.tableView endUpdates];
 }
 
-- (void)updateTeamSegments {
-    [self.teamCell.segmentedControl removeAllSegments];
-    
-    for(NSInteger i = 0; i < self.game.teams.count; i++) {
-        PRTeam *team = self.game.teams[i];
-        [self.teamCell.segmentedControl insertSegmentWithTitle:team.displayName atIndex:i animated:YES];
+- (void)updateTeamSegmentsAnimated:(BOOL)animated {
+    NSInteger numberOfSegments = self.teamCell.segmentedControl.numberOfSegments;
+    NSInteger segmentsToAdd = self.game.teams.count - numberOfSegments;
+    NSInteger segmentsToReload = numberOfSegments;
+
+    if(segmentsToAdd > 0) {
+        for(NSInteger i = numberOfSegments; i < numberOfSegments + segmentsToAdd; i++) {
+            PRTeam *team = self.game.teams[i];
+            [self.teamCell.segmentedControl insertSegmentWithTitle:team.displayName atIndex:i animated:animated];
+        }
     }
+    else if(segmentsToAdd < 0) {
+        segmentsToReload += segmentsToAdd;
+        
+        for(NSInteger i = numberOfSegments + segmentsToAdd; i < numberOfSegments; i++)
+            [self.teamCell.segmentedControl removeSegmentAtIndex:i animated:animated];
+    }
+    
+    if(segmentsToReload > 0)
+        for(NSInteger i = 0; i < segmentsToReload; i++) {
+            PRTeam *team = self.game.teams[i];
+            [self.teamCell.segmentedControl setTitle:team.displayName forSegmentAtIndex:i];
+        }
     
     self.teamCell.segmentedControl.selectedSegmentIndex = 0;
 }
@@ -115,7 +132,7 @@ enum {
         [PRGame allWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error) {
             if(!error) {
                 self.games = mappingResult.array;
-                self.game = self.games[0];
+                [self setGame:self.games[0] animated:YES];
                 
                 if([self.tableView.visibleCells containsObject:self.gamePickerCell])
                     [self.gamePickerCell.pickerView reloadAllComponents];
@@ -146,7 +163,7 @@ enum {
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    self.game = self.games[row];
+    [self setGame:self.games[row] animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -194,17 +211,23 @@ enum {
         case kTeamSection: {
             PRSegmentedTableViewCell *segmentedCell = [tableView dequeueReusableCellWithIdentifier:@"Team" forIndexPath:indexPath];
             
+            [segmentedCell.segmentedControl removeAllSegments];
+            
             cell = segmentedCell;
             self.teamCell = segmentedCell;
-            [self updateTeamSegments];
+            [self updateTeamSegmentsAnimated:NO];
             
             break;
         }
         default: {
-            if(indexPath.row == 0)
-                cell = [tableView dequeueReusableCellWithIdentifier:@"Players" forIndexPath:indexPath];
+            if(indexPath.row == 0) {
+                PRButtonTableViewCell *buttonCell = [tableView dequeueReusableCellWithIdentifier:@"ShowTeam" forIndexPath:indexPath];
+                
+                buttonCell.delegate = self;
+                cell = buttonCell;
+            }
             else
-                cell = [UITableViewCell new];
+                cell = [tableView dequeueReusableCellWithIdentifier:@"Player" forIndexPath:indexPath];
             
             break;
         }
@@ -219,6 +242,17 @@ enum {
         case kGameSection: return 216;
         default: return 44;
     }
+}
+
+- (void)didTapButtonTableViewCell:(PRButtonTableViewCell *)cell {
+    [self performSegueWithIdentifier:@"ShowTeam" sender:cell];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    PRTeamViewController *teamViewController = segue.destinationViewController;
+    
+    teamViewController.team = self.game.teams[indexPath.section - 2];
 }
 
 @end

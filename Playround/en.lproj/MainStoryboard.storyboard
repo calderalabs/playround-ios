@@ -157,7 +157,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Game" rowHeight="216" id="naH-OP-9mY" customClass="PRPickerTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Game" rowHeight="216" id="naH-OP-9mY" customClass="PRPickerTableViewCell">
                                 <rect key="frame" x="0.0" y="46" width="320" height="217"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -186,7 +186,7 @@
                                     <outlet property="pickerView" destination="QKs-Ch-O2I" id="WAq-Sf-07k"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Players" rowHeight="44" id="707-Ch-hc3">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShowTeam" rowHeight="44" id="707-Ch-hc3" customClass="PRButtonTableViewCell">
                                 <rect key="frame" x="0.0" y="263" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -205,9 +205,6 @@
                                             <state key="highlighted">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <connections>
-                                                <segue destination="Rpc-cw-zMI" kind="push" id="XpZ-HQ-WZR"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -217,8 +214,11 @@
                                     <constraint firstItem="PTN-UQ-zW4" firstAttribute="top" secondItem="707-Ch-hc3" secondAttribute="top" constant="-1" id="1iy-Jc-naG"/>
                                     <constraint firstItem="PTN-UQ-zW4" firstAttribute="centerX" secondItem="707-Ch-hc3" secondAttribute="centerX" type="default" id="DZV-yT-SDe"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="button" destination="PTN-UQ-zW4" id="Ks4-Mn-B7q"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Team" rowHeight="44" id="Svp-f6-bUK" customClass="PRSegmentedTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Team" rowHeight="44" id="Svp-f6-bUK" customClass="PRSegmentedTableViewCell">
                                 <rect key="frame" x="0.0" y="307" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -239,12 +239,22 @@
                                 </view>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="6xB-dE-EKb" firstAttribute="top" secondItem="Svp-f6-bUK" secondAttribute="top" type="default" id="C9u-n6-Ube"/>
                                     <constraint firstItem="6xB-dE-EKb" firstAttribute="centerX" secondItem="Svp-f6-bUK" secondAttribute="centerX" type="default" id="XBe-r0-pcb"/>
+                                    <constraint firstItem="6xB-dE-EKb" firstAttribute="top" secondItem="Svp-f6-bUK" secondAttribute="top" constant="-1" id="y30-TM-QP7"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="segmentedControl" destination="6xB-dE-EKb" id="QaZ-nl-uTB"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Player" rowHeight="44" id="vFc-kt-TRe">
+                                <rect key="frame" x="0.0" y="351" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -260,16 +270,19 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Rpc-cw-zMI" kind="push" identifier="ShowTeam" id="chm-GN-VvY"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoX-9f-zum" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="396" y="-1925"/>
         </scene>
-        <!--Buddies View Controller - Buddies-->
+        <!--Team View Controller - Team-->
         <scene sceneID="DUl-tW-ZcP">
             <objects>
-                <tableViewController title="Buddies" id="Rpc-cw-zMI" customClass="PRBuddiesViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="F2B-7H-Pnu">
+                <tableViewController title="Team" id="Rpc-cw-zMI" customClass="PRTeamViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="F2B-7H-Pnu">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -292,7 +305,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Buddies" id="Qmh-ia-EL2"/>
+                    <navigationItem key="navigationItem" title="Team A" id="Qmh-ia-EL2"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U2k-HP-0rE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -434,8 +447,11 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
-        <class className="PRBuddiesViewController" superclassName="PRCollectionViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PRBuddiesViewController.h"/>
+        <class className="PRButtonTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PRButtonTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="button" candidateClass="UIButton"/>
+            </relationships>
         </class>
         <class className="PRCollectionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRCollectionViewController.h"/>
@@ -480,6 +496,9 @@
             <relationships>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
             </relationships>
+        </class>
+        <class className="PRTeamViewController" superclassName="PRCollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PRTeamViewController.h"/>
         </class>
         <class className="UICollectionReusableView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
