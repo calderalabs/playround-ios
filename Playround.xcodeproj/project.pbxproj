@@ -11,6 +11,8 @@
 		47372F721778700300FA6C3E /* PRTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F701778700300FA6C3E /* PRTeam.m */; };
 		47372F7D177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F7C177C531B00FA6C3E /* PRButtonTableViewCell.m */; };
 		47372F7E177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F7C177C531B00FA6C3E /* PRButtonTableViewCell.m */; };
+		47372F81177D8A0400FA6C3E /* PRParticipation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F80177D8A0400FA6C3E /* PRParticipation.m */; };
+		47372F82177D8A0400FA6C3E /* PRParticipation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F80177D8A0400FA6C3E /* PRParticipation.m */; };
 		475704EE1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */; };
 		475704EF1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */; };
 		475704F2176721DC00A8B774 /* PRSegmentedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704F1176721DC00A8B774 /* PRSegmentedTableViewCell.m */; };
@@ -78,6 +80,8 @@
 		47372F701778700300FA6C3E /* PRTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTeam.m; sourceTree = "<group>"; };
 		47372F7B177C531B00FA6C3E /* PRButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRButtonTableViewCell.h; sourceTree = "<group>"; };
 		47372F7C177C531B00FA6C3E /* PRButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRButtonTableViewCell.m; sourceTree = "<group>"; };
+		47372F7F177D8A0400FA6C3E /* PRParticipation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRParticipation.h; sourceTree = "<group>"; };
+		47372F80177D8A0400FA6C3E /* PRParticipation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRParticipation.m; sourceTree = "<group>"; };
 		475704EC1767110E00A8B774 /* PRPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRPickerTableViewCell.h; sourceTree = "<group>"; };
 		475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRPickerTableViewCell.m; sourceTree = "<group>"; };
 		475704F0176721DC00A8B774 /* PRSegmentedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRSegmentedTableViewCell.h; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 				47CFF0DD17327DA8006CEA78 /* PRToken.m */,
 				47372F6F1778700300FA6C3E /* PRTeam.h */,
 				47372F701778700300FA6C3E /* PRTeam.m */,
+				47372F7F177D8A0400FA6C3E /* PRParticipation.h */,
+				47372F80177D8A0400FA6C3E /* PRParticipation.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -461,6 +467,7 @@
 				476925A5177305EE0098D823 /* PRRelationshipDescriptor.m in Sources */,
 				47372F711778700300FA6C3E /* PRTeam.m in Sources */,
 				47372F7D177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */,
+				47372F81177D8A0400FA6C3E /* PRParticipation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +495,7 @@
 				476925A6177305EE0098D823 /* PRRelationshipDescriptor.m in Sources */,
 				47372F721778700300FA6C3E /* PRTeam.m in Sources */,
 				47372F7E177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */,
+				47372F82177D8A0400FA6C3E /* PRParticipation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

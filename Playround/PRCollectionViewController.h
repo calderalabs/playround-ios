@@ -10,6 +10,7 @@
 
 @interface PRCollectionViewController : UITableViewController
 
+@property (nonatomic, strong) NSArray *collection;
 @property (nonatomic, weak, readonly) Class collectionClass;
 @property (nonatomic, copy, readonly) NSString *relationshipName;
 @property (nonatomic, strong) PRModel *model;

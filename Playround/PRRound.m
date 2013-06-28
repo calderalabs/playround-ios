@@ -37,7 +37,7 @@
     self = [super init];
     
     if(self) {
-        self.teams = [NSArray array];
+        self.participations = [NSArray array];
     }
     
     return self;

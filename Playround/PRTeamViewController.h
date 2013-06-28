@@ -8,9 +8,11 @@
 
 #import "PRCollectionViewController.h"
 #import "PRTeam.h"
+#import "PRRound.h"
 
 @interface PRTeamViewController : PRCollectionViewController
 
 @property (nonatomic, strong) PRTeam *team;
+@property (nonatomic, strong) PRRound *round;
 
 @end

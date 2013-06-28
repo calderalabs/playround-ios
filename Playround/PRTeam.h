@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Eugenio Depalo. All rights reserved.
 //
 
-@interface PRTeam : NSObject
+#import "PRModel.h"
+
+@interface PRTeam : PRModel
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *displayName;
 @property (nonatomic, assign) NSInteger numberOfPlayers;
-
-+ (RKObjectMapping *)objectMapping;
 
 @end

@@ -253,6 +253,7 @@ enum {
     PRTeamViewController *teamViewController = segue.destinationViewController;
     
     teamViewController.team = self.game.teams[indexPath.section - 2];
+    teamViewController.round = self.round;
 }
 
 @end

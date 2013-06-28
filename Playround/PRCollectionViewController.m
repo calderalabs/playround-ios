@@ -11,8 +11,6 @@
 
 @interface PRCollectionViewController ()
 
-@property (nonatomic, strong) NSArray *collection;
-
 - (void)fetchCollection;
 
 @end

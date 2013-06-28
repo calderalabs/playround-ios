@@ -11,7 +11,7 @@
 @implementation PRTeam
 
 + (RKObjectMapping *)objectMapping {
-    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:self];
+    RKObjectMapping *mapping = [super objectMapping];
     
     [mapping addAttributeMappingsFromDictionary:@{
          @"name": @"name",

@@ -282,7 +282,7 @@
         <scene sceneID="DUl-tW-ZcP">
             <objects>
                 <tableViewController title="Team" id="Rpc-cw-zMI" customClass="PRTeamViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="F2B-7H-Pnu">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="F2B-7H-Pnu">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -305,7 +305,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Team A" id="Qmh-ia-EL2"/>
+                    <navigationItem key="navigationItem" title="Team A" id="Qmh-ia-EL2">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Lte-Px-PXW">
+                            <connections>
+                                <action selector="didTapDoneBarButtonItem:" destination="Rpc-cw-zMI" id="QVl-d8-9mc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U2k-HP-0rE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -499,6 +505,9 @@
         </class>
         <class className="PRTeamViewController" superclassName="PRCollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRTeamViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didTapDoneBarButtonItem:" candidateClass="UIBarButtonItem"/>
+            </relationships>
         </class>
         <class className="UICollectionReusableView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
