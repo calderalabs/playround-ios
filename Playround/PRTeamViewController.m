@@ -9,6 +9,7 @@
 #import "PRTeamViewController.h"
 #import "PRSession.h"
 #import "PRUser.h"
+#import "PRParticipation.h"
 
 @interface PRTeamViewController ()
 
@@ -30,7 +31,7 @@
 - (void)setRound:(PRRound *)round {
     if(round != _round) {
         _round = round;
-        
+
         [self.tableView reloadData];
     }
 }
@@ -49,26 +50,33 @@
 - (void)setupCell:(UITableViewCell *)cell model:(PRUser *)user {
     cell.textLabel.text = user.name;
     
-    if([[self.round.participations valueForKey:@"objectID"] containsObject:user.objectID]) {
+    if([[self.round.participations valueForKeyPath:@"user.objectID"] containsObject:user.objectID]) {
         cell.userInteractionEnabled = NO;
         cell.textLabel.enabled = NO;
     }
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(self.tableView.indexPathsForSelectedRows.count + self.round.participations.count  >= self.team.numberOfPlayers)
+    if(self.tableView.indexPathsForSelectedRows.count + [self.round participationsForTeam:self.team].count >= self.team.numberOfPlayers)
         return nil;
     
     return indexPath;
 }
 
 - (IBAction)didTapDoneBarButtonItem:(UIBarButtonItem *)sender {
-    NSMutableArray *participations = [NSMutableArray array];
-
-    for(NSIndexPath *indexPath in self.tableView.indexPathsForSelectedRows)
-        [participations addObject:[self.collection objectAtIndex:indexPath.row]];
+    NSMutableArray *participants = [NSMutableArray array];
     
-    self.round.participations = [self.round.participations arrayByAddingObjectsFromArray:participations];
+    for(NSIndexPath *indexPath in self.tableView.indexPathsForSelectedRows) {
+        PRUser *user = self.collection[indexPath.row];
+        
+        [participants addObject:user];
+        [self.round addParticipant:user team:self.team];
+    }
+
+    if([self.delegate respondsToSelector:@selector(teamViewController:didAddParticipants:)])
+        [self.delegate teamViewController:self didAddParticipants:participants];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 @end

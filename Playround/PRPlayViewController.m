@@ -10,6 +10,8 @@
 #import "PRGame.h"
 #import "PRRound.h"
 #import "PRTeam.h"
+#import "PRParticipation.h"
+#import "PRSession.h"
 #import "PRPickerTableViewCell.h"
 #import "PRSegmentedTableViewCell.h"
 #import "PRTeamViewController.h"
@@ -24,14 +26,16 @@ enum {
 
 @property (nonatomic, strong) PRRound *round;
 @property (nonatomic, strong) PRGame *game;
-@property (nonatomic, strong) NSArray *games;
-@property (nonatomic, strong) NSArray *sections;
+@property (nonatomic, copy) NSArray *games;
+@property (nonatomic, copy) NSArray *sections;
 @property (nonatomic, weak) PRPickerTableViewCell *gamePickerCell;
 @property (nonatomic, weak) PRSegmentedTableViewCell *teamCell;
 
+- (void)teamSegmentedControlDidChangeValue:(UISegmentedControl *)segmentedControl;
 - (IBAction)didTouchCancelBarButtonItem:(id)sender;
 - (void)updateTeamsAnimated:(BOOL)animated previousGame:(PRGame *)game;
 - (void)updateTeamSegmentsAnimated:(BOOL)animated;
+- (void)reloadTeams;
 - (void)setGame:(PRGame *)game animated:(BOOL)animated;
 
 @end
@@ -49,6 +53,9 @@ enum {
 - (void)setGame:(PRGame *)game animated:(BOOL)animated {
     PRGame *previousGame = self.round.game;
     self.round.game = game;
+    
+    [self.round removeAllParticipants];
+    [self.round addParticipant:PRSession.current.user team:game.teams[0]];
     
     if(![previousGame.objectID isEqualToString:game.objectID])
         [self updateTeamsAnimated:animated previousGame:previousGame];
@@ -122,7 +129,19 @@ enum {
             [self.teamCell.segmentedControl setTitle:team.displayName forSegmentAtIndex:i];
         }
     
-    self.teamCell.segmentedControl.selectedSegmentIndex = 0;
+    NSArray *currentUserParticipations = [self.round.participations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"user.objectID == %@", PRSession.current.user.objectID]];
+    
+    if(currentUserParticipations.count > 0) {
+        PRParticipation *participation = currentUserParticipations[0];
+        
+        self.teamCell.segmentedControl.selectedSegmentIndex = [self.game.teams indexOfObjectPassingTest:^BOOL(PRTeam *team, NSUInteger idx, BOOL *stop) {
+            return [team.name isEqualToString:participation.team.name];
+        }];
+    }
+}
+
+- (void)reloadTeams {
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(kPlayersSection, self.game.teams.count)] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -147,6 +166,12 @@ enum {
             }
         }];
     }
+}
+
+- (void)teamSegmentedControlDidChangeValue:(UISegmentedControl *)segmentedControl {
+    
+    [self.round addParticipant:PRSession.current.user team:self.game.teams[segmentedControl.selectedSegmentIndex] prepend:YES];
+    [self reloadTeams];
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -212,6 +237,7 @@ enum {
             PRSegmentedTableViewCell *segmentedCell = [tableView dequeueReusableCellWithIdentifier:@"Team" forIndexPath:indexPath];
             
             [segmentedCell.segmentedControl removeAllSegments];
+            [segmentedCell.segmentedControl addTarget:self action:@selector(teamSegmentedControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
             
             cell = segmentedCell;
             self.teamCell = segmentedCell;
@@ -226,8 +252,22 @@ enum {
                 buttonCell.delegate = self;
                 cell = buttonCell;
             }
-            else
+            else {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"Player" forIndexPath:indexPath];
+                
+                PRTeam *team = self.game.teams[indexPath.section - kPlayersSection];
+                NSArray *teamParticipations = [self.round participationsForTeam:team];
+                
+                NSUInteger playerIndex = indexPath.row - 1;
+                
+                if(playerIndex < teamParticipations.count) {
+                    PRParticipation *participation = teamParticipations[playerIndex];
+                    cell.textLabel.text = participation.user.name;
+                }
+                else {
+                    cell.textLabel.text = @"";
+                }
+            }
             
             break;
         }
@@ -248,10 +288,15 @@ enum {
     [self performSegueWithIdentifier:@"ShowTeam" sender:cell];
 }
 
+- (void)teamViewController:(PRTeamViewController *)teamViewController didAddParticipants:(NSArray *)participants {
+    [self reloadTeams];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     PRTeamViewController *teamViewController = segue.destinationViewController;
     
+    teamViewController.delegate = self;
     teamViewController.team = self.game.teams[indexPath.section - 2];
     teamViewController.round = self.round;
 }

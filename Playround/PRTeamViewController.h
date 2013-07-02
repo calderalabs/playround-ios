@@ -10,9 +10,20 @@
 #import "PRTeam.h"
 #import "PRRound.h"
 
+@class PRTeamViewController;
+
+@protocol PRTeamViewControllerDelegate <NSObject>
+
+@optional
+
+- (void)teamViewController:(PRTeamViewController *)teamViewController didAddParticipants:(NSArray *)participants;
+
+@end
+
 @interface PRTeamViewController : PRCollectionViewController
 
 @property (nonatomic, strong) PRTeam *team;
 @property (nonatomic, strong) PRRound *round;
+@property (nonatomic, weak) id<PRTeamViewControllerDelegate> delegate;
 
 @end
