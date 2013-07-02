@@ -65,7 +65,6 @@
     else {
         [_participations addObject:participation];
     }
-        
     
     NSArray *teamParticipations = [self participationsForTeam:team];
     
