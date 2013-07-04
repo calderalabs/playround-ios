@@ -28,6 +28,10 @@
     return mapping;
 }
 
++ (NSArray *)excludedRequestAttributes {
+    return @[];
+}
+
 + (NSString *)keyPath {
     NSAssert(NO, @"You must override +keyPath in PRModel subclasses.");
     return nil;
@@ -70,9 +74,17 @@
                                                                                      keyPath:self.keyPath
                                                                                  statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     
-    [objectManager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:self.objectMapping.inverseMapping
+    RKObjectMapping *inverseMapping = self.objectMapping.inverseMapping;
+    
+    for(NSString *attribute in self.excludedRequestAttributes)
+        [inverseMapping removePropertyMapping:inverseMapping.propertyMappingsBySourceKeyPath[attribute]];
+    
+    [objectManager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:inverseMapping
                                                                               objectClass:self
                                                                               rootKeyPath:self.keyPath]];
+    
+    
+        
     
     if(self.supportedOperationTypes & PRModelOperationCreate)
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self

@@ -21,6 +21,7 @@ typedef enum {
 
 + (PRModelOperationType)supportedOperationTypes;
 + (RKObjectMapping *)objectMapping;
++ (NSArray *)excludedRequestAttributes;
 + (NSString *)keyPath;
 + (NSString *)pluralKeyPath;
 + (NSString *)remotePath;

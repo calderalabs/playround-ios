@@ -30,10 +30,16 @@
     [mapping addAttributeMappingsFromDictionary:@{
         @"state": @"state",
         @"created_at": @"createdAt",
-        @"game_id": @"game.objectID"
+        @"game_name": @"game.name"
     }];
 
     return mapping;
+}
+
++ (NSArray *)excludedRequestAttributes {
+    return [[super excludedRequestAttributes] arrayByAddingObjectsFromArray:@[
+        @"game", @"user", @"arena"
+    ]];
 }
 
 - (NSArray *)participations {
