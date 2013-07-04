@@ -10,4 +10,15 @@
 
 @implementation PRParticipation
 
++ (RKObjectMapping *)objectMapping {
+    RKObjectMapping *mapping = [super objectMapping];
+    
+    [mapping addAttributeMappingsFromDictionary:@{
+        @"team": @"team.name",
+        @"user_id": @"user.objectID"
+    }];
+    
+    return mapping;
+}
+
 @end

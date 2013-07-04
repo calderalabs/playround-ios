@@ -33,6 +33,7 @@ enum {
 
 - (void)teamSegmentedControlDidChangeValue:(UISegmentedControl *)segmentedControl;
 - (IBAction)didTouchCancelBarButtonItem:(id)sender;
+- (IBAction)didTouchDoneBarButtonItem:(id)sender;
 - (void)updateTeamsAnimated:(BOOL)animated previousGame:(PRGame *)game;
 - (void)updateTeamSegmentsAnimated:(BOOL)animated;
 - (void)reloadTeams;
@@ -67,6 +68,31 @@ enum {
 
 - (IBAction)didTouchCancelBarButtonItem:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)didTouchDoneBarButtonItem:(id)sender {
+    [self.round createWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error) {
+        if(error) {
+            NSString *responseString = error.userInfo[NSLocalizedRecoverySuggestionErrorKey];
+            NSDictionary *response = [NSJSONSerialization JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+            NSDictionary *errors = response[@"errors"];
+            NSMutableString *message = [NSMutableString string];
+            
+            for(NSString *attribute in errors) {
+                NSArray *errorMessages = errors[attribute];
+                [message appendFormat:@"%@ %@\n", attribute, [errorMessages componentsJoinedByString:@","]];
+            }
+            
+            [[[UIAlertView alloc] initWithTitle:@"Error While Creating Round"
+                                        message:message
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil] show];
+        }
+        else {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
 }
 
 - (void)updateTeamsAnimated:(BOOL)animated previousGame:(PRGame *)previousGame {
@@ -281,6 +307,35 @@ enum {
     switch(indexPath.section) {
         case kGameSection: return 216;
         default: return 44;
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section >= kPlayersSection) {
+        if(indexPath.row != 0) {
+            PRTeam *team = self.game.teams[indexPath.section - kPlayersSection];
+            NSArray *teamParticipations = [self.round participationsForTeam:team];
+            
+            if(indexPath.row - 1 < teamParticipations.count) {
+                PRParticipation *participation = teamParticipations[indexPath.row - 1];
+                return ![participation.user.objectID isEqualToString:PRSession.current.user.objectID];
+            }
+        }
+    }
+    
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section >= kPlayersSection) {
+        if(indexPath.row != 0) {
+            if(editingStyle == UITableViewCellEditingStyleDelete) {
+                PRTeam *team = self.game.teams[indexPath.section - kPlayersSection];
+                PRParticipation *participation = [self.round participationsForTeam:team][indexPath.row - 1];
+                [self.round removeParticipant:participation.user];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+        }
     }
 }
 

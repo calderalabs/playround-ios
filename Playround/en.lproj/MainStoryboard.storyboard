@@ -269,6 +269,11 @@
                                 <action selector="didTouchCancelBarButtonItem:" destination="ziD-hc-d9d" id="XOi-gy-J2U"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="PVy-Nf-rip">
+                            <connections>
+                                <action selector="didTouchDoneBarButtonItem:" destination="ziD-hc-d9d" id="kfh-ze-qoN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="Rpc-cw-zMI" kind="push" identifier="ShowTeam" id="chm-GN-VvY"/>
@@ -461,9 +466,6 @@
         </class>
         <class className="PRCollectionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRCollectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="refreshControlDidChangeValue:" candidateClass="UIRefreshControl"/>
-            </relationships>
         </class>
         <class className="PRFeedTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRFeedTableViewCell.h"/>
@@ -495,6 +497,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRPlayViewController.h"/>
             <relationships>
                 <relationship kind="action" name="didTouchCancelBarButtonItem:"/>
+                <relationship kind="action" name="didTouchDoneBarButtonItem:"/>
             </relationships>
         </class>
         <class className="PRSegmentedTableViewCell" superclassName="UITableViewCell">

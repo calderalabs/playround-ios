@@ -25,10 +25,12 @@
     [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[PRUser objectMapping]];
     [mapping addRelationshipMappingWithSourceKeyPath:@"game" mapping:[PRGame objectMapping]];
     [mapping addRelationshipMappingWithSourceKeyPath:@"arena" mapping:[PRArena objectMapping]];
+    [mapping addRelationshipMappingWithSourceKeyPath:@"participations" mapping:[PRParticipation objectMapping]];
     
     [mapping addAttributeMappingsFromDictionary:@{
         @"state": @"state",
-        @"created_at": @"createdAt"
+        @"created_at": @"createdAt",
+        @"game_id": @"game.objectID"
     }];
 
     return mapping;
