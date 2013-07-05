@@ -212,7 +212,9 @@ enum {
         [self.locationCell stopAnimating];
     }
     else if(self.location) {
-        status = self.location.description;
+        status = [NSString stringWithFormat:@"%f, %f",
+                  self.location.coordinate.latitude,
+                  self.location.coordinate.longitude];
     }
     else {
         status = @"Updating location...";
