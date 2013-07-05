@@ -16,5 +16,6 @@
 @property (nonatomic, strong) PRModel *model;
 
 - (void)setupCell:(UITableViewCell *)cell model:(PRModel *)model;
+- (void)fetchCollection;
 
 @end

@@ -10,10 +10,6 @@
 #import "PRFeedTableViewCell.h"
 #import "PRRound.h"
 
-@interface PRFeedTableViewController ()
-
-@end
-
 @implementation PRFeedTableViewController
 
 - (Class)collectionClass {
@@ -31,6 +27,18 @@
     
     if(round.game.pictureURL)
         [cell.gameImageView setImageWithURL:round.game.pictureURL];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"Play"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        PRPlayViewController *playViewController = (PRPlayViewController *)navigationController.visibleViewController;
+        playViewController.delegate = self;
+    }
+}
+
+- (void)playViewControllerDidCreateRound:(PRPlayViewController *)playViewController {
+    [self fetchCollection];
 }
 
 @end

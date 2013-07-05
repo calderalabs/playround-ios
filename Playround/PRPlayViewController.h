@@ -9,6 +9,18 @@
 #import "PRButtonTableViewCell.h"
 #import "PRTeamViewController.h"
 
+@class PRPlayViewController;
+
+@protocol PRPlayViewControllerDelegate <NSObject>
+
+@optional
+
+- (void)playViewControllerDidCreateRound:(PRPlayViewController *)playViewController;
+
+@end
+
 @interface PRPlayViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate, PRButtonTableViewCellDelegate, PRTeamViewControllerDelegate, CLLocationManagerDelegate>
+
+@property (nonatomic, weak) id<PRPlayViewControllerDelegate> delegate;
 
 @end

@@ -9,12 +9,6 @@
 #import "PRCollectionViewController.h"
 #import "PRObjectManager.h"
 
-@interface PRCollectionViewController ()
-
-- (void)fetchCollection;
-
-@end
-
 @implementation PRCollectionViewController
 
 - (Class)collectionClass {

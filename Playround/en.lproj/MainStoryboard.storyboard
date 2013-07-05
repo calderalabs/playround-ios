@@ -120,7 +120,7 @@
                     <navigationItem key="navigationItem" title="Feed" id="Oxe-P1-fmn">
                         <barButtonItem key="rightBarButtonItem" title="Play" id="IXM-DL-YGq">
                             <connections>
-                                <segue destination="wBT-RV-J6x" kind="modal" id="dAp-IJ-Q2g"/>
+                                <segue destination="wBT-RV-J6x" kind="modal" identifier="Play" id="dAp-IJ-Q2g"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

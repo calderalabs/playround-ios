@@ -125,7 +125,10 @@ enum {
                               otherButtonTitles:nil] show];
         }
         else {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissViewControllerAnimated:YES completion:^{
+                if([self.delegate respondsToSelector:@selector(playViewControllerDidCreateRound:)])
+                    [self.delegate playViewControllerDidCreateRound:self];
+            }];
         }
     }];
 }
@@ -417,12 +420,14 @@ enum {
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    PRTeamViewController *teamViewController = segue.destinationViewController;
+    if([segue.identifier isEqualToString:@"ShowTeam"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        PRTeamViewController *teamViewController = segue.destinationViewController;
     
-    teamViewController.delegate = self;
-    teamViewController.team = self.game.teams[indexPath.section - kPlayersSection];
-    teamViewController.round = self.round;
+        teamViewController.delegate = self;
+        teamViewController.team = self.game.teams[indexPath.section - kPlayersSection];
+        teamViewController.round = self.round;
+    }
 }
 
 @end
