@@ -16,5 +16,6 @@
     #import <RestKit.h>
     #import <SSKeychain.h>
     #import <Accounts/Accounts.h>
+    #import <CoreLocation/CoreLocation.h>
     #import "Environment.h"
 #endif

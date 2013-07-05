@@ -14,10 +14,12 @@
 #import "PRSession.h"
 #import "PRPickerTableViewCell.h"
 #import "PRSegmentedTableViewCell.h"
+#import "PRActivityTableViewCell.h"
 #import "PRTeamViewController.h"
 
 enum {
-    kGameSection = 0,
+    kLocationSection = 0,
+    kGameSection,
     kTeamSection,
     kPlayersSection
 };
@@ -26,16 +28,22 @@ enum {
 
 @property (nonatomic, strong) PRRound *round;
 @property (nonatomic, strong) PRGame *game;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLGeocoder *geocoder;
+@property (nonatomic, copy) CLLocation *location;
+@property (nonatomic, copy) CLPlacemark *placemark;
 @property (nonatomic, copy) NSArray *games;
 @property (nonatomic, copy) NSArray *sections;
 @property (nonatomic, weak) PRPickerTableViewCell *gamePickerCell;
 @property (nonatomic, weak) PRSegmentedTableViewCell *teamCell;
+@property (nonatomic, weak) PRActivityTableViewCell *locationCell;
 
 - (void)teamSegmentedControlDidChangeValue:(UISegmentedControl *)segmentedControl;
 - (IBAction)didTouchCancelBarButtonItem:(id)sender;
 - (IBAction)didTouchDoneBarButtonItem:(id)sender;
 - (void)updateTeamsAnimated:(BOOL)animated previousGame:(PRGame *)game;
 - (void)updateTeamSegmentsAnimated:(BOOL)animated;
+- (void)updateLocationCell;
 - (void)reloadTeams;
 - (void)setGame:(PRGame *)game animated:(BOOL)animated;
 
@@ -62,8 +70,35 @@ enum {
         [self updateTeamsAnimated:animated previousGame:previousGame];
 }
 
+- (void)setLocation:(CLLocation *)location {
+    if(location != _location) {
+        _location = location;
+        self.round.arena.latitude = location.coordinate.latitude;
+        self.round.arena.longitude = location.coordinate.longitude;
+        
+        if([self.tableView.visibleCells containsObject:self.locationCell])
+            [self updateLocationCell];
+        
+        [self.geocoder reverseGeocodeLocation:self.location completionHandler:^(NSArray *placemarks, NSError *error) {
+            self.placemark = [placemarks lastObject];
+        }];
+    }
+}
+
+- (void)setPlacemark:(CLPlacemark *)placemark {
+    if(placemark != _placemark) {
+        _placemark = placemark;
+        
+        if([self.tableView.visibleCells containsObject:self.locationCell])
+            [self updateLocationCell];
+    }
+}
+
 - (void)awakeFromNib {
     self.round = [[PRRound alloc] init];
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.geocoder = [[CLGeocoder alloc] init];
 }
 
 - (IBAction)didTouchCancelBarButtonItem:(id)sender {
@@ -166,6 +201,24 @@ enum {
     }
 }
 
+- (void)updateLocationCell {
+    NSString *status = nil;
+    
+    if(self.placemark) {
+        status = self.placemark.description;
+        [self.locationCell stopAnimating];
+    }
+    else if(self.location) {
+        status = self.location.description;
+    }
+    else {
+        status = @"Updating location...";
+        [self.locationCell startAnimating];
+    }
+    
+    self.locationCell.status = status;
+}
+
 - (void)reloadTeams {
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(kPlayersSection, self.game.teams.count)] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -192,10 +245,11 @@ enum {
             }
         }];
     }
+    
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)teamSegmentedControlDidChangeValue:(UISegmentedControl *)segmentedControl {
-    
     [self.round addParticipant:PRSession.current.user team:self.game.teams[segmentedControl.selectedSegmentIndex] prepend:YES];
     [self reloadTeams];
 }
@@ -218,15 +272,16 @@ enum {
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2 + self.game.teams.count;
+    return kPlayersSection + self.game.teams.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch(section) {
+        case kLocationSection: return 1;
         case kGameSection: return 1;
         case kTeamSection: return 1;
         default: {
-            PRTeam *team = self.game.teams[section - 2];
+            PRTeam *team = self.game.teams[section - kPlayersSection];
             return 1 + team.numberOfPlayers;
         }
     }
@@ -234,10 +289,11 @@ enum {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch(section) {
+        case kLocationSection: return @"Location";
         case kGameSection: return @"Game";
         case kTeamSection: return @"Your Team";
         default: {
-            PRTeam *team = self.game.teams[section - 2];
+            PRTeam *team = self.game.teams[section - kPlayersSection];
             return team.displayName;
         }
     }
@@ -248,6 +304,15 @@ enum {
     UITableViewCell *cell;
     
     switch(indexPath.section) {
+        case kLocationSection: {
+            PRActivityTableViewCell *activityCell = [tableView dequeueReusableCellWithIdentifier:@"Location" forIndexPath:indexPath];
+            
+            cell = activityCell;
+            self.locationCell = activityCell;
+            [self updateLocationCell];
+            
+            break;
+        }
         case kGameSection: {
             PRPickerTableViewCell *pickerCell = [tableView dequeueReusableCellWithIdentifier:@"Game" forIndexPath:indexPath];
             
@@ -347,12 +412,16 @@ enum {
     [self reloadTeams];
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    self.location = [locations lastObject];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     PRTeamViewController *teamViewController = segue.destinationViewController;
     
     teamViewController.delegate = self;
-    teamViewController.team = self.game.teams[indexPath.section - 2];
+    teamViewController.team = self.game.teams[indexPath.section - kPlayersSection];
     teamViewController.round = self.round;
 }
 

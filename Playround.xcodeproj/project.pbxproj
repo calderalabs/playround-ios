@@ -13,6 +13,9 @@
 		47372F7E177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F7C177C531B00FA6C3E /* PRButtonTableViewCell.m */; };
 		47372F81177D8A0400FA6C3E /* PRParticipation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F80177D8A0400FA6C3E /* PRParticipation.m */; };
 		47372F82177D8A0400FA6C3E /* PRParticipation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F80177D8A0400FA6C3E /* PRParticipation.m */; };
+		47372F841786BED700FA6C3E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47372F831786BED700FA6C3E /* CoreLocation.framework */; };
+		47372F871786C40D00FA6C3E /* PRActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F861786C40D00FA6C3E /* PRActivityTableViewCell.m */; };
+		47372F881786C40D00FA6C3E /* PRActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F861786C40D00FA6C3E /* PRActivityTableViewCell.m */; };
 		475704EE1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */; };
 		475704EF1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */; };
 		475704F2176721DC00A8B774 /* PRSegmentedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704F1176721DC00A8B774 /* PRSegmentedTableViewCell.m */; };
@@ -82,6 +85,9 @@
 		47372F7C177C531B00FA6C3E /* PRButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRButtonTableViewCell.m; sourceTree = "<group>"; };
 		47372F7F177D8A0400FA6C3E /* PRParticipation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRParticipation.h; sourceTree = "<group>"; };
 		47372F80177D8A0400FA6C3E /* PRParticipation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRParticipation.m; sourceTree = "<group>"; };
+		47372F831786BED700FA6C3E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		47372F851786C40D00FA6C3E /* PRActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRActivityTableViewCell.h; sourceTree = "<group>"; };
+		47372F861786C40D00FA6C3E /* PRActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRActivityTableViewCell.m; sourceTree = "<group>"; };
 		475704EC1767110E00A8B774 /* PRPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRPickerTableViewCell.h; sourceTree = "<group>"; };
 		475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRPickerTableViewCell.m; sourceTree = "<group>"; };
 		475704F0176721DC00A8B774 /* PRSegmentedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRSegmentedTableViewCell.h; sourceTree = "<group>"; };
@@ -145,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47372F841786BED700FA6C3E /* CoreLocation.framework in Frameworks */,
 				4784311A174B8AEA00154CF1 /* Accounts.framework in Frameworks */,
 				47E6520F16FCBF18005D6E4C /* UIKit.framework in Frameworks */,
 				47E6521116FCBF18005D6E4C /* Foundation.framework in Frameworks */,
@@ -195,6 +202,8 @@
 				475704F1176721DC00A8B774 /* PRSegmentedTableViewCell.m */,
 				47372F7B177C531B00FA6C3E /* PRButtonTableViewCell.h */,
 				47372F7C177C531B00FA6C3E /* PRButtonTableViewCell.m */,
+				47372F851786C40D00FA6C3E /* PRActivityTableViewCell.h */,
+				47372F861786C40D00FA6C3E /* PRActivityTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -249,6 +258,7 @@
 				47E6520E16FCBF18005D6E4C /* UIKit.framework */,
 				47E6521016FCBF18005D6E4C /* Foundation.framework */,
 				47E6521216FCBF18005D6E4C /* CoreGraphics.framework */,
+				47372F831786BED700FA6C3E /* CoreLocation.framework */,
 				47E6523D16FCBF18005D6E4C /* SenTestingKit.framework */,
 				C5E24D19A2A347788735D477 /* libPods.a */,
 			);
@@ -468,6 +478,7 @@
 				47372F711778700300FA6C3E /* PRTeam.m in Sources */,
 				47372F7D177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */,
 				47372F81177D8A0400FA6C3E /* PRParticipation.m in Sources */,
+				47372F871786C40D00FA6C3E /* PRActivityTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +507,7 @@
 				47372F721778700300FA6C3E /* PRTeam.m in Sources */,
 				47372F7E177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */,
 				47372F82177D8A0400FA6C3E /* PRParticipation.m in Sources */,
+				47372F881786C40D00FA6C3E /* PRActivityTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

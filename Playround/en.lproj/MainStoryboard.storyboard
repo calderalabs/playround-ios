@@ -256,6 +256,38 @@
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Location" rowHeight="44" id="wj1-zC-dmJ" customClass="PRActivityTableViewCell">
+                                <rect key="frame" x="0.0" y="395" width="320" height="45"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lXJ-c5-2as"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajP-ng-QUW">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="232" id="pCW-pv-Gvj"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ajP-ng-QUW" firstAttribute="leading" secondItem="lXJ-c5-2as" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="06s-ZP-8Da"/>
+                                    <constraint firstItem="lXJ-c5-2as" firstAttribute="bottom" secondItem="ajP-ng-QUW" secondAttribute="bottom" type="default" id="8xh-37-lr4"/>
+                                    <constraint firstItem="ajP-ng-QUW" firstAttribute="top" secondItem="lXJ-c5-2as" secondAttribute="top" type="default" id="Nwn-k1-fvI"/>
+                                    <constraint firstItem="lXJ-c5-2as" firstAttribute="leading" secondItem="wj1-zC-dmJ" secondAttribute="leading" constant="30" id="cbw-ax-Hgf"/>
+                                    <constraint firstItem="lXJ-c5-2as" firstAttribute="centerY" secondItem="wj1-zC-dmJ" secondAttribute="centerY" type="default" id="dKA-nx-RlX"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="activityIndicatorView" destination="lXJ-c5-2as" id="iFd-MR-aUU"/>
+                                    <outlet property="statusLabel" destination="ajP-ng-QUW" id="U2b-w1-iUJ"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <sections/>
                         <connections>
@@ -458,6 +490,13 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
+        <class className="PRActivityTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PRActivityTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="activityIndicatorView" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="PRButtonTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRButtonTableViewCell.h"/>
             <relationships>
@@ -466,6 +505,9 @@
         </class>
         <class className="PRCollectionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRCollectionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshControlDidChangeValue:" candidateClass="UIRefreshControl"/>
+            </relationships>
         </class>
         <class className="PRFeedTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRFeedTableViewCell.h"/>

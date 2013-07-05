@@ -24,13 +24,17 @@
 
     [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[PRUser objectMapping]];
     [mapping addRelationshipMappingWithSourceKeyPath:@"game" mapping:[PRGame objectMapping]];
-    [mapping addRelationshipMappingWithSourceKeyPath:@"arena" mapping:[PRArena objectMapping]];
-    [mapping addRelationshipMappingWithSourceKeyPath:@"participations" mapping:[PRParticipation objectMapping]];
+    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"arena_attributes"
+                                                                                   toKeyPath:@"arena"
+                                                                                 withMapping:[PRArena objectMapping]]];
+    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"participation_list"
+                                                                            toKeyPath:@"participations"
+                                                                          withMapping:[PRParticipation objectMapping]]];
     
     [mapping addAttributeMappingsFromDictionary:@{
         @"state": @"state",
         @"created_at": @"createdAt",
-        @"game_name": @"game.name"
+        @"game_name": @"game.name",
     }];
 
     return mapping;
@@ -38,7 +42,7 @@
 
 + (NSArray *)excludedRequestAttributes {
     return [[super excludedRequestAttributes] arrayByAddingObjectsFromArray:@[
-        @"game", @"user", @"arena"
+        @"game", @"user"
     ]];
 }
 
@@ -102,6 +106,7 @@
     
     if(self) {
         _participations = [NSMutableArray array];
+        self.arena = [[PRArena alloc] init];
     }
     
     return self;

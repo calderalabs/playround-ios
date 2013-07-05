@@ -31,7 +31,7 @@ static NSString *kAccountName = @"playround.account";
     if(self) {
         [self.HTTPClient registerHTTPOperationClass:[AFJSONRequestOperation class]];
         [self setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
-        self.requestSerializationMIMEType = RKMIMETypeFormURLEncoded;
+        self.requestSerializationMIMEType = RKMIMETypeJSON;
         self.accessToken = self.class.defaultAccessToken;
     
         for(Class class in @[[PRRound class], [PRUser class], [PRGame class], [PRArena class], [PRToken class]])

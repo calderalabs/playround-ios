@@ -27,6 +27,8 @@
     
     [mapping addAttributeMappingsFromDictionary:@{
         @"name": @"name",
+        @"latitude": @"latitude",
+        @"longitude": @"longitude"
     }];
     
     return mapping;

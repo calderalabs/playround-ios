@@ -9,6 +9,6 @@
 #import "PRButtonTableViewCell.h"
 #import "PRTeamViewController.h"
 
-@interface PRPlayViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate, PRButtonTableViewCellDelegate, PRTeamViewControllerDelegate>
+@interface PRPlayViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate, PRButtonTableViewCellDelegate, PRTeamViewControllerDelegate, CLLocationManagerDelegate>
 
 @end

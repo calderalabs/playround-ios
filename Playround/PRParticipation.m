@@ -15,7 +15,7 @@
     
     [mapping addAttributeMappingsFromDictionary:@{
         @"team": @"team.name",
-        @"user_id": @"user.objectID"
+        @"user.id": @"user.objectID"
     }];
     
     return mapping;

@@ -11,5 +11,7 @@
 @interface PRArena : PRModel
 
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) double latitude;
+@property (nonatomic, assign) double longitude;
 
 @end
