@@ -1,5 +1,5 @@
 //
-//  PRFeedTableViewController.h
+//  PRFeedViewController.h
 //  Playround
 //
 //  Created by Eugenio Depalo on 4/15/13.
@@ -9,6 +9,6 @@
 #import "PRCollectionViewController.h"
 #import "PRPlayViewController.h"
 
-@interface PRFeedTableViewController : PRCollectionViewController <PRPlayViewControllerDelegate>
+@interface PRFeedViewController : PRCollectionViewController <PRPlayViewControllerDelegate>
 
 @end

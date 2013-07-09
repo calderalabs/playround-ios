@@ -25,20 +25,20 @@
             </objects>
             <point key="canvasLocation" x="-1206" y="-1925"/>
         </scene>
-        <!--Feed Table View Controller - Feed-->
+        <!--Feed View Controller - Feed-->
         <scene sceneID="5Hs-gR-wHy">
             <objects>
-                <tableViewController id="A1D-ld-NQT" customClass="PRFeedTableViewController" sceneMemberID="viewController">
+                <tableViewController id="A1D-ld-NQT" customClass="PRFeedViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" id="H7f-Ug-tK4">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.89684527853260865" green="0.89684527853260865" blue="0.89684527853260865" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Model" rowHeight="101" id="bYm-uJ-9HX" customClass="PRFeedTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Model" rowHeight="101" id="bYm-uJ-9HX" customClass="PRFeedTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="101"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vco-8w-NLZ">
@@ -113,6 +113,7 @@
                                     <outlet property="statusLabel" destination="Vwx-g8-G19" id="O8U-lu-d7p"/>
                                     <outlet property="userPictureImageView" destination="vco-8w-NLZ" id="dqa-lu-gsz"/>
                                     <outlet property="usernameLabel" destination="tMG-GW-BwN" id="sG3-s1-Mcu"/>
+                                    <segue destination="jxp-Qu-MCH" kind="push" identifier="Show" id="tlB-ff-QuW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -259,8 +260,8 @@
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Location" rowHeight="44" id="wj1-zC-dmJ" customClass="PRActivityTableViewCell">
-                                <rect key="frame" x="0.0" y="395" width="320" height="45"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Location" rowHeight="44" id="wj1-zC-dmJ" customClass="PRActivityTableViewCell">
+                                <rect key="frame" x="0.0" y="395" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="10" y="0.0" width="300" height="43"/>
@@ -327,11 +328,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Model" textLabel="zXr-k5-jKg" style="IBUITableViewCellStyleDefault" id="Vdc-qE-gY9">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Model" textLabel="zXr-k5-jKg" style="IBUITableViewCellStyleDefault" id="Vdc-qE-gY9">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXr-k5-jKg">
@@ -356,6 +357,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U2k-HP-0rE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="796" y="-1925"/>
+        </scene>
+        <!--Round View Controller - Round Details-->
+        <scene sceneID="vVs-ZP-RvH">
+            <objects>
+                <tableViewController id="jxp-Qu-MCH" customClass="PRRoundViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bI9-AH-Pg9">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="bJ5-dv-9bV">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="WUM-2k-h4E">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="9OA-vm-MkI">
+                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="IYj-4f-HNH">
+                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="jxp-Qu-MCH" id="tVX-b1-h5C"/>
+                            <outlet property="delegate" destination="jxp-Qu-MCH" id="VRf-g0-jjp"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Round Details" id="kHZ-op-QFH"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7r9-Pv-Dco" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-8" y="-1244"/>
         </scene>
         <!--Navigation Controller - Feed-->
         <scene sceneID="sag-7l-kP4">
@@ -508,9 +561,6 @@
         </class>
         <class className="PRCollectionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRCollectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="refreshControlDidChangeValue:" candidateClass="UIRefreshControl"/>
-            </relationships>
         </class>
         <class className="PRFeedTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRFeedTableViewCell.h"/>
@@ -523,8 +573,8 @@
                 <relationship kind="outlet" name="usernameLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="PRFeedTableViewController" superclassName="PRCollectionViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PRFeedTableViewController.h"/>
+        <class className="PRFeedViewController" superclassName="PRCollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PRFeedViewController.h"/>
         </class>
         <class className="PRLoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRLoginViewController.h"/>
@@ -544,6 +594,9 @@
                 <relationship kind="action" name="didTouchCancelBarButtonItem:"/>
                 <relationship kind="action" name="didTouchDoneBarButtonItem:"/>
             </relationships>
+        </class>
+        <class className="PRRoundViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PRRoundViewController.h"/>
         </class>
         <class className="PRSegmentedTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PRSegmentedTableViewCell.h"/>
@@ -568,9 +621,6 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
         <class className="UIRefreshControl" superclassName="UIControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UIRefreshControl.h"/>
