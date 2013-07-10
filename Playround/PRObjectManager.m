@@ -13,6 +13,7 @@
 #import "PRArena.h"
 #import "PRToken.h"
 #import "PRSession.h"
+#import "PRStart.h"
 
 static NSString *kServiceName = @"playround.api";
 static NSString *kAccountName = @"playround.account";
@@ -34,7 +35,7 @@ static NSString *kAccountName = @"playround.account";
         self.requestSerializationMIMEType = RKMIMETypeJSON;
         self.accessToken = self.class.defaultAccessToken;
     
-        for(Class class in @[[PRRound class], [PRUser class], [PRGame class], [PRArena class], [PRToken class]])
+        for(Class class in @[[PRRound class], [PRUser class], [PRGame class], [PRArena class], [PRToken class], [PRStart class]])
             [class setObjectManager:self];
         
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(sessionDidLogin:) name:PRSessionDidLoginNotification object:PRSession.current];

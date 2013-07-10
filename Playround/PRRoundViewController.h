@@ -7,8 +7,9 @@
 //
 
 #import "PRRound.h"
+#import "PRButtonTableViewCell.h"
 
-@interface PRRoundViewController : UITableViewController
+@interface PRRoundViewController : UITableViewController <PRButtonTableViewCellDelegate>
 
 @property (nonatomic, strong) PRRound *round;
 

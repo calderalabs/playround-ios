@@ -235,7 +235,9 @@ enum {
         [PRGame allWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error) {
             if(!error) {
                 self.games = mappingResult.array;
-                [self setGame:self.games[0] animated:YES];
+                
+                if(self.games.count > 0)
+                    [self setGame:self.games[0] animated:YES];
                 
                 if([self.tableView.visibleCells containsObject:self.gamePickerCell])
                     [self.gamePickerCell.pickerView reloadAllComponents];
@@ -410,7 +412,12 @@ enum {
 }
 
 - (void)didTapButtonTableViewCell:(PRButtonTableViewCell *)cell {
-    [self performSegueWithIdentifier:@"ShowTeam" sender:cell];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    if(indexPath.section >= kPlayersSection) {
+        if(indexPath.row == 0)
+            [self performSegueWithIdentifier:@"ShowTeam" sender:cell];
+    }
 }
 
 - (void)teamViewController:(PRTeamViewController *)teamViewController didAddParticipants:(NSArray *)participants {

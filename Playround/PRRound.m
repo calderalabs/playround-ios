@@ -24,12 +24,8 @@
 
     [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[PRUser objectMapping]];
     [mapping addRelationshipMappingWithSourceKeyPath:@"game" mapping:[PRGame objectMapping]];
-    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"arena_attributes"
-                                                                                   toKeyPath:@"arena"
-                                                                                 withMapping:[PRArena objectMapping]]];
-    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"participation_list"
-                                                                            toKeyPath:@"participations"
-                                                                          withMapping:[PRParticipation objectMapping]]];
+    [mapping addRelationshipMappingWithSourceKeyPath:@"arena" mapping:[PRArena objectMapping]];
+    [mapping addRelationshipMappingWithSourceKeyPath:@"participations" mapping:[PRParticipation objectMapping]];
     
     [mapping addAttributeMappingsFromDictionary:@{
         @"state": @"state",
