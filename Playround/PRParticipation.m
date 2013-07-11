@@ -14,7 +14,6 @@
     RKObjectMapping *mapping = [super objectMapping];
     
     [mapping addAttributeMappingsFromDictionary:@{
-        @"team": @"team.name",
         @"user.id": @"user.objectID"
     }];
     

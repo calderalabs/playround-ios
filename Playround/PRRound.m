@@ -7,7 +7,7 @@
 //
 
 #import "PRRound.h"
-#import "PRParticipation.h"
+#import "PRTeamDescriptor.h"
 
 @implementation PRRound
 
@@ -25,7 +25,7 @@
     [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[PRUser objectMapping]];
     [mapping addRelationshipMappingWithSourceKeyPath:@"game" mapping:[PRGame objectMapping]];
     [mapping addRelationshipMappingWithSourceKeyPath:@"arena" mapping:[PRArena objectMapping]];
-    [mapping addRelationshipMappingWithSourceKeyPath:@"participations" mapping:[PRParticipation objectMapping]];
+    [mapping addRelationshipMappingWithSourceKeyPath:@"teams" mapping:[PRTeam objectMapping]];
     
     [mapping addAttributeMappingsFromDictionary:@{
         @"state": @"state",
@@ -42,70 +42,35 @@
     ]];
 }
 
-- (NSArray *)participations {
-    return [NSArray arrayWithArray:_participations];
-}
-
-- (void)addParticipant:(PRUser *)user team:(PRTeam *)team {
-    [self addParticipant:user team:team prepend:NO];
-}
-
-- (void)addParticipant:(PRUser *)user team:(PRTeam *)team prepend:(BOOL)prepend {
-    PRParticipation *participation = [[PRParticipation alloc] init];
-    
-    participation.user = user;
-    participation.team = team;
-    
-    [_participations removeObjectsAtIndexes:[_participations indexesOfObjectsPassingTest:^BOOL(PRParticipation *p, NSUInteger idx, BOOL *stop) {
-        return [p.user.objectID isEqualToString:user.objectID];
-    }]];
-    
-    if(prepend) {
-        NSUInteger firstParticipationIndex = [_participations indexOfObjectPassingTest:^BOOL(PRParticipation *p, NSUInteger idx, BOOL *stop) {
-            return [p.team.name isEqualToString:participation.team.name];
-        }];
+- (void)setGame:(PRGame *)game {
+    if(game != _game) {
+        _game = game;
         
-        if(firstParticipationIndex == NSNotFound)
-            firstParticipationIndex = 0;
+        NSMutableArray *teams = [NSMutableArray array];
         
-        [_participations insertObject:participation atIndex:firstParticipationIndex];
-    }
-    else {
-        [_participations addObject:participation];
-    }
-    
-    NSArray *teamParticipations = [self participationsForTeam:team];
-    
-    if(teamParticipations.count > team.numberOfPlayers) {
-        NSArray *exceedingTeamParticipations = [teamParticipations objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(team.numberOfPlayers, teamParticipations.count - team.numberOfPlayers)]];
+        for(PRTeamDescriptor *teamDescriptor in game.teamDescriptors)
+            [teams addObject:[teamDescriptor newTeam]];
         
-        [_participations removeObjectsInArray:exceedingTeamParticipations];
+        self.teams = [NSArray arrayWithArray:teams];
     }
-}
-
-- (void)removeParticipant:(PRUser *)user {
-    [_participations removeObjectAtIndex:[_participations indexOfObjectPassingTest:^BOOL(PRParticipation *participation, NSUInteger idx, BOOL *stop) {
-        return [participation.user.objectID isEqualToString:user.objectID];
-    }]];
-}
-
-- (void)removeAllParticipants {
-    [_participations removeAllObjects];
-}
-
-- (NSArray *)participationsForTeam:(PRTeam *)team {
-    return [self.participations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"team.name == %@", team.name]];
 }
 
 - (id)init {
     self = [super init];
     
     if(self) {
-        _participations = [NSMutableArray array];
         self.arena = [[PRArena alloc] init];
     }
     
     return self;
+}
+
+- (BOOL)hasParticipant:(PRUser *)user {
+    for(PRTeam *team in self.teams)
+        if([[team.participations valueForKeyPath:@"user.objectID"] containsObject:user.objectID])
+            return YES;
+    
+    return NO;
 }
 
 @end

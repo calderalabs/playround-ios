@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		47372F711778700300FA6C3E /* PRTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F701778700300FA6C3E /* PRTeam.m */; };
-		47372F721778700300FA6C3E /* PRTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F701778700300FA6C3E /* PRTeam.m */; };
+		47372F711778700300FA6C3E /* PRTeamDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F701778700300FA6C3E /* PRTeamDescriptor.m */; };
+		47372F721778700300FA6C3E /* PRTeamDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F701778700300FA6C3E /* PRTeamDescriptor.m */; };
 		47372F7D177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F7C177C531B00FA6C3E /* PRButtonTableViewCell.m */; };
 		47372F7E177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F7C177C531B00FA6C3E /* PRButtonTableViewCell.m */; };
 		47372F81177D8A0400FA6C3E /* PRParticipation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F80177D8A0400FA6C3E /* PRParticipation.m */; };
@@ -20,6 +20,10 @@
 		47566B02178C4A66001B0235 /* PRRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47566B00178C4A66001B0235 /* PRRoundViewController.m */; };
 		47566B05178D4B02001B0235 /* PRStart.m in Sources */ = {isa = PBXBuildFile; fileRef = 47566B04178D4B02001B0235 /* PRStart.m */; };
 		47566B06178D4B02001B0235 /* PRStart.m in Sources */ = {isa = PBXBuildFile; fileRef = 47566B04178D4B02001B0235 /* PRStart.m */; };
+		47566B09178EB05E001B0235 /* PRWinning.m in Sources */ = {isa = PBXBuildFile; fileRef = 47566B08178EB05D001B0235 /* PRWinning.m */; };
+		47566B0A178EB05E001B0235 /* PRWinning.m in Sources */ = {isa = PBXBuildFile; fileRef = 47566B08178EB05D001B0235 /* PRWinning.m */; };
+		47566B0D178EB923001B0235 /* PRTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 47566B0C178EB923001B0235 /* PRTeam.m */; };
+		47566B0E178EB923001B0235 /* PRTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 47566B0C178EB923001B0235 /* PRTeam.m */; };
 		475704EE1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */; };
 		475704EF1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */; };
 		475704F2176721DC00A8B774 /* PRSegmentedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704F1176721DC00A8B774 /* PRSegmentedTableViewCell.m */; };
@@ -83,8 +87,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		47372F6F1778700300FA6C3E /* PRTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTeam.h; sourceTree = "<group>"; };
-		47372F701778700300FA6C3E /* PRTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTeam.m; sourceTree = "<group>"; };
+		47372F6F1778700300FA6C3E /* PRTeamDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTeamDescriptor.h; sourceTree = "<group>"; };
+		47372F701778700300FA6C3E /* PRTeamDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTeamDescriptor.m; sourceTree = "<group>"; };
 		47372F7B177C531B00FA6C3E /* PRButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRButtonTableViewCell.h; sourceTree = "<group>"; };
 		47372F7C177C531B00FA6C3E /* PRButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRButtonTableViewCell.m; sourceTree = "<group>"; };
 		47372F7F177D8A0400FA6C3E /* PRParticipation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRParticipation.h; sourceTree = "<group>"; };
@@ -96,6 +100,10 @@
 		47566B00178C4A66001B0235 /* PRRoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRRoundViewController.m; sourceTree = "<group>"; };
 		47566B03178D4B02001B0235 /* PRStart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRStart.h; sourceTree = "<group>"; };
 		47566B04178D4B02001B0235 /* PRStart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRStart.m; sourceTree = "<group>"; };
+		47566B07178EB05D001B0235 /* PRWinning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRWinning.h; sourceTree = "<group>"; };
+		47566B08178EB05D001B0235 /* PRWinning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRWinning.m; sourceTree = "<group>"; };
+		47566B0B178EB923001B0235 /* PRTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTeam.h; sourceTree = "<group>"; };
+		47566B0C178EB923001B0235 /* PRTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTeam.m; sourceTree = "<group>"; };
 		475704EC1767110E00A8B774 /* PRPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRPickerTableViewCell.h; sourceTree = "<group>"; };
 		475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRPickerTableViewCell.m; sourceTree = "<group>"; };
 		475704F0176721DC00A8B774 /* PRSegmentedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRSegmentedTableViewCell.h; sourceTree = "<group>"; };
@@ -233,12 +241,16 @@
 				479391C4171ECF980007C2C2 /* PRGame.m */,
 				47CFF0DC17327DA8006CEA78 /* PRToken.h */,
 				47CFF0DD17327DA8006CEA78 /* PRToken.m */,
-				47372F6F1778700300FA6C3E /* PRTeam.h */,
-				47372F701778700300FA6C3E /* PRTeam.m */,
+				47372F6F1778700300FA6C3E /* PRTeamDescriptor.h */,
+				47372F701778700300FA6C3E /* PRTeamDescriptor.m */,
 				47372F7F177D8A0400FA6C3E /* PRParticipation.h */,
 				47372F80177D8A0400FA6C3E /* PRParticipation.m */,
 				47566B03178D4B02001B0235 /* PRStart.h */,
 				47566B04178D4B02001B0235 /* PRStart.m */,
+				47566B07178EB05D001B0235 /* PRWinning.h */,
+				47566B08178EB05D001B0235 /* PRWinning.m */,
+				47566B0B178EB923001B0235 /* PRTeam.h */,
+				47566B0C178EB923001B0235 /* PRTeam.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -487,12 +499,14 @@
 				477E206F1767512300F7327A /* PRTeamViewController.m in Sources */,
 				477E20731768760900F7327A /* PRCollectionViewController.m in Sources */,
 				476925A5177305EE0098D823 /* PRRelationshipDescriptor.m in Sources */,
-				47372F711778700300FA6C3E /* PRTeam.m in Sources */,
+				47372F711778700300FA6C3E /* PRTeamDescriptor.m in Sources */,
 				47372F7D177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */,
 				47372F81177D8A0400FA6C3E /* PRParticipation.m in Sources */,
 				47372F871786C40D00FA6C3E /* PRActivityTableViewCell.m in Sources */,
 				47566B01178C4A66001B0235 /* PRRoundViewController.m in Sources */,
 				47566B05178D4B02001B0235 /* PRStart.m in Sources */,
+				47566B09178EB05E001B0235 /* PRWinning.m in Sources */,
+				47566B0D178EB923001B0235 /* PRTeam.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,12 +532,14 @@
 				477E20701767512300F7327A /* PRTeamViewController.m in Sources */,
 				477E20741768760900F7327A /* PRCollectionViewController.m in Sources */,
 				476925A6177305EE0098D823 /* PRRelationshipDescriptor.m in Sources */,
-				47372F721778700300FA6C3E /* PRTeam.m in Sources */,
+				47372F721778700300FA6C3E /* PRTeamDescriptor.m in Sources */,
 				47372F7E177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */,
 				47372F82177D8A0400FA6C3E /* PRParticipation.m in Sources */,
 				47372F881786C40D00FA6C3E /* PRActivityTableViewCell.m in Sources */,
 				47566B02178C4A66001B0235 /* PRRoundViewController.m in Sources */,
 				47566B06178D4B02001B0235 /* PRStart.m in Sources */,
+				47566B0A178EB05E001B0235 /* PRWinning.m in Sources */,
+				47566B0E178EB923001B0235 /* PRTeam.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

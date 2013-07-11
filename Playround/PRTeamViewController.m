@@ -23,7 +23,7 @@
     if(team != _team) {
         _team = team;
         
-        self.navigationItem.title = _team.displayName;
+        self.navigationItem.title = _team.descriptor.displayName;
         [self.tableView reloadData];
     }
 }
@@ -50,14 +50,14 @@
 - (void)setupCell:(UITableViewCell *)cell model:(PRUser *)user {
     cell.textLabel.text = user.name;
     
-    if([[self.round.participations valueForKeyPath:@"user.objectID"] containsObject:user.objectID]) {
+    if([self.round hasParticipant:user]) {
         cell.userInteractionEnabled = NO;
         cell.textLabel.enabled = NO;
     }
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(self.tableView.indexPathsForSelectedRows.count + [self.round participationsForTeam:self.team].count >= self.team.numberOfPlayers)
+    if(self.tableView.indexPathsForSelectedRows.count + self.team.participations.count >= self.team.descriptor.numberOfPlayers)
         return nil;
     
     return indexPath;
@@ -70,7 +70,7 @@
         PRUser *user = self.collection[indexPath.row];
         
         [participants addObject:user];
-        [self.round addParticipant:user team:self.team];
+        [self.team addParticipant:user prepend:NO];
     }
 
     if([self.delegate respondsToSelector:@selector(teamViewController:didAddParticipants:)])

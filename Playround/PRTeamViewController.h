@@ -7,7 +7,7 @@
 //
 
 #import "PRCollectionViewController.h"
-#import "PRTeam.h"
+#import "PRTeamDescriptor.h"
 #import "PRRound.h"
 
 @class PRTeamViewController;

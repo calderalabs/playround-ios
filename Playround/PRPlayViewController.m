@@ -9,7 +9,7 @@
 #import "PRPlayViewController.h"
 #import "PRGame.h"
 #import "PRRound.h"
-#import "PRTeam.h"
+#import "PRTeamDescriptor.h"
 #import "PRParticipation.h"
 #import "PRSession.h"
 #import "PRPickerTableViewCell.h"
@@ -63,8 +63,8 @@ enum {
     PRGame *previousGame = self.round.game;
     self.round.game = game;
     
-    [self.round removeAllParticipants];
-    [self.round addParticipant:PRSession.current.user team:game.teams[0]];
+    PRTeam *firstTeam = self.round.teams[0];
+    [firstTeam addParticipant:PRSession.current.user prepend:YES];
     
     if(![previousGame.objectID isEqualToString:game.objectID])
         [self updateTeamsAnimated:animated previousGame:previousGame];
@@ -138,20 +138,20 @@ enum {
         [self updateTeamSegmentsAnimated:animated];
     }
     
-    NSInteger sectionsToAdd = self.game.teams.count - previousGame.teams.count;
-    NSInteger sectionsToReload = previousGame.teams.count;
+    NSInteger sectionsToAdd = self.round.teams.count - previousGame.teamDescriptors.count;
+    NSInteger sectionsToReload = previousGame.teamDescriptors.count;
     
     [self.tableView beginUpdates];
     
     if(sectionsToAdd > 0) {
-        [self.tableView insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(previousGame.teams.count - 1 + kPlayersSection, sectionsToAdd)] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(previousGame.teamDescriptors.count - 1 + kPlayersSection, sectionsToAdd)] withRowAnimation:UITableViewRowAnimationAutomatic];
         
         NSMutableArray *rowIndexPaths = [NSMutableArray array];
         
-        for(NSInteger i = previousGame.teams.count; i < previousGame.teams.count + sectionsToAdd; i++) {
-            PRTeam *team = self.game.teams[i];
+        for(NSInteger i = previousGame.teamDescriptors.count; i < previousGame.teamDescriptors.count + sectionsToAdd; i++) {
+            PRTeam *team = self.round.teams[i];
             
-            for(NSInteger j = 0; j < team.numberOfPlayers; j++)
+            for(NSInteger j = 0; j < team.descriptor.numberOfPlayers; j++)
                 [rowIndexPaths addObject:[NSIndexPath indexPathForRow:j inSection:i + kPlayersSection]];
         }
         
@@ -160,7 +160,7 @@ enum {
     else if(sectionsToAdd < 0) {
         sectionsToReload += sectionsToAdd;
         
-        [self.tableView deleteSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(previousGame.teams.count - 1 + sectionsToAdd + kPlayersSection, sectionsToAdd)] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(previousGame.teamDescriptors.count - 1 + sectionsToAdd + kPlayersSection, sectionsToAdd)] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     
     if(sectionsToReload > 0)
@@ -171,13 +171,13 @@ enum {
 
 - (void)updateTeamSegmentsAnimated:(BOOL)animated {
     NSInteger numberOfSegments = self.teamCell.segmentedControl.numberOfSegments;
-    NSInteger segmentsToAdd = self.game.teams.count - numberOfSegments;
+    NSInteger segmentsToAdd = self.round.teams.count - numberOfSegments;
     NSInteger segmentsToReload = numberOfSegments;
 
     if(segmentsToAdd > 0) {
         for(NSInteger i = numberOfSegments; i < numberOfSegments + segmentsToAdd; i++) {
-            PRTeam *team = self.game.teams[i];
-            [self.teamCell.segmentedControl insertSegmentWithTitle:team.displayName atIndex:i animated:animated];
+            PRTeamDescriptor *teamDescriptor = self.game.teamDescriptors[i];
+            [self.teamCell.segmentedControl insertSegmentWithTitle:teamDescriptor.displayName atIndex:i animated:animated];
         }
     }
     else if(segmentsToAdd < 0) {
@@ -189,19 +189,15 @@ enum {
     
     if(segmentsToReload > 0)
         for(NSInteger i = 0; i < segmentsToReload; i++) {
-            PRTeam *team = self.game.teams[i];
+            PRTeamDescriptor *team = self.game.teamDescriptors[i];
             [self.teamCell.segmentedControl setTitle:team.displayName forSegmentAtIndex:i];
         }
     
-    NSArray *currentUserParticipations = [self.round.participations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"user.objectID == %@", PRSession.current.user.objectID]];
-    
-    if(currentUserParticipations.count > 0) {
-        PRParticipation *participation = currentUserParticipations[0];
-        
-        self.teamCell.segmentedControl.selectedSegmentIndex = [self.game.teams indexOfObjectPassingTest:^BOOL(PRTeam *team, NSUInteger idx, BOOL *stop) {
-            return [team.name isEqualToString:participation.team.name];
+    self.teamCell.segmentedControl.selectedSegmentIndex = [self.round.teams indexOfObjectPassingTest:^BOOL(PRTeam *team, NSUInteger idx, BOOL *stop) {
+        return [team.participations indexOfObjectPassingTest:^BOOL(PRParticipation *participation, NSUInteger idx, BOOL *stop) {
+            return [participation.user.objectID isEqualToString:PRSession.current.user.objectID];
         }];
-    }
+    }];
 }
 
 - (void)updateLocationCell {
@@ -215,6 +211,7 @@ enum {
         status = [NSString stringWithFormat:@"%f, %f",
                   self.location.coordinate.latitude,
                   self.location.coordinate.longitude];
+        [self.locationCell startAnimating];
     }
     else {
         status = @"Updating location...";
@@ -225,7 +222,7 @@ enum {
 }
 
 - (void)reloadTeams {
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(kPlayersSection, self.game.teams.count)] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(kPlayersSection, self.round.teams.count)] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -257,7 +254,7 @@ enum {
 }
 
 - (void)teamSegmentedControlDidChangeValue:(UISegmentedControl *)segmentedControl {
-    [self.round addParticipant:PRSession.current.user team:self.game.teams[segmentedControl.selectedSegmentIndex] prepend:YES];
+    [self.round.teams[segmentedControl.selectedSegmentIndex] addParticipant:PRSession.current.user prepend:YES];
     [self reloadTeams];
 }
 
@@ -279,7 +276,7 @@ enum {
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return kPlayersSection + self.game.teams.count;
+    return kPlayersSection + self.round.teams.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -288,8 +285,8 @@ enum {
         case kGameSection: return 1;
         case kTeamSection: return 1;
         default: {
-            PRTeam *team = self.game.teams[section - kPlayersSection];
-            return 1 + team.numberOfPlayers;
+            PRTeam *team = self.round.teams[section - kPlayersSection];
+            return 1 + team.descriptor.numberOfPlayers;
         }
     }
 }
@@ -300,8 +297,8 @@ enum {
         case kGameSection: return @"Game";
         case kTeamSection: return @"Your Team";
         default: {
-            PRTeam *team = self.game.teams[section - kPlayersSection];
-            return team.displayName;
+            PRTeam *team = self.round.teams[section - kPlayersSection];
+            return team.descriptor.displayName;
         }
     }
 }
@@ -353,13 +350,11 @@ enum {
             else {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"Player" forIndexPath:indexPath];
                 
-                PRTeam *team = self.game.teams[indexPath.section - kPlayersSection];
-                NSArray *teamParticipations = [self.round participationsForTeam:team];
-                
+                PRTeam *team = self.round.teams[indexPath.section - kPlayersSection];
                 NSUInteger playerIndex = indexPath.row - 1;
                 
-                if(playerIndex < teamParticipations.count) {
-                    PRParticipation *participation = teamParticipations[playerIndex];
+                if(playerIndex < team.participations.count) {
+                    PRParticipation *participation = team.participations[playerIndex];
                     cell.textLabel.text = participation.user.name;
                 }
                 else {
@@ -385,11 +380,10 @@ enum {
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section >= kPlayersSection) {
         if(indexPath.row != 0) {
-            PRTeam *team = self.game.teams[indexPath.section - kPlayersSection];
-            NSArray *teamParticipations = [self.round participationsForTeam:team];
-            
-            if(indexPath.row - 1 < teamParticipations.count) {
-                PRParticipation *participation = teamParticipations[indexPath.row - 1];
+            PRTeam *team = self.round.teams[indexPath.section - kPlayersSection];
+
+            if(indexPath.row - 1 < team.participations.count) {
+                PRParticipation *participation = team.participations[indexPath.row - 1];
                 return ![participation.user.objectID isEqualToString:PRSession.current.user.objectID];
             }
         }
@@ -402,9 +396,10 @@ enum {
     if(indexPath.section >= kPlayersSection) {
         if(indexPath.row != 0) {
             if(editingStyle == UITableViewCellEditingStyleDelete) {
-                PRTeam *team = self.game.teams[indexPath.section - kPlayersSection];
-                PRParticipation *participation = [self.round participationsForTeam:team][indexPath.row - 1];
-                [self.round removeParticipant:participation.user];
+                PRTeam *team = self.round.teams[indexPath.section - kPlayersSection];
+                PRParticipation *participation = team.participations[indexPath.row - 1];
+                
+                [team removeParticipant:participation.user];
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
             }
         }
@@ -434,7 +429,7 @@ enum {
         PRTeamViewController *teamViewController = segue.destinationViewController;
     
         teamViewController.delegate = self;
-        teamViewController.team = self.game.teams[indexPath.section - kPlayersSection];
+        teamViewController.team = self.round.teams[indexPath.section - kPlayersSection];
         teamViewController.round = self.round;
     }
 }

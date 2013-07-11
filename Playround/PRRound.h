@@ -12,21 +12,15 @@
 #import "PRGame.h"
 #import "PRTeam.h"
 
-@interface PRRound : PRModel {
-    NSMutableArray *_participations;
-}
+@interface PRRound : PRModel
 
 @property (nonatomic, strong) PRUser *user;
 @property (nonatomic, strong) PRArena *arena;
 @property (nonatomic, strong) PRGame *game;
-@property (nonatomic, copy, readonly) NSArray *participations;
+@property (nonatomic, copy) NSArray *teams;
 @property (nonatomic, copy) NSDate *createdAt;
 @property (nonatomic, copy) NSString *state;
 
-- (void)addParticipant:(PRUser *)user team:(PRTeam *)team prepend:(BOOL)prepend;
-- (void)addParticipant:(PRUser *)user team:(PRTeam *)team;
-- (void)removeParticipant:(PRUser *)user;
-- (void)removeAllParticipants;
-- (NSArray *)participationsForTeam:(PRTeam *)team;
+- (BOOL)hasParticipant:(PRUser *)user;
 
 @end
