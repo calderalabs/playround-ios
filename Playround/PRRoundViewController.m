@@ -71,7 +71,7 @@ enum {
         if([self.round.state isEqualToString:@"waiting_for_players"]) {
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do you want to start this round?" delegate:self cancelButtonTitle:@"Don't Start" destructiveButtonTitle:nil otherButtonTitles:@"Start", nil];
             
-            [actionSheet showFromRect:cell.frame inView:self.tableView animated:YES];
+            [actionSheet showInView:UIApplication.sharedApplication.keyWindow];
             
             self.startActionSheet = actionSheet;
         }
@@ -81,7 +81,7 @@ enum {
             for(PRTeam *team in self.round.teams)
                 [actionSheet addButtonWithTitle:team.descriptor.displayName];
             
-            [actionSheet showFromRect:cell.frame inView:self.tableView animated:YES];
+            [actionSheet showInView:UIApplication.sharedApplication.keyWindow];
             
             self.winActionSheet = actionSheet;
         }
