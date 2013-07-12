@@ -17,7 +17,8 @@
     [mapping addRelationshipMappingWithSourceKeyPath:@"participations" mapping:[PRParticipation objectMapping]];
 
     [mapping addAttributeMappingsFromDictionary:@{
-        @"name": @"descriptor.name"
+        @"name": @"descriptor.name",
+        @"winner": @"winner"
     }];
     
     return mapping;
@@ -28,7 +29,16 @@
         @"descriptor"
     ]];
 }
+
 - (void)addParticipant:(PRUser *)user prepend:(BOOL)prepend {
+    PRParticipation *participation = [[PRParticipation alloc] init];
+    participation.user = user;
+    
+    if(prepend)
+        [_participations insertObject:participation atIndex:0];
+    else
+        [_participations addObject:participation];
+    
     if(_participations.count > self.descriptor.numberOfPlayers) {
         NSArray *exceedingTeamParticipations = [_participations objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.descriptor.numberOfPlayers, _participations.count - self.descriptor.numberOfPlayers)]];
         [_participations removeObjectsInArray:exceedingTeamParticipations];
@@ -36,9 +46,12 @@
 }
 
 - (void)removeParticipant:(PRUser *)user {
-    [_participations removeObjectAtIndex:[_participations indexOfObjectPassingTest:^BOOL(PRParticipation *participation, NSUInteger idx, BOOL *stop) {
+    NSUInteger userIndex = [_participations indexOfObjectPassingTest:^BOOL(PRParticipation *participation, NSUInteger idx, BOOL *stop) {
         return [participation.user.objectID isEqualToString:user.objectID];
-    }]];
+    }];
+    
+    if(userIndex != NSNotFound)
+        [_participations removeObjectAtIndex:userIndex];
 }
 
 - (void)removeAllParticipants {

@@ -101,7 +101,6 @@ enum {
             }
         }];
     }
-    
     else if(actionSheet == self.winActionSheet) {
         if(buttonIndex != actionSheet.cancelButtonIndex) {
             PRWinning *winning = [[PRWinning alloc] init];

@@ -73,4 +73,19 @@
     return NO;
 }
 
+- (void)addParticipant:(PRUser *)user team:(PRTeam *)team prepend:(BOOL)prepend {
+    for(PRTeam *t in self.teams)
+        [t removeParticipant:user];
+    
+    [team addParticipant:user prepend:prepend];
+}
+
+- (void)removeParticipant:(PRUser *)user team:(PRTeam *)team {
+    [team removeParticipant:user];
+}
+
+- (void)removeAllParticipantsFromTeam:(PRTeam *)team {
+    [team removeAllParticipants];
+}
+
 @end

@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) PRTeamDescriptor *descriptor;
 @property (nonatomic, copy, readonly) NSArray *participations;
+@property (nonatomic, assign) BOOL winner;
 
 - (void)addParticipant:(PRUser *)user prepend:(BOOL)prepend;
 - (void)removeParticipant:(PRUser *)user;

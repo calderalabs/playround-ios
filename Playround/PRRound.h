@@ -22,5 +22,8 @@
 @property (nonatomic, copy) NSString *state;
 
 - (BOOL)hasParticipant:(PRUser *)user;
+- (void)addParticipant:(PRUser *)user team:(PRTeam *)team prepend:(BOOL)prepend;
+- (void)removeParticipant:(PRUser *)user team:(PRTeam *)team;
+- (void)removeAllParticipantsFromTeam:(PRTeam *)team;
 
 @end

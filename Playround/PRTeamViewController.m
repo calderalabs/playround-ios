@@ -70,7 +70,7 @@
         PRUser *user = self.collection[indexPath.row];
         
         [participants addObject:user];
-        [self.team addParticipant:user prepend:NO];
+        [self.round addParticipant:user team:self.team prepend:NO];
     }
 
     if([self.delegate respondsToSelector:@selector(teamViewController:didAddParticipants:)])

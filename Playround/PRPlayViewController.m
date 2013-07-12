@@ -63,8 +63,7 @@ enum {
     PRGame *previousGame = self.round.game;
     self.round.game = game;
     
-    PRTeam *firstTeam = self.round.teams[0];
-    [firstTeam addParticipant:PRSession.current.user prepend:YES];
+    [self.round addParticipant:PRSession.current.user team:self.round.teams[0] prepend:YES];
     
     if(![previousGame.objectID isEqualToString:game.objectID])
         [self updateTeamsAnimated:animated previousGame:previousGame];
@@ -193,10 +192,13 @@ enum {
             [self.teamCell.segmentedControl setTitle:team.displayName forSegmentAtIndex:i];
         }
     
-    self.teamCell.segmentedControl.selectedSegmentIndex = [self.round.teams indexOfObjectPassingTest:^BOOL(PRTeam *team, NSUInteger idx, BOOL *stop) {
+    self.teamCell.segmentedControl.selectedSegmentIndex = [self.game.teamDescriptors indexOfObjectPassingTest:^BOOL(PRTeamDescriptor *teamDescriptor, NSUInteger idx, BOOL *stop) {
+        NSArray *teams = [self.round.teams filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"descriptor.name == %@", teamDescriptor.name]];
+        PRTeam *team = teams[0];
+        
         return [team.participations indexOfObjectPassingTest:^BOOL(PRParticipation *participation, NSUInteger idx, BOOL *stop) {
             return [participation.user.objectID isEqualToString:PRSession.current.user.objectID];
-        }];
+        }] != NSNotFound;
     }];
 }
 
@@ -254,7 +256,7 @@ enum {
 }
 
 - (void)teamSegmentedControlDidChangeValue:(UISegmentedControl *)segmentedControl {
-    [self.round.teams[segmentedControl.selectedSegmentIndex] addParticipant:PRSession.current.user prepend:YES];
+    [self.round addParticipant:PRSession.current.user team:self.round.teams[segmentedControl.selectedSegmentIndex] prepend:YES];
     [self reloadTeams];
 }
 
@@ -399,7 +401,7 @@ enum {
                 PRTeam *team = self.round.teams[indexPath.section - kPlayersSection];
                 PRParticipation *participation = team.participations[indexPath.row - 1];
                 
-                [team removeParticipant:participation.user];
+                [self.round removeParticipant:participation.user team:team];
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
             }
         }
