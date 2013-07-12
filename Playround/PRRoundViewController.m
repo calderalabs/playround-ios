@@ -30,7 +30,7 @@ enum {
         case kStateSection: {
             if([self.round.state isEqualToString:@"over"]) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"Winner" forIndexPath:indexPath];
-                cell.textLabel.text = [NSString stringWithFormat:@"Team A has won!"];
+                cell.textLabel.text = [NSString stringWithFormat:@"%@ has won!", self.round.winningTeam.descriptor.displayName];
             }
             else {
                 NSString *cellIdentifier;
@@ -79,7 +79,7 @@ enum {
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Which team?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil, nil];
             
             for(PRTeam *team in self.round.teams)
-                [actionSheet addButtonWithTitle:team.descriptor.name];
+                [actionSheet addButtonWithTitle:team.descriptor.displayName];
             
             [actionSheet showFromRect:cell.frame inView:self.tableView animated:YES];
             
@@ -92,10 +92,10 @@ enum {
     if(actionSheet == self.startActionSheet) {
         PRStart *start = [[PRStart alloc] init];
         start.round = self.round;
-        
+
         [start createWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error) {
             if(!error) {
-                self.round.state = @"ongoing";
+                self.round = start.round;
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:kStateSection]]withRowAnimation:UITableViewRowAnimationAutomatic];
             
             }
@@ -109,7 +109,7 @@ enum {
 
             [winning createWithCompletion:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error) {
                 if(!error) {
-                    self.round.state = @"over";
+                    self.round = winning.round;
                     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:kStateSection]]withRowAnimation:UITableViewRowAnimationAutomatic];
                     
                 }

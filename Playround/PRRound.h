@@ -20,6 +20,7 @@
 @property (nonatomic, copy) NSArray *teams;
 @property (nonatomic, copy) NSDate *createdAt;
 @property (nonatomic, copy) NSString *state;
+@property (nonatomic, strong, readonly) PRTeam *winningTeam;
 
 - (BOOL)hasParticipant:(PRUser *)user;
 - (void)addParticipant:(PRUser *)user team:(PRTeam *)team prepend:(BOOL)prepend;

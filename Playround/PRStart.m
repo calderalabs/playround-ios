@@ -18,4 +18,18 @@
     return [NSString stringWithFormat:@"%@/:round.objectID/starts", [PRRound remotePath]];
 }
 
++ (RKObjectMapping *)objectMapping {
+    RKObjectMapping *mapping = [super objectMapping];
+    
+    [mapping addRelationshipMappingWithSourceKeyPath:@"round" mapping:[PRRound objectMapping]];
+    
+    return mapping;
+}
+
++ (NSArray *)excludedRequestAttributes {
+    return [[super excludedRequestAttributes] arrayByAddingObjectsFromArray:@[
+        @"round"
+    ]];
+}
+
 @end

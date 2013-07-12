@@ -65,6 +65,14 @@
     return self;
 }
 
+- (PRTeam *)winningTeam {
+    NSUInteger winningTeamIndex = [self.teams indexOfObjectPassingTest:^BOOL(PRTeam *team, NSUInteger idx, BOOL *stop) {
+        return team.winner;
+    }];
+    
+    return winningTeamIndex != NSNotFound ? self.teams[winningTeamIndex] : nil;
+}
+
 - (BOOL)hasParticipant:(PRUser *)user {
     for(PRTeam *team in self.teams)
         if([[team.participations valueForKeyPath:@"user.objectID"] containsObject:user.objectID])
