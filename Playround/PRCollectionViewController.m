@@ -32,10 +32,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    if(!self.collection) {
-        [self fetchCollection];
-    }
+    [self fetchCollection];
 }
 
 - (void)didReceiveMemoryWarning

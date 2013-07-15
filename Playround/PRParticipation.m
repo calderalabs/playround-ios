@@ -20,4 +20,14 @@
     return mapping;
 }
 
+- (id)init {
+    self = [super init];
+    
+    if(self) {
+        self.user = [[PRUser alloc] init];
+    }
+    
+    return self;
+}
+
 @end
