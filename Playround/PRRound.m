@@ -73,6 +73,17 @@
     return winningTeamIndex != NSNotFound ? self.teams[winningTeamIndex] : nil;
 }
 
+- (NSString *)stateDisplayName {
+    if([self.state isEqualToString:@"waiting_for_players"])
+        return @"Waiting for players";
+    else if([self.state isEqualToString:@"ongoing"])
+        return @"Ongoing";
+    else if([self.state isEqualToString:@"over"])
+        return @"Over";
+    
+    return nil;
+}
+
 - (BOOL)hasParticipant:(PRUser *)user {
     for(PRTeam *team in self.teams)
         if([[team.participations valueForKeyPath:@"user.objectID"] containsObject:user.objectID])

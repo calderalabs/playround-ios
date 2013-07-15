@@ -190,6 +190,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47566B0F1793FD65001B0235 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		4765467D171C243300D2A264 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +299,7 @@
 		47E6521416FCBF18005D6E4C /* Playround */ = {
 			isa = PBXGroup;
 			children = (
+				47566B0F1793FD65001B0235 /* Resources */,
 				479391BA171EAC190007C2C2 /* Views */,
 				47C8AE6A171D4A470020C4FF /* Models */,
 				4765467D171C243300D2A264 /* Controllers */,

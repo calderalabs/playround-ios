@@ -17,5 +17,7 @@
     #import <SSKeychain.h>
     #import <Accounts/Accounts.h>
     #import <CoreLocation/CoreLocation.h>
+    #import <FormatterKit/TTTLocationFormatter.h>
+    #import <FormatterKit/TTTTimeIntervalFormatter.h>
     #import "Environment.h"
 #endif

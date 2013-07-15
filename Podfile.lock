@@ -1,5 +1,20 @@
 PODS:
   - AFNetworking (1.1.0)
+  - FormatterKit (1.2.0):
+    - FormatterKit/AddressFormatter
+    - FormatterKit/ArrayFormatter
+    - FormatterKit/LocationFormatter
+    - FormatterKit/OrdinalNumberFormatter
+    - FormatterKit/TimeIntervalFormatter
+    - FormatterKit/UnitOfInformationFormatter
+    - FormatterKit/URLRequestFormatter
+  - FormatterKit/AddressFormatter (1.2.0)
+  - FormatterKit/ArrayFormatter (1.2.0)
+  - FormatterKit/LocationFormatter (1.2.0)
+  - FormatterKit/OrdinalNumberFormatter (1.2.0)
+  - FormatterKit/TimeIntervalFormatter (1.2.0)
+  - FormatterKit/UnitOfInformationFormatter (1.2.0)
+  - FormatterKit/URLRequestFormatter (1.2.0)
   - RestKit (0.20.0):
     - RestKit/Core
   - RestKit/Core (0.20.0):
@@ -18,13 +33,15 @@ PODS:
   - SSKeychain (1.0.3)
 
 DEPENDENCIES:
+  - FormatterKit
   - RestKit
   - SSKeychain
 
 SPEC CHECKSUMS:
   AFNetworking: 761a418233d280c1e0580bcb76ff9cb4c3073d17
+  FormatterKit: 5b570cf42e798b8e71bbefa8da3197e671a5643b
   RestKit: 580771664a14eaaa40bf53cf83584f12fc141930
   SOCKit: ed67aeeca4a697b63a933229e53f4670d5b9300f
   SSKeychain: 0e7add9e329975653cb66c9d527493a5539755f6
 
-COCOAPODS: 0.18.1
+COCOAPODS: 0.22.2

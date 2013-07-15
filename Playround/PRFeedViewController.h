@@ -7,8 +7,7 @@
 //
 
 #import "PRCollectionViewController.h"
-#import "PRPlayViewController.h"
 
-@interface PRFeedViewController : PRCollectionViewController <PRPlayViewControllerDelegate>
+@interface PRFeedViewController : PRCollectionViewController
 
 @end

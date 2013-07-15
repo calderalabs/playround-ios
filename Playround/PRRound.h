@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSDate *createdAt;
 @property (nonatomic, copy) NSString *state;
 @property (nonatomic, strong, readonly) PRTeam *winningTeam;
+@property (nonatomic, copy, readonly) NSString *stateDisplayName;
 
 - (BOOL)hasParticipant:(PRUser *)user;
 - (void)addParticipant:(PRUser *)user team:(PRTeam *)team prepend:(BOOL)prepend;

@@ -124,10 +124,7 @@ enum {
                               otherButtonTitles:nil] show];
         }
         else {
-            [self dismissViewControllerAnimated:YES completion:^{
-                if([self.delegate respondsToSelector:@selector(playViewControllerDidCreateRound:)])
-                    [self.delegate playViewControllerDidCreateRound:self];
-            }];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];
 }
@@ -210,9 +207,9 @@ enum {
         [self.locationCell stopAnimating];
     }
     else if(self.location) {
-        status = [NSString stringWithFormat:@"%f, %f",
-                  self.location.coordinate.latitude,
-                  self.location.coordinate.longitude];
+        TTTLocationFormatter *locationFormatter = [[TTTLocationFormatter alloc] init];
+        
+        status = [locationFormatter stringFromLocation:self.location];
         [self.locationCell startAnimating];
     }
     else {
