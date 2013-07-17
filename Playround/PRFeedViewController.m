@@ -26,7 +26,7 @@
     cell.dateLabel.text = [timeIntervalFormatter stringForTimeInterval:[round.createdAt timeIntervalSinceNow]];
 
     if(round.game.pictureURL)
-        [cell.gameImageView setImageWithURL:round.game.pictureURL];
+        [cell.gameImageView setImageWithURL:[NSURL URLWithString:round.game.pictureURL]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

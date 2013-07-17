@@ -24,6 +24,10 @@
 		47566B0A178EB05E001B0235 /* PRWinning.m in Sources */ = {isa = PBXBuildFile; fileRef = 47566B08178EB05D001B0235 /* PRWinning.m */; };
 		47566B0D178EB923001B0235 /* PRTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 47566B0C178EB923001B0235 /* PRTeam.m */; };
 		47566B0E178EB923001B0235 /* PRTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 47566B0C178EB923001B0235 /* PRTeam.m */; };
+		47566B1817954EE7001B0235 /* PRTeamsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47566B1717954EE7001B0235 /* PRTeamsController.m */; };
+		47566B1917954EE7001B0235 /* PRTeamsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47566B1717954EE7001B0235 /* PRTeamsController.m */; };
+		47566B1E1795839B001B0235 /* ShowTeamTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47566B1D1795839B001B0235 /* ShowTeamTableViewCell.xib */; };
+		47566B1F1795839B001B0235 /* ShowTeamTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47566B1D1795839B001B0235 /* ShowTeamTableViewCell.xib */; };
 		475704EE1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */; };
 		475704EF1767110E00A8B774 /* PRPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */; };
 		475704F2176721DC00A8B774 /* PRSegmentedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475704F1176721DC00A8B774 /* PRSegmentedTableViewCell.m */; };
@@ -104,6 +108,9 @@
 		47566B08178EB05D001B0235 /* PRWinning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRWinning.m; sourceTree = "<group>"; };
 		47566B0B178EB923001B0235 /* PRTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTeam.h; sourceTree = "<group>"; };
 		47566B0C178EB923001B0235 /* PRTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTeam.m; sourceTree = "<group>"; };
+		47566B1617954EE7001B0235 /* PRTeamsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTeamsController.h; sourceTree = "<group>"; };
+		47566B1717954EE7001B0235 /* PRTeamsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTeamsController.m; sourceTree = "<group>"; };
+		47566B1D1795839B001B0235 /* ShowTeamTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowTeamTableViewCell.xib; sourceTree = "<group>"; };
 		475704EC1767110E00A8B774 /* PRPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRPickerTableViewCell.h; sourceTree = "<group>"; };
 		475704ED1767110E00A8B774 /* PRPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRPickerTableViewCell.m; sourceTree = "<group>"; };
 		475704F0176721DC00A8B774 /* PRSegmentedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRSegmentedTableViewCell.h; sourceTree = "<group>"; };
@@ -193,6 +200,7 @@
 		47566B0F1793FD65001B0235 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				47566B1D1795839B001B0235 /* ShowTeamTableViewCell.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -212,6 +220,8 @@
 				477E20721768760900F7327A /* PRCollectionViewController.m */,
 				47566AFF178C4A66001B0235 /* PRRoundViewController.h */,
 				47566B00178C4A66001B0235 /* PRRoundViewController.m */,
+				47566B1617954EE7001B0235 /* PRTeamsController.h */,
+				47566B1717954EE7001B0235 /* PRTeamsController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -426,6 +436,7 @@
 				47E6521916FCBF18005D6E4C /* InfoPlist.strings in Resources */,
 				47E6522816FCBF18005D6E4C /* MainStoryboard.storyboard in Resources */,
 				479640A01716AEED00060E8A /* Default-568h@2x.png in Resources */,
+				47566B1E1795839B001B0235 /* ShowTeamTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47E6524816FCBF18005D6E4C /* InfoPlist.strings in Resources */,
+				47566B1F1795839B001B0235 /* ShowTeamTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +527,7 @@
 				47566B05178D4B02001B0235 /* PRStart.m in Sources */,
 				47566B09178EB05E001B0235 /* PRWinning.m in Sources */,
 				47566B0D178EB923001B0235 /* PRTeam.m in Sources */,
+				47566B1817954EE7001B0235 /* PRTeamsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +561,7 @@
 				47566B06178D4B02001B0235 /* PRStart.m in Sources */,
 				47566B0A178EB05E001B0235 /* PRWinning.m in Sources */,
 				47566B0E178EB923001B0235 /* PRTeam.m in Sources */,
+				47566B1917954EE7001B0235 /* PRTeamsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

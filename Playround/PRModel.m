@@ -65,11 +65,13 @@
 + (void)setObjectManager:(PRObjectManager *)objectManager {
     for(NSString *keyPath in @[self.keyPath, self.pluralKeyPath])
         [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping
+                                                                                          method:RKRequestMethodAny
                                                                                      pathPattern:self.versionedRemotePath
                                                                                          keyPath:keyPath
                                                                                      statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping
+                                                                                      method:RKRequestMethodAny
                                                                                  pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
                                                                                      keyPath:self.keyPath
                                                                                  statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
@@ -81,7 +83,8 @@
     
     [objectManager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:inverseMapping
                                                                               objectClass:self
-                                                                              rootKeyPath:self.keyPath]];
+                                                                              rootKeyPath:self.keyPath
+                                                                                   method:RKRequestMethodPOST | RKRequestMethodPATCH]];
     
     
         
@@ -108,6 +111,7 @@
     
     [self.relationships enumerateKeysAndObjectsUsingBlock:^(NSString *name, PRRelationshipDescriptor *relationship, BOOL *stop) {
         [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:relationship.objectMapping
+                                                                                          method:RKRequestMethodGET
                                                                                     pathPattern:relationship.versionedRemotePath
                                                                                         keyPath:relationship.keyPath
                                                                                     statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];

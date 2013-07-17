@@ -9,24 +9,38 @@
 #import "PRRoundViewController.h"
 #import "PRStart.h"
 #import "PRWinning.h"
+#import "PRTeamsController.h"
 
 @interface PRRoundViewController ()
 
 @property (nonatomic, weak) UIActionSheet *startActionSheet;
 @property (nonatomic, weak) UIActionSheet *winActionSheet;
+@property (nonatomic, strong) PRTeamsController *teamsController;
 
 @end
 
 enum {
-    kStateSection = 0
+    kStateSection = 0,
+    kPlayersSection
 };
 
 @implementation PRRoundViewController
 
+- (void)setRound:(PRRound *)round {
+    if(round != _round ) {
+        _round = round;
+        self.teamsController.round = round;
+    }
+}
+
+- (void)awakeFromNib {
+    self.teamsController = [[PRTeamsController alloc] initWithTableViewController:self sectionOffset:kPlayersSection];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     
-    switch(indexPath.row) {
+    switch(indexPath.section) {
         case kStateSection: {
             if([self.round.state isEqualToString:@"over"]) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"Winner" forIndexPath:indexPath];
@@ -49,19 +63,28 @@ enum {
             break;
         }
             
-        default:
-            break;
+        default: return [self.teamsController tableView:tableView cellForRowAtIndexPath:indexPath];
     }
     
     return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 1 + [self.teamsController numberOfSectionsInTableView:tableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    switch(section) {
+        case kStateSection: return 1;
+        default: return [self.teamsController tableView:tableView numberOfRowsInSection:section];
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch(section) {
+        case kStateSection: return nil;
+        default: return [self.teamsController tableView:tableView titleForHeaderInSection:section];
+    }
 }
 
 - (void)didTapButtonTableViewCell:(PRButtonTableViewCell *)cell {

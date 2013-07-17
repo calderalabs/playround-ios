@@ -12,7 +12,7 @@
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *displayName;
-@property (nonatomic, copy) NSURL *pictureURL;
+@property (nonatomic, copy) NSString *pictureURL;
 @property (nonatomic, copy) NSArray *teamDescriptors;
 
 @end

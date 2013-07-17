@@ -9,13 +9,13 @@
 #import "PRPlayViewController.h"
 #import "PRGame.h"
 #import "PRRound.h"
+#import "PRSession.h"
 #import "PRTeamDescriptor.h"
 #import "PRParticipation.h"
-#import "PRSession.h"
 #import "PRPickerTableViewCell.h"
 #import "PRSegmentedTableViewCell.h"
 #import "PRActivityTableViewCell.h"
-#import "PRTeamViewController.h"
+#import "PRTeamsController.h"
 
 enum {
     kLocationSection = 0,
@@ -37,14 +37,13 @@ enum {
 @property (nonatomic, weak) PRPickerTableViewCell *gamePickerCell;
 @property (nonatomic, weak) PRSegmentedTableViewCell *teamCell;
 @property (nonatomic, weak) PRActivityTableViewCell *locationCell;
+@property (nonatomic, strong) PRTeamsController *teamsController;
 
 - (void)teamSegmentedControlDidChangeValue:(UISegmentedControl *)segmentedControl;
 - (IBAction)didTouchCancelBarButtonItem:(id)sender;
 - (IBAction)didTouchDoneBarButtonItem:(id)sender;
-- (void)updateTeamsAnimated:(BOOL)animated previousGame:(PRGame *)game;
 - (void)updateTeamSegmentsAnimated:(BOOL)animated;
 - (void)updateLocationCell;
-- (void)reloadTeams;
 - (void)setGame:(PRGame *)game animated:(BOOL)animated;
 
 @end
@@ -60,13 +59,13 @@ enum {
 }
 
 - (void)setGame:(PRGame *)game animated:(BOOL)animated {
-    PRGame *previousGame = self.round.game;
     self.round.game = game;
-    
     [self.round addParticipant:PRSession.current.user team:self.round.teams[0] prepend:YES];
+    [self.teamsController updateAnimated:animated];
     
-    if(![previousGame.objectID isEqualToString:game.objectID])
-        [self updateTeamsAnimated:animated previousGame:previousGame];
+    if([self.tableView.visibleCells containsObject:self.teamCell]) {
+        [self updateTeamSegmentsAnimated:animated];
+    }
 }
 
 - (void)setLocation:(CLLocation *)location {
@@ -93,7 +92,16 @@ enum {
     }
 }
 
+- (void)setRound:(PRRound *)round {
+    if(round != _round) {
+        _round = round;
+        
+        self.teamsController.round = round;
+    }
+}
+
 - (void)awakeFromNib {
+    self.teamsController = [[PRTeamsController alloc] initWithTableViewController:self sectionOffset:kPlayersSection];
     self.round = [[PRRound alloc] init];
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -127,42 +135,6 @@ enum {
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];
-}
-
-- (void)updateTeamsAnimated:(BOOL)animated previousGame:(PRGame *)previousGame {
-    if([self.tableView.visibleCells containsObject:self.teamCell]) {
-        [self updateTeamSegmentsAnimated:animated];
-    }
-    
-    NSInteger sectionsToAdd = self.round.teams.count - previousGame.teamDescriptors.count;
-    NSInteger sectionsToReload = previousGame.teamDescriptors.count;
-    
-    [self.tableView beginUpdates];
-    
-    if(sectionsToAdd > 0) {
-        [self.tableView insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(previousGame.teamDescriptors.count - 1 + kPlayersSection, sectionsToAdd)] withRowAnimation:UITableViewRowAnimationAutomatic];
-        
-        NSMutableArray *rowIndexPaths = [NSMutableArray array];
-        
-        for(NSInteger i = previousGame.teamDescriptors.count; i < previousGame.teamDescriptors.count + sectionsToAdd; i++) {
-            PRTeam *team = self.round.teams[i];
-            
-            for(NSInteger j = 0; j < team.descriptor.numberOfPlayers; j++)
-                [rowIndexPaths addObject:[NSIndexPath indexPathForRow:j inSection:i + kPlayersSection]];
-        }
-        
-        [self.tableView insertRowsAtIndexPaths:rowIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
-    else if(sectionsToAdd < 0) {
-        sectionsToReload += sectionsToAdd;
-        
-        [self.tableView deleteSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(previousGame.teamDescriptors.count - 1 + sectionsToAdd + kPlayersSection, sectionsToAdd)] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
-    
-    if(sectionsToReload > 0)
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(kPlayersSection, sectionsToReload)] withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-    [self.tableView endUpdates];
 }
 
 - (void)updateTeamSegmentsAnimated:(BOOL)animated {
@@ -208,7 +180,6 @@ enum {
     }
     else if(self.location) {
         TTTLocationFormatter *locationFormatter = [[TTTLocationFormatter alloc] init];
-        
         status = [locationFormatter stringFromLocation:self.location];
         [self.locationCell startAnimating];
     }
@@ -218,10 +189,6 @@ enum {
     }
     
     self.locationCell.status = status;
-}
-
-- (void)reloadTeams {
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(kPlayersSection, self.round.teams.count)] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -238,7 +205,7 @@ enum {
                 if([self.tableView.visibleCells containsObject:self.gamePickerCell])
                     [self.gamePickerCell.pickerView reloadAllComponents];
             } else {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error while fetching games"
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error While Fetching Games"
                                                                     message:error.localizedDescription
                                                                    delegate:nil
                                                           cancelButtonTitle:@"OK"
@@ -254,7 +221,7 @@ enum {
 
 - (void)teamSegmentedControlDidChangeValue:(UISegmentedControl *)segmentedControl {
     [self.round addParticipant:PRSession.current.user team:self.round.teams[segmentedControl.selectedSegmentIndex] prepend:YES];
-    [self reloadTeams];
+    [self.teamsController reloadAnimated:YES];
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -275,7 +242,7 @@ enum {
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return kPlayersSection + self.round.teams.count;
+    return kPlayersSection + [self.teamsController numberOfSectionsInTableView:tableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -283,10 +250,7 @@ enum {
         case kLocationSection: return 1;
         case kGameSection: return 1;
         case kTeamSection: return 1;
-        default: {
-            PRTeam *team = self.round.teams[section - kPlayersSection];
-            return 1 + team.descriptor.numberOfPlayers;
-        }
+        default: return [self.teamsController tableView:tableView numberOfRowsInSection:section];
     }
 }
 
@@ -295,10 +259,7 @@ enum {
         case kLocationSection: return @"Location";
         case kGameSection: return @"Game";
         case kTeamSection: return @"Your Team";
-        default: {
-            PRTeam *team = self.round.teams[section - kPlayersSection];
-            return team.descriptor.displayName;
-        }
+        default: return [self.teamsController tableView:tableView titleForHeaderInSection:section];
     }
 }
 
@@ -339,30 +300,7 @@ enum {
             
             break;
         }
-        default: {
-            if(indexPath.row == 0) {
-                PRButtonTableViewCell *buttonCell = [tableView dequeueReusableCellWithIdentifier:@"ShowTeam" forIndexPath:indexPath];
-                
-                buttonCell.delegate = self;
-                cell = buttonCell;
-            }
-            else {
-                cell = [tableView dequeueReusableCellWithIdentifier:@"Player" forIndexPath:indexPath];
-                
-                PRTeam *team = self.round.teams[indexPath.section - kPlayersSection];
-                NSUInteger playerIndex = indexPath.row - 1;
-                
-                if(playerIndex < team.participations.count) {
-                    PRParticipation *participation = team.participations[playerIndex];
-                    cell.textLabel.text = participation.user.name;
-                }
-                else {
-                    cell.textLabel.text = @"";
-                }
-            }
-            
-            break;
-        }
+        default: return [self.teamsController tableView:tableView cellForRowAtIndexPath:indexPath];
     }
     
     return cell;
@@ -378,14 +316,7 @@ enum {
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section >= kPlayersSection) {
-        if(indexPath.row != 0) {
-            PRTeam *team = self.round.teams[indexPath.section - kPlayersSection];
-
-            if(indexPath.row - 1 < team.participations.count) {
-                PRParticipation *participation = team.participations[indexPath.row - 1];
-                return ![participation.user.objectID isEqualToString:PRSession.current.user.objectID];
-            }
-        }
+        return [self.teamsController tableView:tableView canEditRowAtIndexPath:indexPath];
     }
     
     return NO;
@@ -405,32 +336,8 @@ enum {
     }
 }
 
-- (void)didTapButtonTableViewCell:(PRButtonTableViewCell *)cell {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
-    if(indexPath.section >= kPlayersSection) {
-        if(indexPath.row == 0)
-            [self performSegueWithIdentifier:@"ShowTeam" sender:cell];
-    }
-}
-
-- (void)teamViewController:(PRTeamViewController *)teamViewController didAddParticipants:(NSArray *)participants {
-    [self reloadTeams];
-}
-
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     self.location = [locations lastObject];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"ShowTeam"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        PRTeamViewController *teamViewController = segue.destinationViewController;
-    
-        teamViewController.delegate = self;
-        teamViewController.team = self.round.teams[indexPath.section - kPlayersSection];
-        teamViewController.round = self.round;
-    }
 }
 
 @end

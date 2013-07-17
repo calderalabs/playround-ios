@@ -13,7 +13,7 @@ extern NSString *PRUserDidReadCurrentNotification;
 @interface PRUser : PRModel
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSURL *pictureURL;
+@property (nonatomic, copy) NSString *pictureURL;
 
 + (void)readCurrentWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion;
 

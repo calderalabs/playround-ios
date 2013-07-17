@@ -19,6 +19,7 @@
     [mapping addAttributeMappingsFromDictionary:@{
         @"name": @"descriptor.name",
         @"display_name": @"descriptor.displayName",
+        @"number_of_players": @"descriptor.numberOfPlayers",
         @"winner": @"winner"
     }];
     

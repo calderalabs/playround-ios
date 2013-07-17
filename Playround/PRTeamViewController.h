@@ -23,6 +23,7 @@
 @interface PRTeamViewController : PRCollectionViewController
 
 @property (nonatomic, strong) PRTeam *team;
+@property (nonatomic, strong) NSArray *otherTeams;
 @property (nonatomic, strong) PRRound *round;
 @property (nonatomic, weak) id<PRTeamViewControllerDelegate> delegate;
 

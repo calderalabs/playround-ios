@@ -32,6 +32,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
     [self fetchCollection];
 }
 
@@ -42,8 +44,7 @@
 
 - (void)fetchCollection {
     [self.refreshControl beginRefreshing];
-    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-    
+
      void(^completion)(RKObjectRequestOperation *, RKMappingResult *, NSError *) = ^void (RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error) {
          if(!error) {
              self.collection = mappingResult.array;

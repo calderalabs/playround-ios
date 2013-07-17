@@ -13,11 +13,19 @@
 + (RKObjectMapping *)objectMapping {
     RKObjectMapping *mapping = [super objectMapping];
     
+    [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[PRUser objectMapping]];
+    
     [mapping addAttributeMappingsFromDictionary:@{
         @"user.id": @"user.objectID"
     }];
     
     return mapping;
+}
+
++ (NSArray *)excludedRequestAttributes {
+    return [[super excludedRequestAttributes] arrayByAddingObjectsFromArray:@[
+        @"user"
+    ]];
 }
 
 - (id)init {

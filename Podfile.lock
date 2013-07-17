@@ -1,5 +1,5 @@
 PODS:
-  - AFNetworking (1.1.0)
+  - AFNetworking (1.3.1)
   - FormatterKit (1.2.0):
     - FormatterKit/AddressFormatter
     - FormatterKit/ArrayFormatter
@@ -15,22 +15,24 @@ PODS:
   - FormatterKit/TimeIntervalFormatter (1.2.0)
   - FormatterKit/UnitOfInformationFormatter (1.2.0)
   - FormatterKit/URLRequestFormatter (1.2.0)
-  - RestKit (0.20.0):
+  - RestKit (0.20.3):
     - RestKit/Core
-  - RestKit/Core (0.20.0):
+  - RestKit/Core (0.20.3):
     - RestKit/CoreData
     - RestKit/Network
     - RestKit/ObjectMapping
-  - RestKit/CoreData (0.20.0)
-  - RestKit/Network (0.20.0):
-    - AFNetworking (= 1.1.0)
+  - RestKit/CoreData (0.20.3)
+  - RestKit/Network (0.20.3):
+    - AFNetworking (~> 1.3.0)
     - RestKit/ObjectMapping
     - RestKit/Support
     - SOCKit
-  - RestKit/ObjectMapping (0.20.0)
-  - RestKit/Support (0.20.0)
+  - RestKit/ObjectMapping (0.20.3)
+  - RestKit/Support (0.20.3):
+    - TransitionKit (= 1.1.1)
   - SOCKit (1.1)
-  - SSKeychain (1.0.3)
+  - SSKeychain (1.1.0)
+  - TransitionKit (1.1.1)
 
 DEPENDENCIES:
   - FormatterKit
@@ -38,10 +40,11 @@ DEPENDENCIES:
   - SSKeychain
 
 SPEC CHECKSUMS:
-  AFNetworking: 761a418233d280c1e0580bcb76ff9cb4c3073d17
+  AFNetworking: 9ec8aafb9269236a7630bd8d9838ce2ba30fa2a0
   FormatterKit: 5b570cf42e798b8e71bbefa8da3197e671a5643b
-  RestKit: 580771664a14eaaa40bf53cf83584f12fc141930
+  RestKit: 1f181c180105a92f11ec4f6cd7de37625e516d83
   SOCKit: ed67aeeca4a697b63a933229e53f4670d5b9300f
-  SSKeychain: 0e7add9e329975653cb66c9d527493a5539755f6
+  SSKeychain: 54b6daee1d95af968beebef07522b583ff9a809c
+  TransitionKit: 3b3836af6887d16a0834fa35031028792d1d5c0c
 
 COCOAPODS: 0.22.2
