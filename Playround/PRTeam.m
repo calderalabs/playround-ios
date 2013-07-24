@@ -32,7 +32,7 @@
     ]];
 }
 
-- (void)addParticipant:(PRUser *)user prepend:(BOOL)prepend {
+- (PRParticipation *)addParticipant:(PRUser *)user prepend:(BOOL)prepend {
     PRParticipation *participation = [[PRParticipation alloc] init];
     participation.user = user;
     
@@ -45,6 +45,8 @@
         NSArray *exceedingTeamParticipations = [_participations objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(self.descriptor.numberOfPlayers, _participations.count - self.descriptor.numberOfPlayers)]];
         [_participations removeObjectsInArray:exceedingTeamParticipations];
     }
+    
+    return participation;
 }
 
 - (void)removeParticipant:(PRUser *)user {

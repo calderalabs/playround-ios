@@ -22,6 +22,8 @@ typedef enum {
 + (PRModelOperationType)supportedOperationTypes;
 + (RKObjectMapping *)objectMapping;
 + (NSArray *)excludedRequestAttributes;
++ (NSString *)primaryKey;
++ (NSString *)remotePrimaryKey;
 + (NSString *)keyPath;
 + (NSString *)pluralKeyPath;
 + (NSString *)remotePath;
@@ -35,7 +37,9 @@ typedef enum {
 
 - (void)readRelationship:(NSString *)relationship completion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingOperation, NSError *error))completion;
 - (void)readRelationship:(NSString *)relationship where:(NSDictionary *)parameters completion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingOperation, NSError *error))completion;
+- (void)createRelationship:(id)object name:(NSString *)name completion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingOperation, NSError *error))completion;
 - (void)readWithCompletion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error))completion;
 - (void)createWithCompletion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error))completion;
+- (void)updateWithCompletion:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error))completion;
 
 @end

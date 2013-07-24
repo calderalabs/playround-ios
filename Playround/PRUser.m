@@ -40,7 +40,8 @@ NSString *PRUserDidReadCurrentNotification = @"PRUserDidReadCurrentNotification"
     return @{
         @"buddies": [PRRelationshipDescriptor relationshipDescriptorWithTargetClass:self
                                                                          remotePath:@"/users/:objectID/buddies"
-                                                                            keyPath:@"buddies"]
+                                                                            keyPath:@"buddies"
+                    ]
     };
 }
 

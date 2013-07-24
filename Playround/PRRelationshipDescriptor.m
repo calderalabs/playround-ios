@@ -14,6 +14,7 @@
 @property (nonatomic, weak) Class targetClass;
 @property (nonatomic, copy) NSString *remotePath;
 @property (nonatomic, copy) NSString *keyPath;
+@property (nonatomic, strong) RKRequestDescriptor *requestDescriptor;
 
 @end
 
@@ -28,13 +29,27 @@
 }
 
 + (PRRelationshipDescriptor *)relationshipDescriptorWithTargetClass:(Class)targetClass remotePath:(NSString *)remotePath keyPath:(NSString *)keyPath {
-    PRRelationshipDescriptor *relationshipDescriptor = [[PRRelationshipDescriptor alloc] init];
+    return [[PRRelationshipDescriptor alloc] initWithTargetClass:targetClass
+                                                      remotePath:remotePath
+                                                         keyPath:keyPath];
+}
+
+- (id)initWithTargetClass:(Class)targetClass remotePath:(NSString *)remotePath keyPath:(NSString *)keyPath {
+    self = [super init];
     
-    relationshipDescriptor.targetClass = targetClass;
-    relationshipDescriptor.remotePath = remotePath;
-    relationshipDescriptor.keyPath = keyPath;
+    if(self) {
+        self.targetClass = targetClass;
+        self.remotePath = remotePath;
+        self.keyPath = keyPath;
+        
+        self.requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:
+                                                                  [self.targetClass objectMapping].inverseMapping
+                                                                       objectClass:targetClass
+                                                                       rootKeyPath:nil
+                                                                            method:RKRequestMethodPOST];
+    }
     
-    return relationshipDescriptor;
+    return self;
 }
 
 @end

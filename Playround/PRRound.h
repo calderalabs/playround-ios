@@ -11,6 +11,7 @@
 #import "PRArena.h"
 #import "PRGame.h"
 #import "PRTeam.h"
+#import "PRParticipation.h"
 
 @interface PRRound : PRModel
 
@@ -24,7 +25,7 @@
 @property (nonatomic, copy, readonly) NSString *stateDisplayName;
 
 - (BOOL)hasParticipant:(PRUser *)user;
-- (void)addParticipant:(PRUser *)user team:(PRTeam *)team prepend:(BOOL)prepend;
+- (PRParticipation *)addParticipant:(PRUser *)user team:(PRTeam *)team prepend:(BOOL)prepend;
 - (void)removeParticipant:(PRUser *)user team:(PRTeam *)team;
 - (void)removeAllParticipantsFromTeam:(PRTeam *)team;
 

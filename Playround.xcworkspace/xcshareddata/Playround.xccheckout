@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>23355DE2-7AFE-49DF-99E3-2ECA6FB9B9C4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Playround</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3422D66D-AEB6-4882-8925-F031177A6DAF</key>
+		<string>https://github.com/eugeniodepalo/playround-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Playround.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3422D66D-AEB6-4882-8925-F031177A6DAF</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/eugeniodepalo/playround-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3422D66D-AEB6-4882-8925-F031177A6DAF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3422D66D-AEB6-4882-8925-F031177A6DAF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Playround</string>
+		</dict>
+	</array>
+</dict>
+</plist>

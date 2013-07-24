@@ -8,6 +8,8 @@
 
 #import "PRRound.h"
 #import "PRTeamDescriptor.h"
+#import "PRRelationshipDescriptor.h"
+#import "PRParticipation.h"
 
 @implementation PRRound
 
@@ -40,6 +42,14 @@
     return [[super excludedRequestAttributes] arrayByAddingObjectsFromArray:@[
         @"game", @"user"
     ]];
+}
+
++ (NSDictionary *)relationships {
+    return @{
+        @"participations": [PRRelationshipDescriptor relationshipDescriptorWithTargetClass:[PRParticipation class]
+                                                                                remotePath:@"/rounds/:objectID/participations"
+                                                                                   keyPath:@"participations"]
+    };
 }
 
 - (void)setGame:(PRGame *)game {
@@ -92,11 +102,11 @@
     return NO;
 }
 
-- (void)addParticipant:(PRUser *)user team:(PRTeam *)team prepend:(BOOL)prepend {
+- (PRParticipation *)addParticipant:(PRUser *)user team:(PRTeam *)team prepend:(BOOL)prepend {
     for(PRTeam *t in self.teams)
         [t removeParticipant:user];
     
-    [team addParticipant:user prepend:prepend];
+    return [team addParticipant:user prepend:prepend];
 }
 
 - (void)removeParticipant:(PRUser *)user team:(PRTeam *)team {

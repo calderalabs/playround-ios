@@ -8,9 +8,11 @@
 
 #import "PRModel.h"
 #import "PRUser.h"
+#import "PRTeam.h"
 
 @interface PRParticipation : PRModel
 
 @property (nonatomic, strong) PRUser *user;
+@property (nonatomic, strong) PRTeam *team;
 
 @end

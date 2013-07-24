@@ -64,19 +64,15 @@
 }
 
 - (IBAction)didTapDoneBarButtonItem:(UIBarButtonItem *)sender {
-    NSMutableArray *participants = [NSMutableArray array];
+    NSMutableArray *participations = [NSMutableArray array];
     
     for(NSIndexPath *indexPath in self.tableView.indexPathsForSelectedRows) {
         PRUser *user = self.collection[indexPath.row];
-        
-        [participants addObject:user];
-        [self.round addParticipant:user team:self.team prepend:NO];
+        [participations addObject:[self.round addParticipant:user team:self.team prepend:NO]];
     }
 
-    if([self.delegate respondsToSelector:@selector(teamViewController:didAddParticipants:)])
-        [self.delegate teamViewController:self didAddParticipants:participants];
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    if([self.delegate respondsToSelector:@selector(teamViewController:didAddParticipations:)])
+        [self.delegate teamViewController:self didAddParticipations:participations];
 }
 
 @end

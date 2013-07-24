@@ -16,7 +16,7 @@
 
 @optional
 
-- (void)teamViewController:(PRTeamViewController *)teamViewController didAddParticipants:(NSArray *)participants;
+- (void)teamViewController:(PRTeamViewController *)teamViewController didAddParticipations:(NSArray *)participations;
 
 @end
 

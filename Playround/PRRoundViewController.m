@@ -35,6 +35,7 @@ enum {
 
 - (void)awakeFromNib {
     self.teamsController = [[PRTeamsController alloc] initWithTableViewController:self sectionOffset:kPlayersSection];
+    self.teamsController.delegate = self;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -139,6 +140,18 @@ enum {
             }];
         }
     }
+}
+
+- (void)teamViewController:(PRTeamViewController *)teamViewController didAddParticipations:(NSArray *)participations {
+    if(participations.count == 0)
+        [self.navigationController popViewControllerAnimated:YES];
+    else
+        for(PRParticipation *participation in participations)
+            participation.team = teamViewController.team;
+
+        [self.round createRelationship:participations name:@"participations" completion:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
 }
 
 @end

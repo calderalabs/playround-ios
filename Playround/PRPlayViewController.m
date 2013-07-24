@@ -102,6 +102,7 @@ enum {
 
 - (void)awakeFromNib {
     self.teamsController = [[PRTeamsController alloc] initWithTableViewController:self sectionOffset:kPlayersSection];
+    self.teamsController.delegate = self;
     self.round = [[PRRound alloc] init];
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -338,6 +339,10 @@ enum {
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     self.location = [locations lastObject];
+}
+
+- (void)teamViewController:(PRTeamViewController *)teamViewController didAddParticipations:(NSArray *)participations {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

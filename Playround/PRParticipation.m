@@ -10,13 +10,29 @@
 
 @implementation PRParticipation
 
++ (NSString *)remotePath {
+    return nil;
+}
+
++ (NSString *)keyPath {
+    return @"participation";
+}
+
++ (NSString *)primaryKey {
+    return @"user.objectID";
+}
+
++ (NSString *)remotePrimaryKey {
+    return @"user.id";
+}
+
 + (RKObjectMapping *)objectMapping {
     RKObjectMapping *mapping = [super objectMapping];
     
     [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[PRUser objectMapping]];
-    
+
     [mapping addAttributeMappingsFromDictionary:@{
-        @"user.id": @"user.objectID"
+        @"team": @"team.descriptor.name"
     }];
     
     return mapping;

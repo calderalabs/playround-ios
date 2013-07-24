@@ -13,6 +13,7 @@
 @interface PRTeamsController : NSObject <UITableViewDataSource, PRButtonTableViewCellDelegate, PRTeamViewControllerDelegate>
 
 @property (nonatomic, strong) PRRound *round;
+@property (nonatomic, weak) id<PRTeamViewControllerDelegate> delegate;
 
 - (id)initWithTableViewController:(UITableViewController *)tableViewController sectionOffset:(NSUInteger)sectionOffset;
 - (void)reloadAnimated:(BOOL)animated;

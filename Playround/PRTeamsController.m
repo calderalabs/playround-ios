@@ -155,8 +155,11 @@
     }
 }
 
-- (void)teamViewController:(PRTeamViewController *)teamViewController didAddParticipants:(NSArray *)participants {
+- (void)teamViewController:(PRTeamViewController *)teamViewController didAddParticipations:(NSArray *)participations {
     [self reloadAnimated:YES];
+    
+    if([self.delegate respondsToSelector:@selector(teamViewController:didAddParticipations:)])
+        [self.delegate teamViewController:teamViewController didAddParticipations:participations];
 }
 
 @end
