@@ -10,6 +10,10 @@
 
 @implementation PRWinning
 
++ (void)load {
+    [self registerClass:self];
+}
+
 + (NSString *)keyPath {
     return @"winning";
 }
@@ -18,22 +22,15 @@
     return [NSString stringWithFormat:@"%@/:round.objectID/winnings", [PRRound remotePath]];
 }
 
-+ (RKObjectMapping *)objectMapping {
-    RKObjectMapping *mapping = [super objectMapping];
++ (PRObjectMapping *)objectMapping {
+    PRObjectMapping *mapping = [super objectMapping];
     
-    [mapping addRelationshipMappingWithSourceKeyPath:@"round" mapping:[PRRound objectMapping]];
-    
-    [mapping addAttributeMappingsFromDictionary:@{
+    [mapping addMappingsFromDictionary:@{
+        @"round@response": @"round@PRRound",
         @"team_name": @"team.descriptor.name"
     }];
     
     return mapping;
-}
-
-+ (NSArray *)excludedRequestAttributes {
-    return [[super excludedRequestAttributes] arrayByAddingObjectsFromArray:@[
-        @"round"
-    ]];
 }
 
 @end

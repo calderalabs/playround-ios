@@ -10,6 +10,8 @@
 #import "PRObjectManager.h"
 #import "PRRelationshipDescriptor.h"
 
+static NSMutableArray *modelClasses = nil;
+
 @interface PRModel ()
 
 - (void)performRequestWithMethod:(RKRequestMethod)method completion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion;
@@ -18,26 +20,29 @@
 
 @implementation PRModel
 
-+ (NSString *)primaryKey {
-    return @"objectID";
++ (NSArray *)modelClasses {
+    return [NSArray arrayWithArray:modelClasses];
+}
+
++ (void)registerClass:(Class)modelClass {
+    if(!modelClasses)
+        modelClasses = [NSMutableArray array];
+    
+    [modelClasses addObject:modelClass];
 }
 
 + (NSString *)remotePrimaryKey {
     return @"id";
 }
 
-+ (RKObjectMapping *)objectMapping {
-    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:self];
++ (PRObjectMapping *)objectMapping {
+    PRObjectMapping *mapping = [PRObjectMapping mappingForClass:self];
     
-    [mapping addAttributeMappingsFromDictionary:@{
-        self.remotePrimaryKey: self.primaryKey
+    [mapping addMappingsFromDictionary:@{
+        [NSString stringWithFormat:@"%@@response", self.remotePrimaryKey]: @"objectID"
     }];
     
     return mapping;
-}
-
-+ (NSArray *)excludedRequestAttributes {
-    return @[];
 }
 
 + (NSString *)keyPath {
@@ -72,24 +77,19 @@
 
 + (void)setObjectManager:(PRObjectManager *)objectManager {
     for(NSString *keyPath in @[self.keyPath, self.pluralKeyPath])
-        [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping
+        [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping.responseMapping
                                                                                           method:RKRequestMethodAny
                                                                                      pathPattern:self.versionedRemotePath
                                                                                          keyPath:keyPath
                                                                                      statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping.responseMapping
                                                                                       method:RKRequestMethodAny
-                                                                                 pathPattern:[NSString stringWithFormat:@"%@/:%@", self.versionedRemotePath, self.primaryKey]
+                                                                                 pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
                                                                                      keyPath:self.keyPath
                                                                                  statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     
-    RKObjectMapping *inverseMapping = self.objectMapping.inverseMapping;
-    
-    for(NSString *attribute in self.excludedRequestAttributes)
-        [inverseMapping removePropertyMapping:inverseMapping.propertyMappingsBySourceKeyPath[attribute]];
-    
-    [objectManager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:inverseMapping
+    [objectManager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:self.objectMapping.requestMapping
                                                                               objectClass:self
                                                                               rootKeyPath:self.keyPath
                                                                                    method:RKRequestMethodPOST | RKRequestMethodPATCH]];
@@ -101,25 +101,21 @@
     
     if(self.supportedOperationTypes & PRModelOperationRead)
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self
-                                                            pathPattern:[NSString stringWithFormat:@"%@/:%@", self.versionedRemotePath, self.primaryKey]
+                                                            pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
                                                                  method:RKRequestMethodGET]];
     
     if(self.supportedOperationTypes & PRModelOperationUpdate)
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self
-                                                            pathPattern:[NSString stringWithFormat:@"%@/:%@", self.versionedRemotePath, self.primaryKey]
+                                                            pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
                                                                  method:RKRequestMethodPATCH]];
     
     if(self.supportedOperationTypes & PRModelOperationDelete)
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self
-                                                            pathPattern:[NSString stringWithFormat:@"%@/:%@", self.versionedRemotePath, self.primaryKey]
+                                                            pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
                                                                  method:RKRequestMethodDELETE]];
     
     [self.relationships enumerateKeysAndObjectsUsingBlock:^(NSString *name, PRRelationshipDescriptor *relationship, BOOL *stop) {
-        [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:relationship.objectMapping
-                                                                                          method:RKRequestMethodAny
-                                                                                    pathPattern:relationship.versionedRemotePath
-                                                                                        keyPath:relationship.keyPath
-                                                                                    statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+        [objectManager addResponseDescriptor:relationship.responseDescriptor];
                 
         [objectManager.router.routeSet addRoute:[RKRoute routeWithRelationshipName:name
                                                               objectClass:self

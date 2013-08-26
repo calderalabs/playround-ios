@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		470BE7CB17C6005B0095107E /* PRObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 470BE7CA17C6005A0095107E /* PRObjectMapping.m */; };
+		470BE7CC17C6005B0095107E /* PRObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 470BE7CA17C6005A0095107E /* PRObjectMapping.m */; };
 		47372F711778700300FA6C3E /* PRTeamDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F701778700300FA6C3E /* PRTeamDescriptor.m */; };
 		47372F721778700300FA6C3E /* PRTeamDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F701778700300FA6C3E /* PRTeamDescriptor.m */; };
 		47372F7D177C531B00FA6C3E /* PRButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47372F7C177C531B00FA6C3E /* PRButtonTableViewCell.m */; };
@@ -57,6 +59,16 @@
 		479640A01716AEED00060E8A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4796409F1716AEED00060E8A /* Default-568h@2x.png */; };
 		47AB032C173BBF3D001017ED /* PRSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AB032B173BBF3D001017ED /* PRSession.m */; };
 		47AB032D173BBF3D001017ED /* PRSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AB032B173BBF3D001017ED /* PRSession.m */; };
+		47B8FF7E17CB485900256608 /* PRPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B8FF7D17CB485900256608 /* PRPropertyMapping.m */; };
+		47B8FF7F17CB485900256608 /* PRPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B8FF7D17CB485900256608 /* PRPropertyMapping.m */; };
+		47B8FF8217CB4AAD00256608 /* PRRelationshipMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B8FF8117CB4AAD00256608 /* PRRelationshipMapping.m */; };
+		47B8FF8317CB4AAD00256608 /* PRRelationshipMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B8FF8117CB4AAD00256608 /* PRRelationshipMapping.m */; };
+		47B8FF8617CB95C100256608 /* PRWidgetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B8FF8517CB95C100256608 /* PRWidgetsViewController.m */; };
+		47B8FF8717CB95C100256608 /* PRWidgetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B8FF8517CB95C100256608 /* PRWidgetsViewController.m */; };
+		47B8FF8A17CB9ADE00256608 /* PRDota2WidgetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B8FF8917CB9ADD00256608 /* PRDota2WidgetsViewController.m */; };
+		47B8FF8B17CB9ADE00256608 /* PRDota2WidgetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B8FF8917CB9ADD00256608 /* PRDota2WidgetsViewController.m */; };
+		47B8FF8D17CBA3A600256608 /* PRDota2WidgetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47B8FF8C17CBA3A500256608 /* PRDota2WidgetsViewController.xib */; };
+		47B8FF8E17CBA3A600256608 /* PRDota2WidgetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47B8FF8C17CBA3A500256608 /* PRDota2WidgetsViewController.xib */; };
 		47C8AE6D171D4AE20020C4FF /* PRRound.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C8AE6C171D4AE20020C4FF /* PRRound.m */; };
 		47C8AE6E171D4AE20020C4FF /* PRRound.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C8AE6C171D4AE20020C4FF /* PRRound.m */; };
 		47C8AE72171D77F70020C4FF /* PRUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C8AE71171D77F70020C4FF /* PRUser.m */; };
@@ -91,6 +103,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		470BE7C917C6005A0095107E /* PRObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRObjectMapping.h; sourceTree = "<group>"; };
+		470BE7CA17C6005A0095107E /* PRObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRObjectMapping.m; sourceTree = "<group>"; };
 		47372F6F1778700300FA6C3E /* PRTeamDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRTeamDescriptor.h; sourceTree = "<group>"; };
 		47372F701778700300FA6C3E /* PRTeamDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRTeamDescriptor.m; sourceTree = "<group>"; };
 		47372F7B177C531B00FA6C3E /* PRButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRButtonTableViewCell.h; sourceTree = "<group>"; };
@@ -139,6 +153,15 @@
 		4796409F1716AEED00060E8A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		47AB032A173BBF3D001017ED /* PRSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRSession.h; sourceTree = "<group>"; };
 		47AB032B173BBF3D001017ED /* PRSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRSession.m; sourceTree = "<group>"; };
+		47B8FF7C17CB485900256608 /* PRPropertyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRPropertyMapping.h; sourceTree = "<group>"; };
+		47B8FF7D17CB485900256608 /* PRPropertyMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRPropertyMapping.m; sourceTree = "<group>"; };
+		47B8FF8017CB4AAD00256608 /* PRRelationshipMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRRelationshipMapping.h; sourceTree = "<group>"; };
+		47B8FF8117CB4AAD00256608 /* PRRelationshipMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRRelationshipMapping.m; sourceTree = "<group>"; };
+		47B8FF8417CB95C100256608 /* PRWidgetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRWidgetsViewController.h; sourceTree = "<group>"; };
+		47B8FF8517CB95C100256608 /* PRWidgetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRWidgetsViewController.m; sourceTree = "<group>"; };
+		47B8FF8817CB9ADD00256608 /* PRDota2WidgetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRDota2WidgetsViewController.h; sourceTree = "<group>"; };
+		47B8FF8917CB9ADD00256608 /* PRDota2WidgetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRDota2WidgetsViewController.m; sourceTree = "<group>"; };
+		47B8FF8C17CBA3A500256608 /* PRDota2WidgetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PRDota2WidgetsViewController.xib; sourceTree = "<group>"; };
 		47C8AE6B171D4AE20020C4FF /* PRRound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRRound.h; sourceTree = "<group>"; };
 		47C8AE6C171D4AE20020C4FF /* PRRound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRRound.m; sourceTree = "<group>"; };
 		47C8AE6F171D68950020C4FF /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
@@ -222,6 +245,11 @@
 				47566B00178C4A66001B0235 /* PRRoundViewController.m */,
 				47566B1617954EE7001B0235 /* PRTeamsController.h */,
 				47566B1717954EE7001B0235 /* PRTeamsController.m */,
+				47B8FF8417CB95C100256608 /* PRWidgetsViewController.h */,
+				47B8FF8517CB95C100256608 /* PRWidgetsViewController.m */,
+				47B8FF8817CB9ADD00256608 /* PRDota2WidgetsViewController.h */,
+				47B8FF8917CB9ADD00256608 /* PRDota2WidgetsViewController.m */,
+				47B8FF8C17CBA3A500256608 /* PRDota2WidgetsViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -317,6 +345,12 @@
 				47E6522616FCBF18005D6E4C /* MainStoryboard.storyboard */,
 				47E6521A16FCBF18005D6E4C /* main.m */,
 				47E6521D16FCBF18005D6E4C /* PRAppDelegate.h */,
+				47B8FF8017CB4AAD00256608 /* PRRelationshipMapping.h */,
+				47B8FF8117CB4AAD00256608 /* PRRelationshipMapping.m */,
+				470BE7C917C6005A0095107E /* PRObjectMapping.h */,
+				470BE7CA17C6005A0095107E /* PRObjectMapping.m */,
+				47B8FF7C17CB485900256608 /* PRPropertyMapping.h */,
+				47B8FF7D17CB485900256608 /* PRPropertyMapping.m */,
 				47E6521E16FCBF18005D6E4C /* PRAppDelegate.m */,
 				4758CE611733FFA60049B8CA /* PRObjectManager.h */,
 				4758CE621733FFA60049B8CA /* PRObjectManager.m */,
@@ -437,6 +471,7 @@
 				47E6522816FCBF18005D6E4C /* MainStoryboard.storyboard in Resources */,
 				479640A01716AEED00060E8A /* Default-568h@2x.png in Resources */,
 				47566B1E1795839B001B0235 /* ShowTeamTableViewCell.xib in Resources */,
+				47B8FF8D17CBA3A600256608 /* PRDota2WidgetsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +481,7 @@
 			files = (
 				47E6524816FCBF18005D6E4C /* InfoPlist.strings in Resources */,
 				47566B1F1795839B001B0235 /* ShowTeamTableViewCell.xib in Resources */,
+				47B8FF8E17CBA3A600256608 /* PRDota2WidgetsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +564,11 @@
 				47566B09178EB05E001B0235 /* PRWinning.m in Sources */,
 				47566B0D178EB923001B0235 /* PRTeam.m in Sources */,
 				47566B1817954EE7001B0235 /* PRTeamsController.m in Sources */,
+				470BE7CB17C6005B0095107E /* PRObjectMapping.m in Sources */,
+				47B8FF7E17CB485900256608 /* PRPropertyMapping.m in Sources */,
+				47B8FF8217CB4AAD00256608 /* PRRelationshipMapping.m in Sources */,
+				47B8FF8617CB95C100256608 /* PRWidgetsViewController.m in Sources */,
+				47B8FF8A17CB9ADE00256608 /* PRDota2WidgetsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,6 +603,11 @@
 				47566B0A178EB05E001B0235 /* PRWinning.m in Sources */,
 				47566B0E178EB923001B0235 /* PRTeam.m in Sources */,
 				47566B1917954EE7001B0235 /* PRTeamsController.m in Sources */,
+				470BE7CC17C6005B0095107E /* PRObjectMapping.m in Sources */,
+				47B8FF7F17CB485900256608 /* PRPropertyMapping.m in Sources */,
+				47B8FF8317CB4AAD00256608 /* PRRelationshipMapping.m in Sources */,
+				47B8FF8717CB95C100256608 /* PRWidgetsViewController.m in Sources */,
+				47B8FF8B17CB9ADE00256608 /* PRDota2WidgetsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

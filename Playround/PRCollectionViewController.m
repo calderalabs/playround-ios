@@ -68,7 +68,7 @@
         [self.collectionClass allWithCompletion:completion];
 }
 
-- (void)setupCell:(UITableViewCell *)cell model:(PRModel *)model {
+- (void)setupCell:(UITableViewCell *)cell withModel:(PRModel *)model {
     cell.textLabel.text = model.objectID;
 }
 
@@ -93,7 +93,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     PRModel *model = self.collection[indexPath.row];
     
-    [self setupCell:cell model:model];
+    [self setupCell:cell withModel:model];
     
     return cell;
 }

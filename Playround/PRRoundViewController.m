@@ -10,12 +10,15 @@
 #import "PRStart.h"
 #import "PRWinning.h"
 #import "PRTeamsController.h"
+#import "PRWidgetsViewController.h"
 
 @interface PRRoundViewController ()
 
 @property (nonatomic, weak) UIActionSheet *startActionSheet;
 @property (nonatomic, weak) UIActionSheet *winActionSheet;
 @property (nonatomic, strong) PRTeamsController *teamsController;
+
+- (void)didTapToolsBarButtonItem:(UIBarButtonItem *)barButtonItem;
 
 @end
 
@@ -30,12 +33,21 @@ enum {
     if(round != _round ) {
         _round = round;
         self.teamsController.round = round;
+        
+        if([PRWidgetsViewController classForGame:self.round.game.name])
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Tools" style:UIBarButtonItemStyleBordered target:self action:@selector(didTapToolsBarButtonItem:)];
     }
 }
 
 - (void)awakeFromNib {
     self.teamsController = [[PRTeamsController alloc] initWithTableViewController:self sectionOffset:kPlayersSection];
     self.teamsController.delegate = self;
+}
+
+- (void)didTapToolsBarButtonItem:(UIBarButtonItem *)barButtonItem {
+    PRWidgetsViewController *widgetsViewController = [PRWidgetsViewController newControllerForGame:self.round.game.name];
+    widgetsViewController.round = self.round;
+    [self.navigationController pushViewController:widgetsViewController animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -146,9 +158,6 @@ enum {
     if(participations.count == 0)
         [self.navigationController popViewControllerAnimated:YES];
     else
-        for(PRParticipation *participation in participations)
-            participation.team = teamViewController.team;
-
         [self.round createRelationship:participations name:@"participations" completion:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult, NSError *error) {
             [self.navigationController popViewControllerAnimated:YES];
         }];

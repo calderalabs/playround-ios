@@ -11,22 +11,14 @@
 
 @interface PRRelationshipDescriptor ()
 
-@property (nonatomic, weak) Class targetClass;
-@property (nonatomic, copy) NSString *remotePath;
-@property (nonatomic, copy) NSString *keyPath;
 @property (nonatomic, strong) RKRequestDescriptor *requestDescriptor;
+@property (nonatomic, strong) RKResponseDescriptor *responseDescriptor;
+@property (nonatomic, copy) NSString *keyPath;
+@property (nonatomic, copy) NSString *versionedRemotePath;
 
 @end
 
 @implementation PRRelationshipDescriptor
-
-- (NSString *)versionedRemotePath {
-    return [PRModel versionedPathFromPath:self.remotePath];
-}
-
-- (RKObjectMapping *)objectMapping {
-    return [(id)self.targetClass objectMapping];
-}
 
 + (PRRelationshipDescriptor *)relationshipDescriptorWithTargetClass:(Class)targetClass remotePath:(NSString *)remotePath keyPath:(NSString *)keyPath {
     return [[PRRelationshipDescriptor alloc] initWithTargetClass:targetClass
@@ -34,16 +26,24 @@
                                                          keyPath:keyPath];
 }
 
+
 - (id)initWithTargetClass:(Class)targetClass remotePath:(NSString *)remotePath keyPath:(NSString *)keyPath {
     self = [super init];
     
     if(self) {
-        self.targetClass = targetClass;
-        self.remotePath = remotePath;
         self.keyPath = keyPath;
+        self.versionedRemotePath = [PRModel versionedPathFromPath:remotePath];
         
-        self.requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:
-                                                                  [self.targetClass objectMapping].inverseMapping
+        PRObjectMapping *mapping = (PRObjectMapping *)[(id)targetClass objectMapping];
+        
+        self.responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping.responseMapping
+                                                            method:RKRequestMethodAny
+                                                       pathPattern:self.versionedRemotePath
+                                                           keyPath:keyPath
+                                                                          statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+        
+        
+        self.requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:mapping.requestMapping
                                                                        objectClass:targetClass
                                                                        rootKeyPath:nil
                                                                             method:RKRequestMethodPOST];

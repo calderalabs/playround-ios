@@ -7,8 +7,13 @@
 //
 
 #import "PRParticipation.h"
+#import "PRPropertyMapping.h"
 
 @implementation PRParticipation
+
++ (void)load {
+    [self registerClass:self];
+}
 
 + (NSString *)remotePath {
     return nil;
@@ -18,40 +23,26 @@
     return @"participation";
 }
 
-+ (NSString *)primaryKey {
-    return @"user.objectID";
-}
-
 + (NSString *)remotePrimaryKey {
     return @"user.id";
 }
 
-+ (RKObjectMapping *)objectMapping {
-    RKObjectMapping *mapping = [super objectMapping];
-    
-    [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[PRUser objectMapping]];
++ (PRModelOperationType)supportedOperationTypes {
+    return PRModelOperationNone;
+}
 
-    [mapping addAttributeMappingsFromDictionary:@{
-        @"team": @"team.descriptor.name"
++ (PRObjectMapping *)objectMapping {
+    PRObjectMapping *mapping = [super objectMapping];
+    
+    [mapping addMappingsFromDictionary:@{
+        @"team": @"team.descriptor.name",
+        @"user": @"user@PRUser"
     }];
     
+    PRPropertyMapping *userIdMapping = mapping[@"user"][[PRUser remotePrimaryKey]];
+    userIdMapping.scope |= PRPropertyMappingScopeRequest;
+
     return mapping;
-}
-
-+ (NSArray *)excludedRequestAttributes {
-    return [[super excludedRequestAttributes] arrayByAddingObjectsFromArray:@[
-        @"user"
-    ]];
-}
-
-- (id)init {
-    self = [super init];
-    
-    if(self) {
-        self.user = [[PRUser alloc] init];
-    }
-    
-    return self;
 }
 
 @end

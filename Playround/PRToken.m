@@ -10,6 +10,10 @@
 
 @implementation PRToken
 
++ (void)load {
+    [self registerClass:self];
+}
+
 + (NSString *)remotePath {
     return @"/tokens";
 }
@@ -22,14 +26,13 @@
     return PRModelOperationCreate;
 }
 
-+ (RKObjectMapping *)objectMapping {
-    RKObjectMapping* mapping = [super objectMapping];
++ (PRObjectMapping *)objectMapping {
+    PRObjectMapping* mapping = [super objectMapping];
     
-    [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[PRUser objectMapping]];
-    
-    [mapping addAttributeMappingsFromDictionary:@{
+    [mapping addMappingsFromDictionary:@{
         @"value": @"value",
-        @"facebook_access_token": @"facebookAccessToken"
+        @"facebook_access_token@request": @"facebookAccessToken",
+        @"user@response": @"user@PRUser"
     }];
     
     return mapping;

@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Eugenio Depalo. All rights reserved.
 //
 
+#import "PRObjectMapping.h"
+
 typedef enum {
    PRModelOperationNone = 0,
    PRModelOperationCreate = 1,
@@ -19,10 +21,10 @@ typedef enum {
 
 @property (nonatomic, copy) NSString *objectID;
 
++ (NSArray *)modelClasses;
++ (void)registerClass:(Class)modelClass;
 + (PRModelOperationType)supportedOperationTypes;
-+ (RKObjectMapping *)objectMapping;
-+ (NSArray *)excludedRequestAttributes;
-+ (NSString *)primaryKey;
++ (PRObjectMapping *)objectMapping;
 + (NSString *)remotePrimaryKey;
 + (NSString *)keyPath;
 + (NSString *)pluralKeyPath;

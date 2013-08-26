@@ -8,11 +8,10 @@
 
 @interface PRRelationshipDescriptor : NSObject
 
-@property (nonatomic, weak, readonly) Class targetClass;
-@property (nonatomic, copy, readonly) NSString *versionedRemotePath;
-@property (nonatomic, copy, readonly) NSString *keyPath;
 @property (nonatomic, strong, readonly) RKRequestDescriptor *requestDescriptor;
-@property (nonatomic, strong, readonly) RKObjectMapping *objectMapping;
+@property (nonatomic, strong, readonly) RKResponseDescriptor *responseDescriptor;
+@property (nonatomic, copy, readonly) NSString *keyPath;
+@property (nonatomic, copy, readonly) NSString *versionedRemotePath;
 
 + (PRRelationshipDescriptor *)relationshipDescriptorWithTargetClass:(Class)targetClass remotePath:(NSString *)remotePath keyPath:(NSString *)keyPath;
 

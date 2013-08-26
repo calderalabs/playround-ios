@@ -18,7 +18,7 @@
     return [PRRound class];
 }
 
-- (void)setupCell:(PRFeedTableViewCell *)cell model:(PRRound *)round {
+- (void)setupCell:(PRFeedTableViewCell *)cell withModel:(PRRound *)round {
     cell.statusLabel.text = round.stateDisplayName;
     cell.usernameLabel.text = round.user.name;
     

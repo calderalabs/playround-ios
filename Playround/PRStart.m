@@ -10,6 +10,10 @@
 
 @implementation PRStart
 
++ (void)load {
+    [self registerClass:self];
+}
+
 + (NSString *)keyPath {
     return @"start";
 }
@@ -18,18 +22,14 @@
     return [NSString stringWithFormat:@"%@/:round.objectID/starts", [PRRound remotePath]];
 }
 
-+ (RKObjectMapping *)objectMapping {
-    RKObjectMapping *mapping = [super objectMapping];
++ (PRObjectMapping *)objectMapping {
+    PRObjectMapping *mapping = [super objectMapping];
     
-    [mapping addRelationshipMappingWithSourceKeyPath:@"round" mapping:[PRRound objectMapping]];
+    [mapping addMappingsFromDictionary:@{
+        @"round@response": @"round@PRRound",
+    }];
     
     return mapping;
-}
-
-+ (NSArray *)excludedRequestAttributes {
-    return [[super excludedRequestAttributes] arrayByAddingObjectsFromArray:@[
-        @"round"
-    ]];
 }
 
 @end

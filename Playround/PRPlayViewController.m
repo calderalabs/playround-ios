@@ -60,7 +60,7 @@ enum {
 
 - (void)setGame:(PRGame *)game animated:(BOOL)animated {
     self.round.game = game;
-    [self.round addParticipant:PRSession.current.user team:self.round.teams[0] prepend:YES];
+    [self.round addParticipant:PRSession.current.user toTeam:self.round.teams[0] prepend:YES];
     [self.teamsController updateAnimated:animated];
     
     if([self.tableView.visibleCells containsObject:self.teamCell]) {
@@ -221,7 +221,7 @@ enum {
 }
 
 - (void)teamSegmentedControlDidChangeValue:(UISegmentedControl *)segmentedControl {
-    [self.round addParticipant:PRSession.current.user team:self.round.teams[segmentedControl.selectedSegmentIndex] prepend:YES];
+    [self.round addParticipant:PRSession.current.user toTeam:self.round.teams[segmentedControl.selectedSegmentIndex] prepend:YES];
     [self.teamsController reloadAnimated:YES];
 }
 
@@ -330,7 +330,7 @@ enum {
                 PRTeam *team = self.round.teams[indexPath.section - kPlayersSection];
                 PRParticipation *participation = team.participations[indexPath.row - 1];
                 
-                [self.round removeParticipant:participation.user team:team];
+                [self.round removeParticipant:participation.user fromTeam:team];
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
             }
         }

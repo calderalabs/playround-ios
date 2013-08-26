@@ -11,30 +11,32 @@
 
 @implementation PRTeam
 
-+ (RKObjectMapping *)objectMapping {
-    RKObjectMapping *mapping = [super objectMapping];
-    
-    [mapping addRelationshipMappingWithSourceKeyPath:@"participations" mapping:[PRParticipation objectMapping]];
++ (void)load {
+    [self registerClass:self];
+}
 
-    [mapping addAttributeMappingsFromDictionary:@{
++ (NSString *)keyPath {
+    return nil;
+}
+
++ (PRObjectMapping *)objectMapping {
+    PRObjectMapping *mapping = [super objectMapping];
+    
+    [mapping addMappingsFromDictionary:@{
         @"name": @"descriptor.name",
-        @"display_name": @"descriptor.displayName",
-        @"number_of_players": @"descriptor.numberOfPlayers",
-        @"winner": @"winner"
+        @"display_name@response": @"descriptor.displayName",
+        @"number_of_players@response": @"descriptor.numberOfPlayers",
+        @"winner@response": @"winner",
+        @"participations": @"participations@PRParticipation"
     }];
     
     return mapping;
 }
 
-+ (NSArray *)excludedRequestAttributes {
-    return [[super excludedRequestAttributes] arrayByAddingObjectsFromArray:@[
-        @"descriptor"
-    ]];
-}
-
 - (PRParticipation *)addParticipant:(PRUser *)user prepend:(BOOL)prepend {
     PRParticipation *participation = [[PRParticipation alloc] init];
     participation.user = user;
+    participation.team = self;
     
     if(prepend)
         [_participations insertObject:participation atIndex:0];

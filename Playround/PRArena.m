@@ -10,6 +10,10 @@
 
 @implementation PRArena
 
++ (void)load {
+    [self registerClass:self];
+}
+
 + (NSString *)keyPath {
     return @"arena";
 }
@@ -22,11 +26,11 @@
     return PRModelOperationNone;
 }
 
-+ (RKObjectMapping *)objectMapping {
-    RKObjectMapping* mapping = [super objectMapping];
++ (PRObjectMapping *)objectMapping {
+    PRObjectMapping* mapping = [super objectMapping];
     
-    [mapping addAttributeMappingsFromDictionary:@{
-        @"name": @"name",
+    [mapping addMappingsFromDictionary:@{
+        @"name@response": @"name",
         @"latitude": @"latitude",
         @"longitude": @"longitude"
     }];

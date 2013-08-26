@@ -25,8 +25,8 @@
 @property (nonatomic, copy, readonly) NSString *stateDisplayName;
 
 - (BOOL)hasParticipant:(PRUser *)user;
-- (PRParticipation *)addParticipant:(PRUser *)user team:(PRTeam *)team prepend:(BOOL)prepend;
-- (void)removeParticipant:(PRUser *)user team:(PRTeam *)team;
+- (PRParticipation *)addParticipant:(PRUser *)user toTeam:(PRTeam *)team prepend:(BOOL)prepend;
+- (void)removeParticipant:(PRUser *)user fromTeam:(PRTeam *)team;
 - (void)removeAllParticipantsFromTeam:(PRTeam *)team;
 
 @end

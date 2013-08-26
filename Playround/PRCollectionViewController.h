@@ -15,7 +15,7 @@
 @property (nonatomic, copy, readonly) NSString *relationshipName;
 @property (nonatomic, strong) PRModel *model;
 
-- (void)setupCell:(UITableViewCell *)cell model:(PRModel *)model;
+- (void)setupCell:(UITableViewCell *)cell withModel:(PRModel *)model;
 - (void)fetchCollection;
 
 @end

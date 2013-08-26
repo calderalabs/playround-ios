@@ -47,7 +47,7 @@
     self.model = current;
 }
 
-- (void)setupCell:(UITableViewCell *)cell model:(PRUser *)user {
+- (void)setupCell:(UITableViewCell *)cell withModel:(PRUser *)user {
     cell.textLabel.text = user.name;
     
     if([self.round hasParticipant:user]) {
@@ -68,7 +68,7 @@
     
     for(NSIndexPath *indexPath in self.tableView.indexPathsForSelectedRows) {
         PRUser *user = self.collection[indexPath.row];
-        [participations addObject:[self.round addParticipant:user team:self.team prepend:NO]];
+        [participations addObject:[self.round addParticipant:user toTeam:self.team prepend:NO]];
     }
 
     if([self.delegate respondsToSelector:@selector(teamViewController:didAddParticipations:)])

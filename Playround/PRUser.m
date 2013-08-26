@@ -13,6 +13,10 @@ NSString *PRUserDidReadCurrentNotification = @"PRUserDidReadCurrentNotification"
 
 @implementation PRUser
 
++ (void)load {
+    [self registerClass:self];
+}
+
 + (NSString *)keyPath {
     return @"user";
 }
@@ -25,12 +29,12 @@ NSString *PRUserDidReadCurrentNotification = @"PRUserDidReadCurrentNotification"
     return PRModelOperationRead;
 }
 
-+ (RKObjectMapping *)objectMapping {
-    RKObjectMapping* mapping = [super objectMapping];
++ (PRObjectMapping *)objectMapping {
+    PRObjectMapping* mapping = [super objectMapping];
     
-    [mapping addAttributeMappingsFromDictionary:@{
-        @"name": @"name",
-        @"picture_url": @"pictureURL"
+    [mapping addMappingsFromDictionary:@{
+        @"name@response": @"name",
+        @"picture_url@response": @"pictureURL"
     }];
     
     return mapping;
@@ -40,8 +44,7 @@ NSString *PRUserDidReadCurrentNotification = @"PRUserDidReadCurrentNotification"
     return @{
         @"buddies": [PRRelationshipDescriptor relationshipDescriptorWithTargetClass:self
                                                                          remotePath:@"/users/:objectID/buddies"
-                                                                            keyPath:@"buddies"
-                    ]
+                                                                            keyPath:@"buddies"]
     };
 }
 

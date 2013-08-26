@@ -7,9 +7,12 @@
 //
 
 #import "PRGame.h"
-#import "PRTeamDescriptor.h"
 
 @implementation PRGame
+
++ (void)load {
+    [self registerClass:self];
+}
 
 + (NSString *)keyPath {
     return @"game";
@@ -23,17 +26,14 @@
     return PRModelOperationNone;
 }
 
-+ (RKObjectMapping *)objectMapping {
-    RKObjectMapping* mapping = [super objectMapping];
++ (PRObjectMapping *)objectMapping {
+    PRObjectMapping* mapping = [super objectMapping];
     
-    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"teams"
-                                                                            toKeyPath:@"teamDescriptors"
-                                                                          withMapping:[PRTeamDescriptor objectMapping]]];
-    
-    [mapping addAttributeMappingsFromDictionary:@{
-         @"name": @"name",
-         @"display_name": @"displayName",
-         @"picture_url": @"pictureURL",
+    [mapping addMappingsFromDictionary:@{
+         @"name@response": @"name",
+         @"display_name@response": @"displayName",
+         @"picture_url@response": @"pictureURL",
+         @"teams": @"teamDescriptors@PRTeamDescriptor"
     }];
     
     return mapping;

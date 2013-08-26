@@ -11,16 +11,28 @@
 
 @implementation PRTeamDescriptor
 
-+ (RKObjectMapping *)objectMapping {
-    RKObjectMapping *mapping = [super objectMapping];
++ (void)load {
+    [self registerClass:self];
+}
+
++ (NSString *)keyPath {
+    return nil;
+}
+
++ (PRObjectMapping *)objectMapping {
+    PRObjectMapping *mapping = [super objectMapping];
     
-    [mapping addAttributeMappingsFromDictionary:@{
-         @"name": @"name",
-         @"display_name": @"displayName",
-         @"number_of_players": @"numberOfPlayers"
-     }];
+    [mapping addMappingsFromDictionary:@{
+         @"name@response": @"name",
+         @"display_name@response": @"displayName",
+         @"number_of_players@response": @"numberOfPlayers"
+    }];
     
     return mapping;
+}
+
++ (PRModelOperationType)supportedOperationTypes {
+    return PRModelOperationNone;
 }
 
 - (PRTeam *)newTeam {

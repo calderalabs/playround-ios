@@ -13,6 +13,10 @@
 
 @implementation PRRound
 
++ (void)load {
+    [self registerClass:self];
+}
+
 + (NSString *)keyPath {
     return @"round";
 }
@@ -21,27 +25,22 @@
     return @"/rounds";
 }
 
-+ (RKObjectMapping *)objectMapping {
-    RKObjectMapping* mapping = [super objectMapping];
++ (PRObjectMapping *)objectMapping {
+    PRObjectMapping *mapping = [super objectMapping];
 
-    [mapping addRelationshipMappingWithSourceKeyPath:@"user" mapping:[PRUser objectMapping]];
-    [mapping addRelationshipMappingWithSourceKeyPath:@"game" mapping:[PRGame objectMapping]];
-    [mapping addRelationshipMappingWithSourceKeyPath:@"arena" mapping:[PRArena objectMapping]];
-    [mapping addRelationshipMappingWithSourceKeyPath:@"teams" mapping:[PRTeam objectMapping]];
-    
-    [mapping addAttributeMappingsFromDictionary:@{
+    [mapping addMappingsFromDictionary:@{
         @"state": @"state",
         @"created_at": @"createdAt",
-        @"game_name": @"game.name",
+        @"game_name@request": @"game.name",
+        @"user@response": @"user@PRUser",
+        @"game": @"game@PRGame",
+        @"arena": @"arena@PRArena",
+        @"teams": @"teams@PRTeam"
     }];
+    
+    [mapping[@"user"][@"teams"][@"participations"] removeMappingWithSourceKeyPath:@"team"];
 
     return mapping;
-}
-
-+ (NSArray *)excludedRequestAttributes {
-    return [[super excludedRequestAttributes] arrayByAddingObjectsFromArray:@[
-        @"game", @"user"
-    ]];
 }
 
 + (NSDictionary *)relationships {
@@ -102,14 +101,14 @@
     return NO;
 }
 
-- (PRParticipation *)addParticipant:(PRUser *)user team:(PRTeam *)team prepend:(BOOL)prepend {
+- (PRParticipation *)addParticipant:(PRUser *)user toTeam:(PRTeam *)team prepend:(BOOL)prepend {
     for(PRTeam *t in self.teams)
         [t removeParticipant:user];
     
     return [team addParticipant:user prepend:prepend];
 }
 
-- (void)removeParticipant:(PRUser *)user team:(PRTeam *)team {
+- (void)removeParticipant:(PRUser *)user fromTeam:(PRTeam *)team {
     [team removeParticipant:user];
 }
 
