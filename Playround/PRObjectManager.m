@@ -17,8 +17,7 @@
 #import "PRWinning.h"
 #import "PRParticipation.h"
 
-static NSString *kServiceName = @"playround.api";
-static NSString *kAccountName = @"playround.account";
+static NSString *kAccountName = @"playround.token";
 
 @interface PRObjectManager ()
 
@@ -36,8 +35,8 @@ static NSString *kAccountName = @"playround.account";
         [self setAcceptHeaderWithMIMEType:RKMIMETypeJSON];
         self.requestSerializationMIMEType = RKMIMETypeJSON;
         self.accessToken = self.class.defaultAccessToken;
-    
-        for(Class class in @[[PRRound class], [PRUser class], [PRGame class], [PRArena class], [PRToken class], [PRStart class], [PRWinning class], [PRParticipation class]])
+        
+        for(Class class in PRModel.modelClasses)
             [class setObjectManager:self];
         
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(sessionDidLogin:) name:PRSessionDidLoginNotification object:PRSession.current];
@@ -56,14 +55,14 @@ static NSString *kAccountName = @"playround.account";
 }
 
 + (NSString *)defaultAccessToken {
-    return [SSKeychain passwordForService:kServiceName account:kAccountName];
+    return [SSKeychain passwordForService:NSBundle.mainBundle.bundleIdentifier account:kAccountName];
 }
 
 + (void)setDefaultAccessToken:(NSString *)accessToken {
     if(!accessToken)
-        [SSKeychain deletePasswordForService:kServiceName account:kAccountName];
+        [SSKeychain deletePasswordForService:NSBundle.mainBundle.bundleIdentifier account:kAccountName];
     else
-        [SSKeychain setPassword:accessToken forService:kServiceName account:kAccountName];
+        [SSKeychain setPassword:accessToken forService:NSBundle.mainBundle.bundleIdentifier account:kAccountName];
 }
 
 - (void)setAccessToken:(NSString *)accessToken {
@@ -71,8 +70,11 @@ static NSString *kAccountName = @"playround.account";
 }
 
 - (void)setAccessToken:(NSString *)accessToken asDefault:(BOOL)asDefault {
-    [self.HTTPClient setAuthorizationHeaderWithToken:accessToken];
-
+    if(accessToken)
+        [self.HTTPClient setAuthorizationHeaderWithToken:accessToken];
+    else
+        [self.HTTPClient clearAuthorizationHeader];
+    
     if(asDefault)
         self.class.defaultAccessToken = accessToken;
 }

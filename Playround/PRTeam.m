@@ -33,6 +33,10 @@
     return mapping;
 }
 
++ (PRModelOperationType)supportedOperationTypes {
+    return PRModelOperationNone;
+}
+
 - (PRParticipation *)addParticipant:(PRUser *)user prepend:(BOOL)prepend {
     PRParticipation *participation = [[PRParticipation alloc] init];
     participation.user = user;

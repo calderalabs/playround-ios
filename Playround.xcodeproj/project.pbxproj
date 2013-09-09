@@ -50,6 +50,8 @@
 		477E20741768760900F7327A /* PRCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 477E20721768760900F7327A /* PRCollectionViewController.m */; };
 		4784311A174B8AEA00154CF1 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47843119174B8AEA00154CF1 /* Accounts.framework */; };
 		4784311B174B8AF500154CF1 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47843119174B8AEA00154CF1 /* Accounts.framework */; };
+		47914C0E17CCB623007384B9 /* PRFacebookUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 47914C0D17CCB623007384B9 /* PRFacebookUser.m */; };
+		47914C0F17CCB623007384B9 /* PRFacebookUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 47914C0D17CCB623007384B9 /* PRFacebookUser.m */; };
 		479391BD171EAC7A0007C2C2 /* PRFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391BC171EAC7A0007C2C2 /* PRFeedTableViewCell.m */; };
 		479391BE171EAC7A0007C2C2 /* PRFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391BC171EAC7A0007C2C2 /* PRFeedTableViewCell.m */; };
 		479391C1171ECBF10007C2C2 /* PRArena.m in Sources */ = {isa = PBXBuildFile; fileRef = 479391C0171ECBF10007C2C2 /* PRArena.m */; };
@@ -77,6 +79,7 @@
 		47C8AE77171D78150020C4FF /* PRModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C8AE75171D78150020C4FF /* PRModel.m */; };
 		47CFF0DE17327DA8006CEA78 /* PRToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 47CFF0DD17327DA8006CEA78 /* PRToken.m */; };
 		47CFF0DF17327DA8006CEA78 /* PRToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 47CFF0DD17327DA8006CEA78 /* PRToken.m */; };
+		47DDD6FE17D48B1300C6674D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DDD6FD17D48B1300C6674D /* Social.framework */; };
 		47E6520F16FCBF18005D6E4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E6520E16FCBF18005D6E4C /* UIKit.framework */; };
 		47E6521116FCBF18005D6E4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E6521016FCBF18005D6E4C /* Foundation.framework */; };
 		47E6521316FCBF18005D6E4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47E6521216FCBF18005D6E4C /* CoreGraphics.framework */; };
@@ -144,6 +147,8 @@
 		477E20711768760900F7327A /* PRCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRCollectionViewController.h; sourceTree = "<group>"; };
 		477E20721768760900F7327A /* PRCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRCollectionViewController.m; sourceTree = "<group>"; };
 		47843119174B8AEA00154CF1 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		47914C0C17CCB623007384B9 /* PRFacebookUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRFacebookUser.h; sourceTree = "<group>"; };
+		47914C0D17CCB623007384B9 /* PRFacebookUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRFacebookUser.m; sourceTree = "<group>"; };
 		479391BB171EAC7A0007C2C2 /* PRFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRFeedTableViewCell.h; sourceTree = "<group>"; };
 		479391BC171EAC7A0007C2C2 /* PRFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRFeedTableViewCell.m; sourceTree = "<group>"; };
 		479391BF171ECBF10007C2C2 /* PRArena.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRArena.h; sourceTree = "<group>"; };
@@ -171,6 +176,7 @@
 		47C8AE75171D78150020C4FF /* PRModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRModel.m; sourceTree = "<group>"; };
 		47CFF0DC17327DA8006CEA78 /* PRToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRToken.h; sourceTree = "<group>"; };
 		47CFF0DD17327DA8006CEA78 /* PRToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRToken.m; sourceTree = "<group>"; };
+		47DDD6FD17D48B1300C6674D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		47E6520B16FCBF18005D6E4C /* Playround.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Playround.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47E6520E16FCBF18005D6E4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		47E6521016FCBF18005D6E4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -197,6 +203,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47DDD6FE17D48B1300C6674D /* Social.framework in Frameworks */,
 				47372F841786BED700FA6C3E /* CoreLocation.framework in Frameworks */,
 				4784311A174B8AEA00154CF1 /* Accounts.framework in Frameworks */,
 				47E6520F16FCBF18005D6E4C /* UIKit.framework in Frameworks */,
@@ -323,6 +330,7 @@
 		47E6520D16FCBF18005D6E4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				47DDD6FD17D48B1300C6674D /* Social.framework */,
 				47843119174B8AEA00154CF1 /* Accounts.framework */,
 				47E6520E16FCBF18005D6E4C /* UIKit.framework */,
 				47E6521016FCBF18005D6E4C /* Foundation.framework */,
@@ -349,6 +357,8 @@
 				47B8FF8117CB4AAD00256608 /* PRRelationshipMapping.m */,
 				470BE7C917C6005A0095107E /* PRObjectMapping.h */,
 				470BE7CA17C6005A0095107E /* PRObjectMapping.m */,
+				47914C0C17CCB623007384B9 /* PRFacebookUser.h */,
+				47914C0D17CCB623007384B9 /* PRFacebookUser.m */,
 				47B8FF7C17CB485900256608 /* PRPropertyMapping.h */,
 				47B8FF7D17CB485900256608 /* PRPropertyMapping.m */,
 				47E6521E16FCBF18005D6E4C /* PRAppDelegate.m */,
@@ -569,6 +579,7 @@
 				47B8FF8217CB4AAD00256608 /* PRRelationshipMapping.m in Sources */,
 				47B8FF8617CB95C100256608 /* PRWidgetsViewController.m in Sources */,
 				47B8FF8A17CB9ADE00256608 /* PRDota2WidgetsViewController.m in Sources */,
+				47914C0E17CCB623007384B9 /* PRFacebookUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +619,7 @@
 				47B8FF8317CB4AAD00256608 /* PRRelationshipMapping.m in Sources */,
 				47B8FF8717CB95C100256608 /* PRWidgetsViewController.m in Sources */,
 				47B8FF8B17CB9ADE00256608 /* PRDota2WidgetsViewController.m in Sources */,
+				47914C0F17CCB623007384B9 /* PRFacebookUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

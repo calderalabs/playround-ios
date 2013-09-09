@@ -14,6 +14,7 @@ extern NSString *PRUserDidReadCurrentNotification;
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *pictureURL;
+@property (nonatomic, copy) NSString *facebookID;
 
 + (void)readCurrentWithCompletion:(void (^)(RKObjectRequestOperation *, RKMappingResult *, NSError *))completion;
 

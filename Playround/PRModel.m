@@ -76,23 +76,25 @@ static NSMutableArray *modelClasses = nil;
 }
 
 + (void)setObjectManager:(PRObjectManager *)objectManager {
-    for(NSString *keyPath in @[self.keyPath, self.pluralKeyPath])
+    if(self.keyPath) {
+        for(NSString *keyPath in @[self.keyPath, self.pluralKeyPath])
+            [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping.responseMapping
+                                                                                              method:RKRequestMethodAny
+                                                                                         pathPattern:self.versionedRemotePath
+                                                                                             keyPath:keyPath
+                                                                                         statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+        
         [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping.responseMapping
                                                                                           method:RKRequestMethodAny
-                                                                                     pathPattern:self.versionedRemotePath
-                                                                                         keyPath:keyPath
+                                                                                     pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
+                                                                                         keyPath:self.keyPath
                                                                                      statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
-    
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:self.objectMapping.responseMapping
-                                                                                      method:RKRequestMethodAny
-                                                                                 pathPattern:[NSString stringWithFormat:@"%@/:objectID", self.versionedRemotePath]
-                                                                                     keyPath:self.keyPath
-                                                                                 statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
-    
-    [objectManager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:self.objectMapping.requestMapping
-                                                                              objectClass:self
-                                                                              rootKeyPath:self.keyPath
-                                                                                   method:RKRequestMethodPOST | RKRequestMethodPATCH]];
+        
+        [objectManager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:self.objectMapping.requestMapping
+                                                                                  objectClass:self
+                                                                                  rootKeyPath:self.keyPath
+                                                                                       method:RKRequestMethodPOST | RKRequestMethodPATCH]];
+    }
     
     if(self.supportedOperationTypes & PRModelOperationCreate)
         [objectManager.router.routeSet addRoute:[RKRoute routeWithClass:self

@@ -34,7 +34,8 @@ NSString *PRUserDidReadCurrentNotification = @"PRUserDidReadCurrentNotification"
     
     [mapping addMappingsFromDictionary:@{
         @"name@response": @"name",
-        @"picture_url@response": @"pictureURL"
+        @"picture_url@response": @"pictureURL",
+        @"facebook_id@request": @"facebookID"
     }];
     
     return mapping;

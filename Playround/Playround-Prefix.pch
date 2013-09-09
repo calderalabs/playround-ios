@@ -16,6 +16,7 @@
     #import <RestKit.h>
     #import <SSKeychain.h>
     #import <Accounts/Accounts.h>
+    #import <Social/Social.h>
     #import <CoreLocation/CoreLocation.h>
     #import <FormatterKit/TTTLocationFormatter.h>
     #import <FormatterKit/TTTTimeIntervalFormatter.h>

@@ -7,6 +7,7 @@
 //
 
 #import "PRSession.h"
+#import "PRFacebookUser.h"
 
 NSString *PRSessionDidLoginNotification = @"PRSessionDidLoginNotification";
 
@@ -36,8 +37,6 @@ static PRSession *sCurrentSession;
     self = [super init];
     
     if(self) {
-        self.accountStore = [[ACAccountStore alloc] init];
-        
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(didReadCurrentUser:) name:PRUserDidReadCurrentNotification object:[PRUser class]];
     }
     
@@ -66,28 +65,16 @@ static PRSession *sCurrentSession;
 }
 
 - (void)facebookConnectWithCompletion:(void (^)(PRToken *user, NSError *error))completion {
-    ACAccountType *facebookAccountType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-
-    [self.accountStore requestAccessToAccountsWithType:facebookAccountType
-                                               options:@{
-                                                   ACFacebookAppIdKey: PR_FACEBOOK_APP_ID,
-                                                   ACFacebookPermissionsKey: @[@"email"]
-                                               }
-                                            completion:^(BOOL granted, NSError *error) {
-                                                dispatch_async(dispatch_get_main_queue(), ^{
-                                                    if(granted) {
-                                                        NSArray *accounts = [self.accountStore accountsWithAccountType:facebookAccountType];
-                                                        ACAccount *account = accounts.lastObject;
-                                                        PRToken *token = [[PRToken alloc] init];
-                                                        token.facebookAccessToken = account.credential.oauthToken;
-                                                        
-                                                        [self loginWithToken:token completion:completion];
-                                                    }
-                                                    else {
-                                                        completion(nil, error);
-                                                    }
-                                                });
-                                            }];
+    [[PRFacebookUser defaultUser] createAccessTokenWithCompletion:^(NSString *accessToken, NSError *error) {
+        if(!error) {
+            PRToken *token = [[PRToken alloc] init];
+            token.facebookAccessToken = accessToken;
+            [self loginWithToken:token completion:completion];
+        }
+        else {
+            completion(nil, error);
+        }
+    }];
 }
 
 @end
